@@ -9,10 +9,10 @@ public class ConstantsUtils {
     public static String TITLE = "火车票预售系统";
 
     //loginsize
-    public static int LOGIN_X = 400;
-    public static int LOGIN_Y = 150;
-    public static int LOGIN_WIDTH = 1200;
-    public static int LOGIN_HEIGH = 720;
+    public static int LOGIN_X = 800;
+    public static int LOGIN_Y = 200;
+    public static int LOGIN_WIDTH = 412;
+    public static int LOGIN_HEIGH = 620;
 
 
     //frame size 400, 150, 1200, 720

@@ -13,9 +13,12 @@ public class MyFrame extends JFrame {
      * @throws HeadlessException
      */
     public MyFrame() throws HeadlessException {
+
         this.setBounds(ConstantsUtils.X, ConstantsUtils.Y, ConstantsUtils.WIDTH, ConstantsUtils.HEIGH);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(ConstantsUtils.TITLE);
+        //this.getContentPane().add(new JPanel());
+        System.out.println("1");
     }
 
 
@@ -30,9 +33,17 @@ public class MyFrame extends JFrame {
      * @throws HeadlessException
      */
     public MyFrame(int x, int y, int width, int heigh) throws HeadlessException {
+
         this.setBounds(x, y, width, heigh);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(ConstantsUtils.TITLE);
+        //this.getContentPane().add(new JPanel());
     }
+
+//    public static MyFrame newInstance() {
+//        MyFrame myFrame = new MyFrame();
+//        myFrame.getContentPane().add(new JPanel());
+//        return myFrame;
+//    }
 
 }
