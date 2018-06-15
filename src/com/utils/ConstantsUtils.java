@@ -20,4 +20,7 @@ public class ConstantsUtils {
     public static int Y = 150;
     public static int WIDTH = 1200;
     public static int HEIGH = 720;
+
+
+
 }
