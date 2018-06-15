@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RegisterActivity {
+    private User user;
+
     private ImageIcon bgImage;
     private JLabel bgLabel;
 
@@ -78,6 +80,9 @@ public class RegisterActivity {
         message.setVisible(false);
         message.setForeground(Color.red);
 
+        /**
+         * ok按钮
+         */
         OKButton = new MyButton("完成", 90, 440, 80, 40, textFont, 1);
         OKButton.addActionListener(new ActionListener() {
             @Override
@@ -98,14 +103,20 @@ public class RegisterActivity {
                     message.setVisible(true);
                 } else {
                     message.setVisible(false);
-                    User user = new User();
+                    user = new User();
                     user.setUserPhone(Integer.valueOf(phone));
-
+                    user.setUserEmail(email);
+                    user.setUserAvatarName(avatarName);
+                    user.setUserPassWord(password);
+                    user.setUsualDepature(usualDepature);
                 }
             }
         });
 
 
+        /**
+         * 返回按钮
+         */
         BanckButton = new MyButton("返回", 230, 440, 80, 40, textFont, 2);
         BanckButton.addActionListener(new ActionListener() {
             @Override
