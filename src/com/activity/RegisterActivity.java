@@ -1,12 +1,15 @@
 package com.activity;
 
+import com.Main;
 import com.base.BaseActivity;
 import com.bean.User;
+import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
+import com.utils.SqlUtiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,10 +41,12 @@ public class RegisterActivity extends BaseActivity {
 
     private MyFrame myFrame;
     private JLabel container;
-    
+
+
+    private SqlUtiles sqlUtiles;
+
     @Override
     public void initView() {
-
         container = new JLabel();
         Font titleFont = new Font("宋体", Font.PLAIN, 24);
         Font textFont = new Font("黑体", Font.PLAIN, 17);
@@ -63,7 +68,9 @@ public class RegisterActivity extends BaseActivity {
         xStart = xStart + 100;
         heigh = 30;
         phoneTextField = new MyTextField(xStart, yStar, width, heigh, textFont);
-        passwordTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
+        passwordTextField = new JPasswordField();
+        passwordTextField.setBounds(xStart, yStar += margin, width, heigh);
+        passwordTextField.setFont(textFont);
         emailTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
         avaterNameTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
         usualDepatureTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
@@ -96,11 +103,20 @@ public class RegisterActivity extends BaseActivity {
                 } else {
                     message.setVisible(false);
                     user = new User();
-                    user.setUserPhone(Integer.valueOf(phone));
+                    user.setUserPhone(phone);
                     user.setUserEmail(email);
                     user.setUserAvatarName(avatarName);
                     user.setUserPassWord(password);
                     user.setUsualDepature(usualDepature);
+                    Main.user = user;
+                    sqlUtiles = new SqlUtiles(getSqlUser());
+                    if (sqlUtiles.InsertUser(user)){
+                        System.out.println("注册成功");
+                    }else{
+                        message.setText("注册失败");
+                        System.out.println("注册失败");
+                    }
+
                 }
             }
         });
@@ -151,7 +167,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
-    public void initSqlUser() {
-
+    public SqlUser initSqlUser() {
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 }

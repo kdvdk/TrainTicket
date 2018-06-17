@@ -1,6 +1,7 @@
 package com.activity;
 
 import com.base.BaseActivity;
+import com.db.SqlUser;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
@@ -118,7 +119,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    public void initSqlUser() {
-
+    public SqlUser initSqlUser() {
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 }

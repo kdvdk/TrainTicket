@@ -45,7 +45,7 @@ public class SqlUser {
                 try {
                     Class.forName(ConstantsUtils.DRIVER_NAME);
                     this.connection = DriverManager
-                            .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_ROOT, ConstantsUtils.PWD);
+                            .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_USER, ConstantsUtils.PWD);
                     System.out.println("数据库链接成功");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -57,7 +57,7 @@ public class SqlUser {
                 try {
                     Class.forName(ConstantsUtils.DRIVER_NAME);
                     this.connection = DriverManager
-                            .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_ROOT, ConstantsUtils.PWD);
+                            .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_MANAGER, ConstantsUtils.PWD);
                     System.out.println("数据库链接成功");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -65,5 +65,9 @@ public class SqlUser {
                 }
             }
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }

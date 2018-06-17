@@ -1,24 +1,46 @@
 package com.bean;
 
 public class User {
-    private int userPhone;
+
+    private String userPhone;
     private String userPassWord;
     private String userEmail;
     private String userAvatarName;
-    private String userIdCardNumber;
-    private String userRealName;
-    private String userSex;
+    private String userIdCardNumber ;
+    private String userRealName=" ";
+    private String userSex=" ";
     private String usualDepature;
-    private int userAge;
+    private int userAge ;
     private int userBirthday;
 
-    
+    private int type;
 
-    public int getUserPhone() {
+    public User() {
+    }
+
+    public User(String userPhone, String userPassWord, String userEmail, String userAvatarName, String userIdCardNumber, String usualDepature, int type) {
+        this.userPhone = userPhone;
+        this.userPassWord = userPassWord;
+        this.userEmail = userEmail;
+        this.userAvatarName = userAvatarName;
+        this.userIdCardNumber = userIdCardNumber;
+        this.usualDepature = usualDepature;
+        this.type = type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getUserPhone() {
         return userPhone;
     }
 
-    public void setUserPhone(int userPhone) {
+    public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
     }
 
