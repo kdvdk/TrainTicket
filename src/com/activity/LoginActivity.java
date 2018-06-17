@@ -1,5 +1,6 @@
 package com.activity;
 
+import com.Main;
 import com.base.BaseActivity;
 import com.bean.User;
 import com.db.SqlUser;
@@ -114,6 +115,7 @@ public class LoginActivity extends BaseActivity {
                     User user = sqlUtiles.queryUser(limit);
                     if(user.getUserEmail().trim().equals(emailText)){
                         System.out.println("登录成功");
+                        Main.user = user;
                     }
                 }else{
                     if (accountTextField.getText().equals("")) {
@@ -133,6 +135,7 @@ public class LoginActivity extends BaseActivity {
                             if(user.getUserPassWord().trim().equals(password)){
                                 setMessage("登录成功");
                                 System.out.println("登录成功");
+                                Main.user = user;
                             }else{
                                 setMessage("密码错误_忘记密码？请点我");
                                 System.out.println("密码错误");
