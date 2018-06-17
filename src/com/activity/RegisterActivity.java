@@ -174,6 +174,7 @@ public class RegisterActivity extends BaseActivity {
     private void banck(){
         LoginActivity loginActivity = new LoginActivity();
         myFrame.dispose();
+
     }
     private void setMessage(String s){
         message.setText(s);
