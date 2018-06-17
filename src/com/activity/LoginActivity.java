@@ -1,5 +1,6 @@
 package com.activity;
 
+import com.base.BaseActivity;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginActivity {
+public class LoginActivity extends BaseActivity {
 
     private JButton buttonLogin;//登陆按钮
     private JButton buttonRegister;//忘记密码按钮
@@ -24,16 +25,12 @@ public class LoginActivity {
     private JLabel welcomeText;
     private JLabel message;
 
-    public LoginActivity() {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                initView();
-            }
-        });
-    }
 
-    private void initView() {
+    /**
+     * 初始化View
+     */
+    @Override
+    public void initView() {
         Font font = new Font("黑体", Font.PLAIN, 18);//设置字体
         containerFrame = new MyFrame(ConstantsUtils.LOGIN_X, ConstantsUtils.LOGIN_Y, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH);
         //给登陆界面添加背景图片
@@ -118,5 +115,10 @@ public class LoginActivity {
         containerLabel.setOpaque(false);
         containerFrame.add(containerLabel);
         containerFrame.setVisible(true);
+    }
+
+    @Override
+    public void initSqlUser() {
+
     }
 }

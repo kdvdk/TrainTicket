@@ -1,5 +1,6 @@
 package com.activity;
 
+import com.base.BaseActivity;
 import com.bean.User;
 import com.ui.MyButton;
 import com.ui.MyFrame;
@@ -12,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegisterActivity {
+public class RegisterActivity extends BaseActivity {
     private User user;
 
     private ImageIcon bgImage;
@@ -37,18 +38,9 @@ public class RegisterActivity {
 
     private MyFrame myFrame;
     private JLabel container;
-
-
-    public RegisterActivity() {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                initView();
-            }
-        });
-    }
-
-    private void initView() {
+    
+    @Override
+    public void initView() {
 
         container = new JLabel();
         Font titleFont = new Font("宋体", Font.PLAIN, 24);
@@ -156,5 +148,10 @@ public class RegisterActivity {
 
         myFrame.add(container);
         myFrame.setVisible(true);
+    }
+
+    @Override
+    public void initSqlUser() {
+
     }
 }
