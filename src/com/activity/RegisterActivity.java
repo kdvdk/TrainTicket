@@ -112,8 +112,9 @@ public class RegisterActivity extends BaseActivity {
                     sqlUtiles = new SqlUtiles(getSqlUser());
                     if (sqlUtiles.InsertUser(user)){
                         System.out.println("注册成功");
+                        banck();
                     }else{
-                        message.setText("注册失败");
+                        setMessage("注册失败，请检查是否该手机已被使用");
                         System.out.println("注册失败");
                     }
 
@@ -129,8 +130,7 @@ public class RegisterActivity extends BaseActivity {
         BanckButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LoginActivity loginActivity = new LoginActivity();
-                myFrame.dispose();
+                banck();
             }
         });
 
@@ -169,5 +169,14 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(SqlUser.USER_TYPE);
+    }
+
+    private void banck(){
+        LoginActivity loginActivity = new LoginActivity();
+        myFrame.dispose();
+    }
+    private void setMessage(String s){
+        message.setText(s);
+        message.setVisible(true);
     }
 }

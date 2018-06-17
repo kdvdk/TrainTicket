@@ -44,32 +44,36 @@ public class SqlUtiles {
 
     /**
      * 查询用户
-     * @param phone
+     * @param limit
      * @return
      */
-    public User queryUser(String phone){
+    public User queryUser(String limit){
+        User user = new User() ;
+        user.setUserPhone("-");
         String sql = QUERY_SQL.replace("sth",
                 "UserPhoneNumber,UserPassWord,UserEmail,UserAppName,UserIdCardNumber,UserUsualDepature,UserType");
         sql = sql.replace("table","UserTrain");
+        sql = sql+limit;
         System.out.println(sql);
-        sql = sql+"WHERE UserPhoneNumber="+phone;
         ResultSet resultSet = executeQuery(sql);
         try {
-            User user = new User(
-                    resultSet.getString("UserPhoneNumber"),
-                    resultSet.getString("UserPassWord"),
-                    resultSet.getString("UserEmail"),
-                    resultSet.getString("UserAppName"),
-                    resultSet.getString("UserIdCardNumber"),
-                    resultSet.getString("UserUsualDepature"),
-                    resultSet.getInt("UserType")
-            );
+            while (resultSet.next()){
+                user = new User(
+                        resultSet.getString("UserPhoneNumber"),
+                        resultSet.getString("UserPassWord"),
+                        resultSet.getString("UserEmail"),
+                        resultSet.getString("UserAppName"),
+                        resultSet.getString("UserIdCardNumber"),
+                        resultSet.getString("UserUsualDepature"),
+                        resultSet.getInt("UserType")
+                );
+            }
             System.out.println("查询成功");
             return user;
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("查询失败："+e.toString());
-            return null;
+            return user;
         }
     }
 
@@ -85,7 +89,6 @@ public class SqlUtiles {
             if (result>0){
                 System.out.println("SqlUtiles :SQL 执行成功");
                 return true;
-
             }else {
                 return false;
             }
@@ -106,6 +109,7 @@ public class SqlUtiles {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
+            //statement.close();
             return resultSet;
         } catch (SQLException e) {
             System.out.println("SqlUtiles :SQL query 执行失败 "+e.toString());

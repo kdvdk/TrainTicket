@@ -1,16 +1,21 @@
 package com.activity;
 
 import com.base.BaseActivity;
+import com.bean.User;
 import com.db.SqlUser;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
+import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
+import com.utils.SqlUtiles;
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class LoginActivity extends BaseActivity {
 
@@ -27,6 +32,7 @@ public class LoginActivity extends BaseActivity {
     private JLabel message;
 
 
+    private SqlUtiles sqlUtiles;
     /**
      * 初始化View
      */
@@ -52,12 +58,47 @@ public class LoginActivity extends BaseActivity {
 
         passwordTextLabel = new MyLabel("密码", 50, 190, 60, 50, font);
 
+
+        //找回密码
+        JLabel backMessage = new MyLabel("输入注册时的邮箱,若正确即可登录",70,240,350,50,new Font("宋体",Font.PLAIN,20));
+        JTextField email = new MyTextField(70,300,250,50,font);
+        backMessage.setVisible(false);
+        email.setVisible(false);
+
         //提示信息
         message = new JLabel();
-        message.setBounds(180, 240, 100, 50);
+        message.setBounds(130, 240, 250, 50);
         message.setFont(new Font("宋体", Font.PLAIN, 15));
         message.setForeground(Color.red);
         message.setText("密码错误");
+        message.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                email.setVisible(true);
+                backMessage.setVisible(true);
+                message.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         //按钮
         buttonLogin = new JButton("登陆");         //更改成loginButton
@@ -66,10 +107,39 @@ public class LoginActivity extends BaseActivity {
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (accountTextField.getText().equals("")) {
-                    System.out.println("用户名为空");
-                } else {
-                    System.out.println(accountTextField.getText());
+                if(email.isVisible()){
+                    String emailText = email.getText();
+                    String limit = "WHERE UserEmail = '"+emailText+"'";
+                    sqlUtiles = new SqlUtiles(getSqlUser());
+                    User user = sqlUtiles.queryUser(limit);
+                    if(user.getUserEmail().trim().equals(emailText)){
+                        System.out.println("登录成功");
+                    }
+                }else{
+                    if (accountTextField.getText().equals("")) {
+                        System.out.println("用户名为空");
+                    } else {
+                        String account = accountTextField.getText();
+                        String password = passwordField.getText();
+                        String limit = "WHERE UserPhoneNumber = '"+account+"'";
+                        sqlUtiles = new SqlUtiles(getSqlUser());
+                        User user = sqlUtiles.queryUser(limit);
+                        if(user.getUserPhone().equals("-")){
+                            message.setText("查无此账号,请先注册");
+                            message.setVisible(true);
+                        }else{
+                            System.out.println(user.getUserPassWord());
+                            System.out.println(password);
+                            if(user.getUserPassWord().trim().equals(password)){
+                                setMessage("登录成功");
+                                System.out.println("登录成功");
+                            }else{
+                                setMessage("密码错误_忘记密码？请点我");
+                                System.out.println("密码错误");
+                            }
+                        }
+
+                    }
                 }
             }
         });
@@ -108,6 +178,8 @@ public class LoginActivity extends BaseActivity {
         containerLabel.add(welcomeText);
 
         containerLabel.add(message);
+        containerLabel.add(email);
+        containerLabel.add(backMessage);
         message.setVisible(false);
 
         containerFrame.getLayeredPane().add(iconContainer, new Integer(Integer.MIN_VALUE));
@@ -121,5 +193,10 @@ public class LoginActivity extends BaseActivity {
     @Override
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(SqlUser.USER_TYPE);
+    }
+
+    private void setMessage(String s){
+        message.setText(s);
+        message.setVisible(true);
     }
 }
