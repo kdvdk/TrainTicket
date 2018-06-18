@@ -2,6 +2,8 @@ package com.fragment;
 
 import com.activity.LoginActivity;
 import com.activity.MainActivity;
+import com.base.BaseFragment;
+import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
 import com.sun.java.swing.plaf.motif.MotifLabelUI;
 import com.ui.MyButton;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class Place2PlaceFragment extends JPanel {
+public class Place2PlaceFragment extends BaseFragment {
 
     private JComboBox<String> startPlace;
     private JComboBox<String> goalPlace;
@@ -29,13 +31,9 @@ public class Place2PlaceFragment extends JPanel {
 
     private DatePicker datePicker;
 
-
-    public Place2PlaceFragment() {
+    @Override
+    public void initView() {
         this.setLayout(null);
-        initView();
-    }
-
-    private void initView() {
         int xStart = 60;
         int yStart = 20;
         startPlace = new JComboBox<>();
@@ -98,11 +96,10 @@ public class Place2PlaceFragment extends JPanel {
         bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 100);
 
 
-
         //时间控件
         datePicker = getDatePicker();
-        datePicker.setBounds(150,50,100,50);
-        datePicker.setFont(new Font("黑体",Font.PLAIN,18));
+        datePicker.setBounds(150, 60, 100, 30);
+        datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
         this.add(new JLabel("                                                                  "));
         this.add(startPlace);
         this.add(exchangeIcon);
@@ -111,6 +108,11 @@ public class Place2PlaceFragment extends JPanel {
         this.add(datePicker);
         this.add(bgLabel, new Integer(Integer.MIN_VALUE));
 
+    }
+
+    @Override
+    public SqlUser initSqlUser() {
+        return null;
     }
 
     private void queryData(String start, String goal) {
