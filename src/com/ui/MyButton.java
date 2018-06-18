@@ -32,4 +32,13 @@ public class MyButton extends JButton {
             this.setUI(new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.red));
         }
     }
+
+    public MyButton(int type,String text) {
+        if (type == TYPE_OK) {
+            this.setUI(new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.lightBlue));
+        } else if (type == TYPE_CANCEL) {
+            this.setUI(new BEButtonUI().setNormalColor(BEButtonUI.NormalColor.red));
+        }
+        this.setText(text);
+    }
 }

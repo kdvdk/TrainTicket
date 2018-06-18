@@ -23,6 +23,22 @@ public class ConstantsUtils {
     public static int WIDTH = 1200;
     public static int HEIGH = 720;
 
-
+    public static String[] CITIES = {
+            "成都",
+            "上海",
+            "太原",
+            "北京",
+            "西藏",
+            "天津",
+            "海南",
+            "深圳",
+            "青岛",
+            "厦门",
+            "长沙",
+            "长春",
+            "重庆",
+            "大连",
+            "哈尔滨"
+    };
 
 }

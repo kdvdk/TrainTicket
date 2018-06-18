@@ -21,6 +21,16 @@ public class MyLabel extends JLabel {
         this.setFont(font);
     }
 
+    /**
+     * 只有字的构造函数
+     * @param text
+     * @param font
+     */
+    public MyLabel(String text,Font font) {
+        super(text);
+        this.setFont(font);
+    }
+
     public MyLabel() {
     }
 }
