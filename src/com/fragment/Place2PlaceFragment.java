@@ -28,6 +28,7 @@ public class Place2PlaceFragment extends BaseFragment {
     private JSplitPane splitPane;
     private JList<String> classesList;
 
+    private JScrollPane scrollPane;
 
     private DatePicker datePicker;
 
@@ -63,11 +64,18 @@ public class Place2PlaceFragment extends BaseFragment {
         JPanel left = new JPanel();
         left.setLayout(null);
         //左侧list
-        classesList = new JList<>();
-        classesList.setBounds(10, 20, 230, 400);
-        classesList.setPreferredSize(new Dimension(230, 100));
-        classesList.setListData(ConstantsUtils.CLASSES);
-        left.add(classesList);
+        classesList = new JList();
+//        classesList.setBounds();
+//        classesList.setPreferredSize();
+        ListModel listModel = new DefaultComboBoxModel(ConstantsUtils.CLASSES);
+//        classesList.setListData(ConstantsUtils.CLASSES);
+        classesList.setModel(listModel);
+        scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setViewportView(classesList);
+        scrollPane.setBounds(10, 20, 240, 350);
+//        scrollPane.setViewportView(classesList);
+        left.add(scrollPane);
 
 
         //右侧

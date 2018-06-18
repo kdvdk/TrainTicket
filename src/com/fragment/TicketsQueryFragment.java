@@ -20,9 +20,9 @@ public class TicketsQueryFragment extends BaseFragment {
 
     private JTextField inputTextField;
     private JLabel inputLabel;
-    private Font titleFont;
+
     private JButton okButton;
-    private Font textFont;
+
 
     private JLabel informationLabel;
     private JLabel classNumber;
@@ -44,8 +44,7 @@ public class TicketsQueryFragment extends BaseFragment {
         JLabel bgLabel = new JLabel(bg);
         bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 100);
 
-        titleFont = new Font("黑体", Font.PLAIN, 18);
-        textFont = new Font("黑体", Font.PLAIN, 16);
+
         inputLabel = new MyLabel("请输入班次号:", 20, 50, 150, 50, titleFont);
         inputTextField = new MyTextField(150, 50, 220, 50, titleFont);
         Document document = inputTextField.getDocument();
