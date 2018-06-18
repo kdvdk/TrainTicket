@@ -3,6 +3,7 @@ package com.activity;
 import com.base.BaseActivity;
 import com.db.SqlUser;
 import com.fragment.Place2PlaceFragment;
+import com.fragment.TicketsQueryFragment;
 import com.sun.java.swing.plaf.motif.MotifTabbedPaneUI;
 import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
 import com.ui.BackgroundUi;
@@ -23,7 +24,7 @@ public class MainActivity extends BaseActivity {
     private JPanel container;
     private JTabbedPane tabbedPane;
     private JPanel firstLabel;
-    private JLabel secondLabel;
+    private JPanel secondLabel;
 
 
     @Override
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
         //tab切换内容
         firstLabel = new Place2PlaceFragment();
-        secondLabel = new JLabel("second");
+        secondLabel = new TicketsQueryFragment();
 
         //tab
         tabbedPane = new JTabbedPane();
