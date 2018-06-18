@@ -1,5 +1,10 @@
 package com.utils;
 
+import com.activity.MainActivity;
+import com.bean.TrainClass;
+
+import java.sql.Date;
+
 public class ConstantsUtils {
     public static String DRIVER_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String DBURL = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=TrainTickets";
@@ -67,5 +72,8 @@ public class ConstantsUtils {
             "11",
             "12",
     };
+
+    public static TrainClass TESTCLASS = new TrainClass("00001", "WANG-101", "成都",
+            "上海", 23982.1f, new Date(2018, 6, 18), 100);
 
 }

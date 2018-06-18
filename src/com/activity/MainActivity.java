@@ -5,17 +5,9 @@ import com.db.SqlUser;
 import com.fragment.Place2PlaceFragment;
 import com.fragment.TicketsQueryFragment;
 import com.sun.java.swing.plaf.motif.MotifTabbedPaneUI;
-import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
-import com.ui.BackgroundUi;
 import com.ui.MyFrame;
-import com.ui.MyLabel;
-import com.utils.ConstantsUtils;
-import org.jb2011.lnf.beautyeye.ch2_tab.BETabbedPaneUI;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalTabbedPaneUI;
-import javax.swing.plaf.multi.MultiTabbedPaneUI;
-import javax.swing.plaf.synth.SynthTabbedPaneUI;
 import java.awt.*;
 
 public class MainActivity extends BaseActivity {
@@ -23,9 +15,10 @@ public class MainActivity extends BaseActivity {
     private MyFrame myFrame;
     private JPanel container;
     private JTabbedPane tabbedPane;
-    private JPanel firstLabel;
-    private JPanel secondLabel;
-
+    private JPanel firstFragment;
+    private JPanel secondFragment;
+    private JPanel thirdFragment;
+    private JPanel forthFragment;
 
     @Override
     public void initView() {
@@ -35,14 +28,14 @@ public class MainActivity extends BaseActivity {
                 , new javax.swing.plaf.InsetsUIResource(10, 10, 2, 20));
 
         //tab切换内容
-        firstLabel = new Place2PlaceFragment();
-        secondLabel = new TicketsQueryFragment();
+        firstFragment = new Place2PlaceFragment();
+        secondFragment = new TicketsQueryFragment();
 
         //tab
         tabbedPane = new JTabbedPane();
 
-        tabbedPane.add("站站查询", firstLabel);
-        tabbedPane.add("车票查询", secondLabel);
+        tabbedPane.add("站站查询", firstFragment);
+        tabbedPane.add("车票查询", secondFragment);
 
         //new WindowsTabbedPaneUI()
         tabbedPane.setUI(new MotifTabbedPaneUI());
