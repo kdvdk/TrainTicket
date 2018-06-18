@@ -41,4 +41,32 @@ public class ConstantsUtils {
             "哈尔滨"
     };
 
+    public static String[] CLASSES = {
+            "20104058 北京 to 上海 16:00~18:00",
+            "20104057 太原 to 成都 17:00~18:00",
+            "20104056 西藏 to 河北 6:00~18:00",
+            "20104055 天津 to 海南 8:00~18:00"
+    };
+
+    public static String[] YEARS = {
+            "2018",
+            "2019"
+    };
+
+    public static String[] MONTH = {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+    };
+
+
 }

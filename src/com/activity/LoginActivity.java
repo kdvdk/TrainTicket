@@ -190,6 +190,7 @@ public class LoginActivity extends BaseActivity {
         j.setOpaque(false);
         containerLabel.setOpaque(false);
         containerFrame.add(containerLabel);
+
         containerFrame.setVisible(true);
     }
 

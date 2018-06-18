@@ -2,8 +2,11 @@
   <library name="SwingSets3(BeautyEyeLNFDemo)">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../SwingSets3(BeautyEyeLNFDemo).jar!/" />
+      <root url="jar://$PROJECT_DIR$/../datepicker.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../datepicker.jar!/" />
+    </SOURCES>
   </library>
 </component>
