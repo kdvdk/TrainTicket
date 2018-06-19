@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2d7831f-81a5-4594-aba9-594f3a2f7ba9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/activity/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/activity/UserActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ui/BackgroundUi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ui/BackgroundUi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/ui/MyImageIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/ui/MyImageIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" afterDir="false" />
-    </list>
+    <list default="true" id="d2d7831f-81a5-4594-aba9-594f3a2f7ba9" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,7 +52,7 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/activity/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
+            <state relative-caret-position="938">
               <caret line="164" column="39" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -90,7 +78,7 @@
       <file leaf-file-name="RegisterActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/activity/RegisterActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3950">
+            <state relative-caret-position="596">
               <caret line="176" selection-start-line="176" selection-end-line="176" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -472,12 +460,12 @@
       <workItem from="1529372292484" duration="13117000" />
       <workItem from="1529400942719" duration="287000" />
       <workItem from="1529403628411" duration="683000" />
-      <workItem from="1529414442423" duration="858000" />
+      <workItem from="1529414442423" duration="1137000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83181000" />
+    <option name="totallyTimeSpent" value="83460000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -494,10 +482,10 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.23118865" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.24100327" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.24100327" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.119936034" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.119936034" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -805,16 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/activity/RegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3950">
-          <caret line="176" selection-start-line="176" selection-end-line="176" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/db/SqlUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -862,9 +840,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/activity/RegisterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="176" selection-start-line="176" selection-end-line="176" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
+        <state relative-caret-position="938">
           <caret line="164" column="39" selection-start-line="164" selection-start-column="39" selection-end-line="164" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />

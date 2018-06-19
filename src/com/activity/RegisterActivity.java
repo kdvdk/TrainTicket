@@ -162,6 +162,7 @@ public class RegisterActivity extends BaseActivity {
         container.setOpaque(false);
 
 
+        myFrame.setResizable(false);
         myFrame.add(container);
         myFrame.setVisible(true);
     }

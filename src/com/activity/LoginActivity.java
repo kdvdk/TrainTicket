@@ -201,6 +201,7 @@ public class LoginActivity extends BaseActivity {
         containerLabel.setOpaque(false);
         containerFrame.add(containerLabel);
 
+        containerFrame.setResizable(false);
         containerFrame.setVisible(true);
     }
 

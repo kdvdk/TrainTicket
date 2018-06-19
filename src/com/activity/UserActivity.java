@@ -53,6 +53,7 @@ public class UserActivity extends BaseActivity {
         myFrame = new MyFrame();
 //        myFrame.setBG(new BackgroundUi("images//bg.png"));
         myFrame.add(container);
+        myFrame.setResizable(false);
         myFrame.setVisible(true);
     }
 
