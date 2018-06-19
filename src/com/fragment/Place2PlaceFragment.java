@@ -98,15 +98,15 @@ public class Place2PlaceFragment extends BaseFragment {
         ImageIcon bg = new ImageIcon(MainActivity.class.getResource("images//user_bg_1.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
-                        ConstantsUtils.LOGIN_HEIGH - 100,
+                        ConstantsUtils.LOGIN_HEIGH - 70,
                         Image.SCALE_DEFAULT));
         JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 100);
+        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 70);
 
 
         //时间控件
         datePicker = getDatePicker();
-        datePicker.setBounds(150, 60, 100, 30);
+        datePicker.setBounds(150, 63, 100, 25);
         datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
         this.add(new JLabel("                                                                  "));
         this.add(startPlace);

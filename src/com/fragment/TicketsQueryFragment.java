@@ -39,10 +39,10 @@ public class TicketsQueryFragment extends BaseFragment {
         ImageIcon bg = new ImageIcon(MainActivity.class.getResource("images//user_bg_2_cai.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
-                        ConstantsUtils.LOGIN_HEIGH - 100,
+                        ConstantsUtils.LOGIN_HEIGH - 70,
                         Image.SCALE_DEFAULT));
         JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 100);
+        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 70);
 
 
         inputLabel = new MyLabel("请输入班次号:", 20, 50, 150, 50, titleFont);

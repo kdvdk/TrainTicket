@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.activity.MainActivity;
+import com.bean.Ticket;
 import com.bean.TrainClass;
 
 import java.sql.Date;
@@ -21,12 +22,12 @@ public class ConstantsUtils {
     public static int LOGIN_WIDTH = 412;
     public static int LOGIN_HEIGH = 620;
 
-
-    //frame size 400, 150, 1200, 720
-    public static int X = 400;
-    public static int Y = 150;
-    public static int WIDTH = 1200;
-    public static int HEIGH = 720;
+//
+//    //frame size 400, 150, 1200, 720
+//    public static int X = 400;
+//    public static int Y = 150;
+//    public static int WIDTH = 1200;
+//    public static int HEIGH = 720;
 
     public static String[] CITIES = {
             "成都",
@@ -90,10 +91,11 @@ public class ConstantsUtils {
             "9",
             "10",
             "11",
-            "12",
+            "12"
     };
 
     public static TrainClass TESTCLASS = new TrainClass("00001", "WANG-101", "成都",
             "上海", 23982.1f, new Date(2018, 6, 18), 100);
-
+    public static Ticket TESTTICKET = new Ticket("N13223","WANG-123","07-A2",
+            "510122199711011233",23.7f);
 }
