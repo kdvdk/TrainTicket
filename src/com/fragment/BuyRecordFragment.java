@@ -61,12 +61,14 @@ public class BuyRecordFragment extends BaseFragment {
 
     private void loadData(){
         listModel = new DefaultComboBoxModel<>(new String[]{
+                "还未使用的：",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
+                "已经使用了的：",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
                 "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
