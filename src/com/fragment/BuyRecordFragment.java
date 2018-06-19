@@ -1,6 +1,6 @@
 package com.fragment;
 
-import com.activity.MainActivity;
+import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.db.SqlUser;
 import com.ui.MyButton;
@@ -8,9 +8,7 @@ import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class BuyRecordFragment extends BaseFragment {
 
@@ -28,7 +26,7 @@ public class BuyRecordFragment extends BaseFragment {
     public void initView() {
         this.setLayout(null);
         //背景
-        ImageIcon bg = new ImageIcon(MainActivity.class.getResource("images//user_bg_4.jpg"));//背景图案
+        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//user_bg_4.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
                         ConstantsUtils.LOGIN_HEIGH - 70,

@@ -1,18 +1,15 @@
 package com.fragment;
 
-import com.activity.LoginActivity;
-import com.activity.MainActivity;
+import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
-import com.sun.java.swing.plaf.motif.MotifLabelUI;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -46,7 +43,7 @@ public class Place2PlaceFragment extends BaseFragment {
             goalPlace.addItem(ConstantsUtils.CITIES[i]);
 
         }
-        ImageIcon bgim = new ImageIcon(MainActivity.class.getResource("images//exchange.jpg"));//背景图案
+        ImageIcon bgim = new ImageIcon(UserActivity.class.getResource("images//exchange.jpg"));//背景图案
         bgim.setImage(bgim.getImage().
                 getScaledInstance(30,
                         30,
@@ -95,7 +92,7 @@ public class Place2PlaceFragment extends BaseFragment {
         splitPane.setContinuousLayout(true);
 
         //背景图
-        ImageIcon bg = new ImageIcon(MainActivity.class.getResource("images//user_bg_1.jpg"));//背景图案
+        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//user_bg_1.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
                         ConstantsUtils.LOGIN_HEIGH - 70,

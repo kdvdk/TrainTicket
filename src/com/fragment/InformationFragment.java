@@ -1,7 +1,6 @@
 package com.fragment;
 
-import com.Main;
-import com.activity.MainActivity;
+import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.db.SqlUser;
 import com.ui.MyButton;
@@ -33,7 +32,7 @@ public class InformationFragment extends BaseFragment {
         titleFont = new Font("仿宋",Font.PLAIN,20);
         this.setLayout(null);
         //背景图
-        ImageIcon bg = new ImageIcon(MainActivity.class.getResource("images//user_bg_3.jpg"));//背景图案
+        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//user_bg_3.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
                         ConstantsUtils.LOGIN_HEIGH - 70,
@@ -44,7 +43,7 @@ public class InformationFragment extends BaseFragment {
 
         //头像
         int size = 100;
-        ImageIcon avatar = new ImageIcon(MainActivity.class.getResource("images//avatar.png"));//背景图案
+        ImageIcon avatar = new ImageIcon(UserActivity.class.getResource("images//avatar.png"));//背景图案
         avatar.setImage(avatar.getImage().
                 getScaledInstance(size,
                         size,

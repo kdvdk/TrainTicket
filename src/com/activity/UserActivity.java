@@ -14,7 +14,7 @@ import javax.swing.plaf.metal.MetalTabbedPaneUI;
 import javax.swing.plaf.multi.MultiTableUI;
 import java.awt.*;
 
-public class MainActivity extends BaseActivity {
+public class UserActivity extends BaseActivity {
 
     private MyFrame myFrame;
     private JPanel container;

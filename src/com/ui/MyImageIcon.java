@@ -1,10 +1,5 @@
 package com.ui;
 
-import com.Main;
-import com.activity.LoginActivity;
-import com.activity.MainActivity;
-import com.utils.ConstantsUtils;
-
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,8 +1,6 @@
 package com;
 
 import com.activity.LoginActivity;
-import com.activity.MainActivity;
-import com.activity.RegisterActivity;
 import com.bean.User;
 import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
@@ -14,9 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         initStyle();
-        //LoginActivity loginActivity = new LoginActivity();
+        LoginActivity loginActivity = new LoginActivity();
         //RegisterActivity registerActivity = new RegisterActivity();
-        MainActivity mainActivity = new MainActivity();
+        //UserActivity mainActivity = new UserActivity();
     }
 
 

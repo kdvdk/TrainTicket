@@ -1,6 +1,5 @@
 package com.utils;
 
-import com.activity.MainActivity;
 import com.bean.CreditCard;
 import com.bean.IdCard;
 import com.bean.Ticket;
