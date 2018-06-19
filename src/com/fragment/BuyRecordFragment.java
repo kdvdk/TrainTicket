@@ -17,11 +17,12 @@ public class BuyRecordFragment extends BaseFragment {
     private JScrollPane scrollPane;
     private JLabel container;
 
-    private JLabel[] dataList ;
+    private JLabel[] dataList;
 
-    private ListModel<String> listModel ;
+    private ListModel<String> listModel;
     private JButton informationButton;
     private JButton returnButton;
+
     @Override
     public void initView() {
         this.setLayout(null);
@@ -36,13 +37,12 @@ public class BuyRecordFragment extends BaseFragment {
 
         loadData();
         scrollPane = new JScrollPane(mList);
-        scrollPane.setBounds(0,0,300,400);
-        container = new MyLabel( "",50,30,350,400,textFont);
+        scrollPane.setBounds(0, 0, 300, 400);
+        container = new MyLabel("", 50, 30, 350, 400, textFont);
         container.add(scrollPane);
 
-
-        informationButton = new MyButton("查看详细",80,470,90,30,textFont,1);
-        returnButton = new MyButton("退票",230,470,90,30,textFont,2);
+        informationButton = new MyButton("查看详细", 80, 470, 90, 30, textFont, 1);
+        returnButton = new MyButton("退票", 230, 470, 90, 30, textFont, 2);
 
 
         this.add(informationButton);
@@ -57,28 +57,28 @@ public class BuyRecordFragment extends BaseFragment {
         return null;
     }
 
-    private void loadData(){
+    private void loadData() {
         listModel = new DefaultComboBoxModel<>(new String[]{
                 "还未使用的：",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
                 "已经使用了的：",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1",
-                "车票号："+ConstantsUtils.TESTTICKET.getTicketNumber()+" 班次号："+ConstantsUtils.TESTTICKET.getClassNumber()+" 出发时间："+"2018-11-1"
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
+                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1"
         });
         mList = new JList<>();
         mList.setModel(listModel);
