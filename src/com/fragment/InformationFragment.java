@@ -65,10 +65,12 @@ public class InformationFragment extends BaseFragment {
         titleText.setForeground(Color.GRAY);
 
         list = new JList();
+        moneyList = new JList();
         loadData();
         scrollPane = new JScrollPane(list);
         scrollPane.setBounds(30,180,200,150);
-
+        moneyScrollPane = new JScrollPane(moneyList);
+        moneyScrollPane.setBounds(30,370,345,100);
 
         int x_start = 280 ;
         int y_start = 200 ;
@@ -84,6 +86,7 @@ public class InformationFragment extends BaseFragment {
         titleText2.setForeground(Color.GRAY);
 
 
+        this.add(moneyScrollPane);
         this.add(titleText2);
         //this.add(line2);
         this.add(addButton);
@@ -118,5 +121,11 @@ public class InformationFragment extends BaseFragment {
                 ConstantsUtils.TESTIDCARD.getName()+"  "+ConstantsUtils.TESTIDCARD.getIdCardNumber()  ,
         });
         list.setModel(listModel);
+
+        ListModel moneyModel = new DefaultComboBoxModel(new String[]{
+           "卡号："+ConstantsUtils.TESTCARD.getCardNumber()+"  余额："+ConstantsUtils.TESTCARD.getBalace(),
+                "卡号："+ConstantsUtils.TESTCARD.getCardNumber()+"  余额："+ConstantsUtils.TESTCARD.getBalace()
+        });
+        moneyList.setModel(moneyModel);
     }
 }
