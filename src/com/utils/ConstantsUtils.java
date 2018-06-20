@@ -6,6 +6,8 @@ import com.bean.Ticket;
 import com.bean.TrainClass;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConstantsUtils {
     public static String DRIVER_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -40,13 +42,12 @@ public class ConstantsUtils {
             "海南",
             "深圳",
             "青岛",
-            "厦门",
-            "长沙",
-            "长春",
-            "重庆",
-            "大连",
-            "哈尔滨"
+            "厦门"
+
     };
+
+    public static Map<String,Float> DISTANCEMAP = new HashMap<>();
+
 
     public static String[] CLASSES = {
             "20104058 北京 to 上海 16:00~18:00",

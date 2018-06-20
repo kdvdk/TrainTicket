@@ -1,6 +1,8 @@
 package com.activity;
 
 import com.base.BaseActivity;
+import com.bean.Train;
+import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
 import com.ui.MyButton;
@@ -8,11 +10,16 @@ import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
+import com.utils.SqlUtiles;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -21,9 +28,9 @@ public class TrainManagerActivity extends BaseActivity {
     private JComboBox<String> goalPlace;
     private JLabel exchangeIcon;
 
-    private JButton queryButton;
+    private JButton newDataButton;
     private JButton deleteButton;
-    private JButton newButton;
+    private JButton queryButton;
 
     private JSplitPane splitPane;
     private JList<String> classesList;
@@ -40,8 +47,14 @@ public class TrainManagerActivity extends BaseActivity {
 
     private JLabel reBoot ;
 
+    private JFrame dialogFrame;
+
     @Override
     public void initView() {
+        dialogFrame = new JFrame();
+        dialogFrame.setSize(400,400);
+        dialogFrame.setLocationRelativeTo(null);
+        dialogFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         myFrame = new MyFrame();
         myFrame.setLayout(null);
         int xStart = 60;
@@ -87,12 +100,32 @@ public class TrainManagerActivity extends BaseActivity {
 
         //右侧
         JLabel right = new JLabel();
-        queryButton = new MyButton("发布", 10, 55, 80, 30, new Font("宋体", Font.PLAIN, 15), 0);
-        right.add(queryButton);
+        newDataButton = new MyButton("发布", 10, 55, 80, 30, new Font("宋体", Font.PLAIN, 15), 0);
+        newDataButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                System.out.println(listModel.getElementAt(classesList.getSelectedIndex()));
+                String start = startPlace.getItemAt(startPlace.getSelectedIndex());
+                String goal = goalPlace.getItemAt(goalPlace.getSelectedIndex());
+                String time = datePicker.getText();
+                String inputContent = JOptionPane.showInputDialog(dialogFrame,"输入列车号");
+                String distanceCode = String.valueOf(startPlace.getSelectedIndex())+String.valueOf(goalPlace.getSelectedIndex());
+                SqlUtiles sqlUtiles = getSqlUtiles();
+                Train train = sqlUtiles.queryTrain(inputContent);
+                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+startPlace.getSelectedIndex()+goalPlace.getSelectedIndex(),
+                        inputContent,start,goal,ConstantsUtils.DISTANCEMAP.get(distanceCode),new java.sql.Date(new Date(time)),0);
+                if(sqlUtiles.addClass(trainClass)){
+                    JOptionPane.showMessageDialog(dialogFrame,"成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(dialogFrame,"失败","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        right.add(newDataButton);
         deleteButton = new MyButton("删除", 10, 195, 80, 30, new Font("宋体", Font.PLAIN, 15), 2);
         right.add(deleteButton);
-        newButton = new MyButton("查看",10,125,80,30,new Font("宋体", Font.PLAIN, 15),1);
-        right.add(newButton);
+        queryButton = new MyButton("查看",10,125,80,30,new Font("宋体", Font.PLAIN, 15),1);
+        right.add(queryButton);
 
         splitPane.setLeftComponent(left);
         splitPane.setRightComponent(right);
@@ -127,7 +160,7 @@ public class TrainManagerActivity extends BaseActivity {
                 getScaledInstance(30,
                         30,
                         Image.SCALE_DEFAULT));
-        reBoot = new MyLabel("", 190, 470, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
+        reBoot = new MyLabel("", 190, 520, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
         reBoot.setIcon(reboot);
         reBoot.addMouseListener(new MouseListener() {
             @Override
@@ -178,7 +211,7 @@ public class TrainManagerActivity extends BaseActivity {
 
     @Override
     public SqlUser initSqlUser() {
-        return null;
+        return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
     }
     /**
      * 初始化时间控件

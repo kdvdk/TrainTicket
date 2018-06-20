@@ -1,6 +1,7 @@
 package com.base;
 
 import com.db.SqlUser;
+import com.utils.SqlUtiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,8 @@ public abstract class BaseActivity {
      * 每个活动持有一个SQL对象
      */
     private SqlUser sqlUser = null;
+
+    private SqlUtiles sqlUtiles ;
 
     /**
      * View初始化自动调用
@@ -26,8 +29,12 @@ public abstract class BaseActivity {
         this.sqlUser = initSqlUser();
         titleFont = new Font("黑体", Font.PLAIN, 18);
         textFont = new Font("黑体", Font.PLAIN, 16);
+        sqlUtiles = new SqlUtiles(sqlUser);
     }
 
+    public SqlUtiles getSqlUtiles() {
+        return sqlUtiles;
+    }
 
     public abstract void initView();
 
