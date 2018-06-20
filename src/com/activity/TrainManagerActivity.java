@@ -6,6 +6,7 @@ import com.eltima.components.ui.DatePicker;
 import com.ui.MyButton;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
+import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
@@ -30,10 +31,10 @@ public class TrainManagerActivity extends BaseActivity {
     private DatePicker datePicker;
     private MyFrame myFrame;
 
-    private JLabel classesTitleText;
+    private JButton classesTitleText;
     private JTextField classesText;
     private JTextField idText;
-    private JLabel idTitleText;
+    private MyButton idTitleText;
 
     @Override
     public void initView() {
@@ -107,7 +108,14 @@ public class TrainManagerActivity extends BaseActivity {
         bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH );
 
 
-        classesTitleText = new MyLabel("")
+
+        int xStar = 30 ;
+        int yStar = 420;
+        classesTitleText = new MyButton("查询班次",xStar,yStar,110,30,textFont,0);
+        classesText = new MyTextField(xStar+130,yStar-5,200,40,titleFont);
+
+        idTitleText = new MyButton("身份证找人",xStar,yStar+60,110,30,textFont,0);
+        idText = new MyTextField(xStar+130,yStar+60-5,200,40,titleFont);
 
         //时间控件
         datePicker = getDatePicker();
@@ -115,10 +123,14 @@ public class TrainManagerActivity extends BaseActivity {
         datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
         myFrame.add(new JLabel("                                                                  "));
         myFrame.add(startPlace);
+        myFrame.add(idText);
         myFrame.add(exchangeIcon);
         myFrame.add(goalPlace);
         myFrame.add(splitPane);
         myFrame.add(datePicker);
+        myFrame.add(classesTitleText);
+        myFrame.add(classesText);
+        myFrame.add(idTitleText);
         myFrame.add(bgLabel, new Integer(Integer.MIN_VALUE));
         myFrame.setVisible(true);
 
