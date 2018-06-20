@@ -122,7 +122,7 @@ public class Place2PlaceFragment extends BaseFragment {
         return null;
     }
 
-    private void queryData(String start, String goal) {
+    private void loadData(String start, String goal) {
 
     }
 

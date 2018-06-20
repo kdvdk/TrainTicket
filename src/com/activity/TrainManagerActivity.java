@@ -180,6 +180,12 @@ public class TrainManagerActivity extends BaseActivity {
         int xStar = 30 ;
         int yStar = 420;
         classesTitleText = new MyButton("查询班次",xStar,yStar,110,30,textFont,0);
+        classesTitleText.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         classesText = new MyTextField(xStar+130,yStar-5,200,40,titleFont);
 
         idTitleText = new MyButton("身份证找人",xStar,yStar+60,110,30,textFont,0);
@@ -223,7 +229,7 @@ public class TrainManagerActivity extends BaseActivity {
         //时间控件
         MyDatePicker myDatePicker = new MyDatePicker();
         datePicker = myDatePicker.getDatePicker();
-        datePicker.setBounds(120, 63, 130, 25);
+        datePicker.setBounds(135, 63, 130, 25);
         datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
         myFrame.add(new JLabel("                                                                  "));
         myFrame.add(startPlace);
