@@ -1,5 +1,6 @@
 package com.activity;
 
+import com.Main;
 import com.base.BaseActivity;
 import com.bean.Train;
 import com.bean.TrainClass;
@@ -105,15 +106,22 @@ public class TrainManagerActivity extends BaseActivity {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                System.out.println(listModel.getElementAt(classesList.getSelectedIndex()));
+                int start_index = startPlace.getSelectedIndex();
+                int goal_index = goalPlace.getSelectedIndex();
                 String start = startPlace.getItemAt(startPlace.getSelectedIndex());
                 String goal = goalPlace.getItemAt(goalPlace.getSelectedIndex());
                 String time = datePicker.getText();
                 String inputContent = JOptionPane.showInputDialog(dialogFrame,"输入列车号");
                 String distanceCode = String.valueOf(startPlace.getSelectedIndex())+String.valueOf(goalPlace.getSelectedIndex());
-                SqlUtiles sqlUtiles = getSqlUtiles();
-                Train train = sqlUtiles.queryTrain(inputContent);
-                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+startPlace.getSelectedIndex()+goalPlace.getSelectedIndex(),
-                        inputContent,start,goal,ConstantsUtils.DISTANCEMAP.get(distanceCode),new java.sql.Date(new Date(time)),0);
+                SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
+//                Train train = sqlUtiles.queryTrain(inputContent);
+                if(start_index>goal_index){
+                    distanceCode = String.valueOf(goalPlace.getSelectedIndex())+String.valueOf(startPlace.getSelectedIndex());
+                }
+                String temp = new String(inputContent);
+                System.out.println(temp);
+                float distance = Main.DISTANCEMAP.get(distanceCode);
+                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+start_index+goal_index,temp,start,goal,distance,ConstantsUtils.createDate(time),0);
                 if(sqlUtiles.addClass(trainClass)){
                     JOptionPane.showMessageDialog(dialogFrame,"成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
                 }else{

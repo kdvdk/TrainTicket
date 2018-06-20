@@ -110,21 +110,33 @@ public class SqlUtiles {
      * @param trainClass
      */
     public boolean addClass(TrainClass trainClass){
-        String sql = "INSERT INTO TABLE CLASSES VALUES(?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1,trainClass.getClassNumber());
-            preparedStatement.setString(2,trainClass.getTrainNumber());
-            preparedStatement.setString(3,trainClass.getDepaturePlace());
-            preparedStatement.setString(4,trainClass.getGoalPlace());
-            preparedStatement.setFloat(5,trainClass.getDinstance());
-            preparedStatement.setDate(6,trainClass.getDepatureTime());
-            preparedStatement.setInt(7,trainClass.getPassengerNumber());
-            return executeUpdate(preparedStatement);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+//        String sql = "INSERT INTO Classes VALUES(?,?,?,?,?,?,?)";
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setString(1, formatString1(trainClass.getClassNumber()));
+//            preparedStatement.setString(2, formatString1(trainClass.getTrainNumber()));
+//            preparedStatement.setString(3, formatString1(trainClass.getDepaturePlace()));
+//            preparedStatement.setString(4, formatString1(trainClass.getGoalPlace()));
+//            preparedStatement.setFloat(5,trainClass.getDinstance());
+//            preparedStatement.setDate(6,formatString1(trainClass.getDepatureTime().toString()));
+//            preparedStatement.setInt(7,trainClass.getPassengerNumber());
+//            System.out.println(preparedStatement);
+//            return executeUpdate(preparedStatement);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+        String sql = "INSERT INTO Classes VALUES(cn,ctn,cdp,cgp,cdis,cde,cpn)";
+        sql = sql.replace("cn",formatString1(trainClass.getClassNumber()));
+        sql = sql.replace("ctn",formatString1(trainClass.getTrainNumber()));
+        sql = sql.replace("cdp",formatString1(trainClass.getDepaturePlace()));
+        sql = sql.replace("cgp",formatString1(trainClass.getGoalPlace()));
+        sql = sql.replace("cdis",trainClass.getDinstance()+"");
+        sql = sql.replace("cde",formatString1(trainClass.getDepatureTime().toString()));
+        sql = sql.replace("cpn",trainClass.getPassengerNumber()+"");
+        System.out.println(sql);
+        return executeUpdate(sql);
+
     }
     /**
      * 更新类sql语言执行者
@@ -207,4 +219,22 @@ public class SqlUtiles {
             return null;
         }
     }
+
+    private String formatString20(String input){
+        StringBuffer re = new StringBuffer("'"+input);
+        int length = input.length();
+        int add_number = 20 - length;
+        for(int i = 0; i < add_number -1 ; i++) {
+             re =  re.append(" ");
+        }
+        re.append("'");
+        System.out.println(re);
+        return new String(re);
+    }
+
+    private String formatString1(String input){
+        System.out.println("'"+input+"'");
+        return  "'"+input+"'";
+    }
+
 }

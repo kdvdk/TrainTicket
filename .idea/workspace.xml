@@ -5,11 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/ConstantsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/ConstantsUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/SqlUtiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/SqlUtiles.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/BaseActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" afterDir="false" />
     </list>
@@ -21,34 +22,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/com/activity/LoginActivity.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-1734">
-                    <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="BaseFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/base/BaseFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
+            <state relative-caret-position="525">
               <caret line="28" column="50" selection-start-line="27" selection-start-column="8" selection-end-line="28" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -60,21 +39,22 @@
       <file leaf-file-name="BaseActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/base/BaseActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+            <state relative-caret-position="625">
+              <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#781#782#0" expanded="true" />
                 <element signature="e#813#814#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/activity/UserActivity.java">
+      <file leaf-file-name="TrainManagerActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+            <state relative-caret-position="391">
+              <caret line="123" column="97" lean-forward="true" selection-start-line="123" selection-start-column="97" selection-end-line="123" selection-end-column="97" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,17 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrainManagerActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java">
+      <file leaf-file-name="AbstractButton.java" pinned="false" current-in-tab="false">
+        <entry file="jar://E:/java/javajdk1.8/src.zip!/javax/swing/AbstractButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="115" column="53" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4913#4914#0" expanded="true" />
-                <element signature="e#4940#4941#0" expanded="true" />
-                <marker date="1529481296158" expanded="true" signature="3976:3982" ph="..." />
-              </folding>
+            <state relative-caret-position="47700">
+              <caret line="2021" selection-start-line="2021" selection-end-line="2021" />
             </state>
           </provider>
         </entry>
@@ -101,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/bean/Train.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="17" lean-forward="true" selection-start-column="17" selection-end-column="17" />
+              <caret column="17" selection-start-column="17" selection-end-column="17" />
               <folding>
                 <element signature="e#628#629#0" expanded="true" />
                 <element signature="e#662#663#0" expanded="true" />
@@ -113,8 +87,8 @@
       <file leaf-file-name="ConstantsUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/utils/ConstantsUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="55" column="36" lean-forward="true" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+            <state relative-caret-position="1025">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,15 +96,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SqlUtiles.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SqlUtiles.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+            <state relative-caret-position="280">
+              <caret line="127" column="11" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#456#457#0" expanded="true" />
-                <element signature="e#513#514#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,12 +111,10 @@
       <file leaf-file-name="InformationFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fragment/InformationFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-732">
-              <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+            <state relative-caret-position="600">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#901#902#0" expanded="true" />
-                <element signature="e#939#940#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,8 +123,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+            <state relative-caret-position="175">
+              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -162,8 +132,8 @@
       <file leaf-file-name="Place2PlaceFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="100" column="32" lean-forward="true" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+            <state relative-caret-position="2225">
+              <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
               <folding>
                 <element signature="method#getDatePicker#0;class#Place2PlaceFragment#0" />
               </folding>
@@ -191,6 +161,7 @@
       <replace>u</replace>
       <replace>70</replace>
       <replace>myFrame</replace>
+      <replace>DISTANCEMAP</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -230,12 +201,12 @@
         <option value="$PROJECT_DIR$/src/com/activity/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" />
         <option value="$PROJECT_DIR$/src/com/activity/UserActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/Main.java" />
         <option value="$PROJECT_DIR$/src/com/base/BaseActivity.java" />
         <option value="$PROJECT_DIR$/src/com/bean/Train.java" />
-        <option value="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" />
         <option value="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" />
+        <option value="$PROJECT_DIR$/src/com/Main.java" />
         <option value="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" />
       </list>
     </option>
   </component>
@@ -249,8 +220,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="563" />
-    <option name="y" value="40" />
+    <option name="x" value="673" />
+    <option name="y" value="48" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -260,65 +231,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -384,6 +296,65 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="activity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TrainTicket" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TrainTicket" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -505,12 +476,13 @@
       <workItem from="1529403628411" duration="683000" />
       <workItem from="1529414442423" duration="2358000" />
       <workItem from="1529453415726" duration="8391000" />
-      <workItem from="1529465686050" duration="7498000" />
+      <workItem from="1529465686050" duration="10217000" />
+      <workItem from="1529484143191" duration="4096000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100570000" />
+    <option name="totallyTimeSpent" value="107385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -525,19 +497,19 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32978722" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3402399" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.23118865" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.23991276" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.123667374" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12473348" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991276" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -552,17 +524,12 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/activity/RegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2450">
-          <caret line="110" column="57" lean-forward="true" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/ui/MyLabel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -813,17 +780,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="100" column="32" lean-forward="true" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
+        <state relative-caret-position="2225">
+          <caret line="100" column="32" selection-start-line="100" selection-start-column="32" selection-end-line="100" selection-end-column="32" />
           <folding>
             <element signature="method#getDatePicker#0;class#Place2PlaceFragment#0" />
           </folding>
@@ -832,19 +792,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fragment/InformationFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-732">
-          <caret line="36" column="24" lean-forward="true" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+        <state relative-caret-position="600">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#901#902#0" expanded="true" />
-            <element signature="e#939#940#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/BaseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
+        <state relative-caret-position="525">
           <caret line="28" column="50" selection-start-line="27" selection-start-column="8" selection-end-line="28" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -852,10 +810,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/activity/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/bean/Train.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1734">
-          <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+          <folding>
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/utils/ConstantsUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -864,42 +833,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        <state relative-caret-position="625">
+          <caret line="31" column="38" selection-start-line="31" selection-start-column="38" selection-end-line="31" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#781#782#0" expanded="true" />
             <element signature="e#813#814#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bean/Train.java">
+    <entry file="jar://E:/java/javajdk1.8/src.zip!/javax/swing/AbstractButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" lean-forward="true" selection-start-column="17" selection-end-column="17" />
-          <folding>
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="47700">
+          <caret line="2021" selection-start-line="2021" selection-end-line="2021" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
+    <entry file="file://$PROJECT_DIR$/src/com/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/utils/ConstantsUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/com/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="55" column="36" lean-forward="true" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
+        <state relative-caret-position="25">
+          <caret line="128" column="53" selection-start-line="128" selection-start-column="53" selection-end-line="128" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -908,13 +869,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="115" column="53" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
+        <state relative-caret-position="391">
+          <caret line="123" column="97" lean-forward="true" selection-start-line="123" selection-start-column="97" selection-end-line="123" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4913#4914#0" expanded="true" />
-            <element signature="e#4940#4941#0" expanded="true" />
-            <marker date="1529481296158" expanded="true" signature="3976:3982" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="127" column="11" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

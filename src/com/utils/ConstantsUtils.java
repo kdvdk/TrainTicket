@@ -6,6 +6,8 @@ import com.bean.Ticket;
 import com.bean.TrainClass;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +48,7 @@ public class ConstantsUtils {
 
     };
 
-    public static Map<String,Float> DISTANCEMAP = new HashMap<>();
+
 
 
     public static String[] CLASSES = {
@@ -103,4 +105,16 @@ public class ConstantsUtils {
     public static IdCard TESTIDCARD = new IdCard("510122199711015523","王锐","男",new Date(2018));
 
     public static CreditCard TESTCARD = new CreditCard("5123541564216","王锐",780f);
+
+    public static Date createDate(String date){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            java.util.Date date1 = format.parse(date);
+            Date re = new Date(date1.getTime());
+            return re;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
