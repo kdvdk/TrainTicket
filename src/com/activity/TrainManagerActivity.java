@@ -133,6 +133,12 @@ public class TrainManagerActivity extends BaseActivity {
         });
         right.add(newDataButton);
         deleteButton = new MyButton("删除", 10, 195, 80, 30, new Font("宋体", Font.PLAIN, 15), 2);
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         right.add(deleteButton);
         queryButton = new MyButton("查看",10,125,80,30,new Font("宋体", Font.PLAIN, 15),1);
         queryButton.addActionListener(new ActionListener() {

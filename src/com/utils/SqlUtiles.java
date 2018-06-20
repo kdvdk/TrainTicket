@@ -64,7 +64,7 @@ public class SqlUtiles {
                         resultSet.getString("UserPassWord").trim(),
                         resultSet.getString("UserEmail").trim(),
                         resultSet.getString("UserAppName").trim(),
-                        resultSet.getString("UserIdCardNumber").trim(),
+                        resultSet.getString("UserIdCardNumber"),
                         resultSet.getString("UserUsualDepature").trim(),
                         resultSet.getInt("UserType")
                 );
@@ -141,6 +141,14 @@ public class SqlUtiles {
 
     }
 
+    /**
+     * 管理员删除班次
+     * @param trainClass
+     * @return
+     */
+//    public Boolean deleteClasses(TrainClass trainClass){
+//        String sql = "DELETE FROM Train"
+//    }
     /**
      * 查询班次
      * @return

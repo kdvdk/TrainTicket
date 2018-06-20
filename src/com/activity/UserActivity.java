@@ -59,6 +59,6 @@ public class UserActivity extends BaseActivity {
 
     @Override
     public SqlUser initSqlUser() {
-        return null;
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 }

@@ -22,7 +22,7 @@ public class Main {
         initMap();
         float x = DISTANCEMAP.get("01");
         System.out.println(x);
-        TrainManagerActivity managerActivity = new TrainManagerActivity();
+        //TrainManagerActivity managerActivity = new TrainManagerActivity();
         LoginActivity loginActivity = new LoginActivity();
 
     }

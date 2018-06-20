@@ -111,12 +111,13 @@ public class LoginActivity extends BaseActivity {
             public void actionPerformed(ActionEvent e) {
                 if (email.isVisible()) {
                     String emailText = email.getText();
-                    String limit = "WHERE UserEmail = '" + emailText + "'";
+                    String limit = "WHERE UserEmail = '" + emailText + "'" + "AND UserPhoneNumber = '"+accountTextField.getText()+"'";
                     sqlUtiles = new SqlUtiles(getSqlUser());
                     User user = sqlUtiles.queryUser(limit);
                     if (user.getUserEmail().trim().equals(emailText)) {
                         System.out.println("登录成功");
                         Main.user = user;
+                        openActivity(user);
                     }
                 } else {
                     if (accountTextField.getText().equals("")) {
@@ -137,17 +138,7 @@ public class LoginActivity extends BaseActivity {
                                 setMessage("登录成功");
                                 System.out.println("登录成功");
                                 Main.user = user;
-                                if (user.getType() == 0) {
-                                    System.out.println("普通用户登录");
-                                    UserActivity activity = new UserActivity();
-                                    containerFrame.dispose();
-                                } else if (user.getType() == 1) {
-                                    System.out.println("火车管理员登录");
-                                    TrainManagerActivity trainManagerActivity = new TrainManagerActivity();
-                                    containerFrame.dispose();
-                                } else {
-                                    System.out.println("最高权限登录");
-                                }
+                                openActivity(user);
                             } else {
                                 setMessage("密码错误_忘记密码？请点我");
                                 System.out.println("密码错误");
@@ -215,5 +206,19 @@ public class LoginActivity extends BaseActivity {
     private void setMessage(String s) {
         message.setText(s);
         message.setVisible(true);
+    }
+
+    private void openActivity(User user){
+        if (user.getType() == 0) {
+            System.out.println("普通用户登录");
+            UserActivity activity = new UserActivity();
+            containerFrame.dispose();
+        } else if (user.getType() == 1) {
+            System.out.println("火车管理员登录");
+            TrainManagerActivity trainManagerActivity = new TrainManagerActivity();
+            containerFrame.dispose();
+        } else {
+            System.out.println("最高权限登录");
+        }
     }
 }
