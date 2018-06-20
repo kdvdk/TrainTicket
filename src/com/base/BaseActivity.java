@@ -20,16 +20,17 @@ public abstract class BaseActivity {
      * View初始化自动调用
      */
     public BaseActivity() {
+        this.sqlUser = initSqlUser();
+        sqlUtiles = new SqlUtiles(sqlUser);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 initView();
             }
         });
-        this.sqlUser = initSqlUser();
         titleFont = new Font("黑体", Font.PLAIN, 18);
         textFont = new Font("黑体", Font.PLAIN, 16);
-        sqlUtiles = new SqlUtiles(sqlUser);
+
     }
 
     public SqlUtiles getSqlUtiles() {

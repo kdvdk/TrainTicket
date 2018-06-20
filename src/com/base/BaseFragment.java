@@ -18,13 +18,13 @@ public abstract class BaseFragment extends JPanel {
     }
 
     public BaseFragment() {
+        this.sqlUser = initSqlUser();
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 initView();
             }
         });
-        this.sqlUser = initSqlUser();
         titleFont = new Font("黑体", Font.PLAIN, 18);
         textFont = new Font("黑体", Font.PLAIN, 16);
     }

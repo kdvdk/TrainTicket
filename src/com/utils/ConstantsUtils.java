@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ConstantsUtils {
@@ -116,5 +117,15 @@ public class ConstantsUtils {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static String[] trainClassesToArray(List<TrainClass> mList){
+        String [] re = new String[mList.size()];
+        for (int i = 0; i < mList.size(); i++) {
+            TrainClass item = mList.get(i);
+            re[i] = item.getClassNumber()+" "+item.getDepaturePlace()+" to "+item.getGoalPlace()+" "+item.getDepatureTime();
+            System.out.println(re[i]);
+        }
+        return re;
     }
 }

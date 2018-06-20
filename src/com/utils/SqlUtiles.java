@@ -6,6 +6,8 @@ import com.bean.User;
 import com.db.SqlUser;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SqlUtiles {
 
@@ -58,12 +60,12 @@ public class SqlUtiles {
         try {
             while (resultSet.next()){
                 user = new User(
-                        resultSet.getString("UserPhoneNumber"),
-                        resultSet.getString("UserPassWord"),
-                        resultSet.getString("UserEmail"),
-                        resultSet.getString("UserAppName"),
-                        resultSet.getString("UserIdCardNumber"),
-                        resultSet.getString("UserUsualDepature"),
+                        resultSet.getString("UserPhoneNumber").trim(),
+                        resultSet.getString("UserPassWord").trim(),
+                        resultSet.getString("UserEmail").trim(),
+                        resultSet.getString("UserAppName").trim(),
+                        resultSet.getString("UserIdCardNumber").trim(),
+                        resultSet.getString("UserUsualDepature").trim(),
                         resultSet.getInt("UserType")
                 );
             }
@@ -91,8 +93,8 @@ public class SqlUtiles {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 train = new Train(
-                        resultSet.getString("TrainNumber"),
-                        resultSet.getString("TrainName"),
+                        resultSet.getString("TrainNumber").trim(),
+                        resultSet.getString("TrainName").trim(),
                         resultSet.getInt("TrainCompartmentNumber"),
                         resultSet.getInt("TrainCapacityOfCompartment"),
                         resultSet.getFloat("TrainSpeed")
@@ -138,6 +140,29 @@ public class SqlUtiles {
         return executeUpdate(sql);
 
     }
+
+    /**
+     * 查询班次
+     * @return
+     */
+    public List<TrainClass> queryClasses() throws SQLException {
+        ResultSet resultSet;
+        List<TrainClass> mList = new ArrayList<>();
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance,ClassesDepatureTime,ClassesPassengerNumber FROM Classes";
+        resultSet = executeQuery(sql);
+        while (resultSet.next()){
+            mList.add(new TrainClass(
+                        resultSet.getString("ClassesNumber").trim(),
+                        resultSet.getString("ClassesTrainNumber").trim()   ,
+                        resultSet.getString("ClassesDepaturePlace").trim(),
+                        resultSet.getString("ClassesGoalPlace").trim(),
+                        resultSet.getFloat("ClassesDistance"),
+                        resultSet.getDate("ClassesDepatureTime") ,
+                        resultSet.getInt("ClassesPassengerNumber")
+                    ));
+        }
+        return mList;
+    }
     /**
      * 更新类sql语言执行者
      * @param sql
@@ -159,7 +184,6 @@ public class SqlUtiles {
             System.out.println("SqlUtiles :SQL update 执行失败 "+e.toString());
             return false;
         }
-
     }
 
     /**

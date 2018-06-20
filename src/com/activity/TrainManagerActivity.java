@@ -6,10 +6,7 @@ import com.bean.Train;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
-import com.ui.MyButton;
-import com.ui.MyFrame;
-import com.ui.MyLabel;
-import com.ui.MyTextField;
+import com.ui.*;
 import com.utils.ConstantsUtils;
 import com.utils.SqlUtiles;
 
@@ -21,7 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class TrainManagerActivity extends BaseActivity {
@@ -49,6 +48,8 @@ public class TrainManagerActivity extends BaseActivity {
     private JLabel reBoot ;
 
     private JFrame dialogFrame;
+    private String [] datas;
+    private List<TrainClass> classList ;
 
     @Override
     public void initView() {
@@ -88,7 +89,8 @@ public class TrainManagerActivity extends BaseActivity {
         classesList = new JList();
 //        classesList.setBounds();
 //        classesList.setPreferredSize();
-        ListModel listModel = new DefaultComboBoxModel(ConstantsUtils.CLASSES);
+        loadData();
+        ListModel listModel = new DefaultComboBoxModel(datas);
 //        classesList.setListData(ConstantsUtils.CLASSES);
         classesList.setModel(listModel);
         scrollPane = new JScrollPane();
@@ -133,6 +135,12 @@ public class TrainManagerActivity extends BaseActivity {
         deleteButton = new MyButton("删除", 10, 195, 80, 30, new Font("宋体", Font.PLAIN, 15), 2);
         right.add(deleteButton);
         queryButton = new MyButton("查看",10,125,80,30,new Font("宋体", Font.PLAIN, 15),1);
+        queryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClassesDialog classesDialog = new ClassesDialog(classList.get(classesList.getSelectedIndex()));
+            }
+        });
         right.add(queryButton);
 
         splitPane.setLeftComponent(left);
@@ -258,5 +266,15 @@ public class TrainManagerActivity extends BaseActivity {
         datepick.setTimePanleVisible(true);
 
         return datepick;
+    }
+
+    private void loadData(){
+        SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
+        try {
+            classList = sqlUtiles.queryClasses();
+            datas = ConstantsUtils.trainClassesToArray(classList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
