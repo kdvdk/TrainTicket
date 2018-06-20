@@ -8,9 +8,7 @@ import com.bean.TrainClass;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ConstantsUtils {
     public static String DRIVER_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -123,7 +121,7 @@ public class ConstantsUtils {
         String [] re = new String[mList.size()];
         for (int i = 0; i < mList.size(); i++) {
             TrainClass item = mList.get(i);
-            re[i] = item.getClassNumber()+" "+item.getDepaturePlace()+" to "+item.getGoalPlace()+" "+item.getDepatureTime();
+            re[i] = item.getClassNumber()+" "+item.getDepaturePlace()+" to "+item.getGoalPlace()+" "+item.getDepatureDay();
             System.out.println(re[i]);
         }
         return re;

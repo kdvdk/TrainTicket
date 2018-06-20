@@ -6,8 +6,6 @@ import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ClassesDialog extends JFrame {
 
@@ -48,7 +46,7 @@ public class ClassesDialog extends JFrame {
         JLabel depaturePlace = new MyLabel("出发地："+trainClass.getDepaturePlace(),x_star+20,y_star=y_star+20,width,30,textFont);
         JLabel goalPlace = new MyLabel("目的地："+trainClass.getGoalPlace(),x_star+20,y_star=y_star+20,width,30,textFont);
         JLabel depatureTime1 = new MyLabel("出发时间：",x_star+20,y_star=y_star+20,width,30,textFont);
-        JLabel depatureTime2 = new MyLabel(trainClass.getDepatureTime()+"  14:00",x_star+20,y_star=y_star+20,width,30,textFont);
+        JLabel depatureTime2 = new MyLabel(trainClass.getDepatureDay()+"  "+trainClass.getTime(),x_star+20,y_star=y_star+20,width,30,textFont);
         JLabel numberOfPassenger = new MyLabel("现已有乘客数："+trainClass.getPassengerNumber(),x_star+20,y_star+=20,width,30,textFont);
 
         this.add(numberOfPassenger);

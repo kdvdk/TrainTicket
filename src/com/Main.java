@@ -20,10 +20,8 @@ public class Main {
         //RegisterActivity registerActivity = new RegisterActivity();
         //UserActivity mainActivity = new UserActivity();
         initMap();
-        float x = DISTANCEMAP.get("01");
-        System.out.println(x);
-        //TrainManagerActivity managerActivity = new TrainManagerActivity();
-        LoginActivity loginActivity = new LoginActivity();
+        TrainManagerActivity managerActivity = new TrainManagerActivity();
+        //LoginActivity loginActivity = new LoginActivity();
 
     }
 

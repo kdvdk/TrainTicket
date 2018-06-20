@@ -19,6 +19,7 @@ import java.awt.event.MouseListener;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -49,7 +50,7 @@ public class TrainManagerActivity extends BaseActivity {
 
     private JFrame dialogFrame;
     private String [] datas;
-    private List<TrainClass> classList ;
+    private List<TrainClass> classList = new ArrayList<>();
 
     @Override
     public void initView() {
@@ -90,9 +91,7 @@ public class TrainManagerActivity extends BaseActivity {
 //        classesList.setBounds();
 //        classesList.setPreferredSize();
         loadData();
-        ListModel listModel = new DefaultComboBoxModel(datas);
-//        classesList.setListData(ConstantsUtils.CLASSES);
-        classesList.setModel(listModel);
+
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setViewportView(classesList);
@@ -112,7 +111,9 @@ public class TrainManagerActivity extends BaseActivity {
                 int goal_index = goalPlace.getSelectedIndex();
                 String start = startPlace.getItemAt(startPlace.getSelectedIndex());
                 String goal = goalPlace.getItemAt(goalPlace.getSelectedIndex());
-                String time = datePicker.getText();
+                String day = datePicker.getText().split(" ")[0];
+                String time = datePicker.getText().split(" ")[1];
+//                System.out.println(time);
                 String inputContent = JOptionPane.showInputDialog(dialogFrame,"输入列车号");
                 String distanceCode = String.valueOf(startPlace.getSelectedIndex())+String.valueOf(goalPlace.getSelectedIndex());
                 SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
@@ -123,9 +124,11 @@ public class TrainManagerActivity extends BaseActivity {
                 String temp = new String(inputContent);
                 System.out.println(temp);
                 float distance = Main.DISTANCEMAP.get(distanceCode);
-                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+start_index+goal_index,temp,start,goal,distance,ConstantsUtils.createDate(time),0);
+                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+start_index+goal_index,temp,start,goal,distance,ConstantsUtils.createDate(day),0);
+                trainClass.setTime(time);
                 if(sqlUtiles.addClass(trainClass)){
                     JOptionPane.showMessageDialog(dialogFrame,"成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                    loadData();
                 }else{
                     JOptionPane.showMessageDialog(dialogFrame,"失败","消息提示",JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -136,7 +139,13 @@ public class TrainManagerActivity extends BaseActivity {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SqlUtiles sqlUtiles = getSqlUtiles();
+                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))){
+                    JOptionPane.showMessageDialog(dialogFrame,"删除成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                    loadData();
+                }else{
+                    JOptionPane.showMessageDialog(dialogFrame,"删除失败","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         });
         right.add(deleteButton);
@@ -212,8 +221,9 @@ public class TrainManagerActivity extends BaseActivity {
             }
         });
         //时间控件
-        datePicker = getDatePicker();
-        datePicker.setBounds(150, 63, 100, 25);
+        MyDatePicker myDatePicker = new MyDatePicker();
+        datePicker = myDatePicker.getDatePicker();
+        datePicker.setBounds(120, 63, 130, 25);
         datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
         myFrame.add(new JLabel("                                                                  "));
         myFrame.add(startPlace);
@@ -235,46 +245,9 @@ public class TrainManagerActivity extends BaseActivity {
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
     }
-    /**
-     * 初始化时间控件
-     *
-     * @return
-     */
-    private DatePicker getDatePicker() {
-        final DatePicker datepick;
-        // 格式
-        String DefaultFormat = "yyyy-MM-dd";
-        // 当前时间
-        Date date = new Date();
-        // 字体
-        Font font = new Font("Times New Roman", Font.BOLD, 14);
-
-        Dimension dimension = new Dimension(177, 24);
-
-        int[] hilightDays = {1, 3, 5, 7};
-
-        int[] disabledDays = {4, 6, 5, 9};
-        //构造方法（初始时间，时间显示格式，字体，控件大小）
-        datepick = new DatePicker(date, DefaultFormat, font, dimension);
-
-        datepick.setLocation(137, 83);//设置起始位置
-        /*
-        //也可用setBounds()直接设置大小与位置
-        datepick.setBounds(137, 83, 177, 24);
-        */
-        // 设置一个月份中需要高亮显示的日子
-        datepick.setHightlightdays(hilightDays, Color.red);
-        // 设置一个月份中不需要的日子，呈灰色显示
-        datepick.setDisableddays(disabledDays);
-        // 设置国家
-        datepick.setLocale(Locale.CANADA);
-        // 设置时钟面板可见
-        datepick.setTimePanleVisible(true);
-
-        return datepick;
-    }
 
     private void loadData(){
+        classList.clear();
         SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
         try {
             classList = sqlUtiles.queryClasses();
@@ -282,5 +255,8 @@ public class TrainManagerActivity extends BaseActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        ListModel listModel = new DefaultComboBoxModel(datas);
+//        classesList.setListData(ConstantsUtils.CLASSES);
+        classesList.setModel(listModel);
     }
 }

@@ -82,7 +82,7 @@ public class TicketsQueryFragment extends BaseFragment {
         trainNumber = new MyLabel("火车号：" + ConstantsUtils.TESTCLASS.getTrainNumber(), 10, starty += margin, 200, 50, textFont);
         depaturePlace = new MyLabel("出发地点：" + ConstantsUtils.TESTCLASS.getDepaturePlace(), 10, starty += margin, 200, 50, textFont);
         goalPlace = new MyLabel("目的地：" + ConstantsUtils.TESTCLASS.getGoalPlace(), 10, starty += margin, 200, 50, textFont);
-        depatureTime = new MyLabel("出发时间：" + ConstantsUtils.TESTCLASS.getDepatureTime(), 10, starty += margin, 200, 50, textFont);
+        depatureTime = new MyLabel("出发时间：" + ConstantsUtils.TESTCLASS.getDepatureDay(), 10, starty += margin, 200, 50, textFont);
         restSeetNumber = new MyLabel("剩余座位：" + ConstantsUtils.TESTCLASS.getPassengerNumber(), 10, starty += margin, 200, 50, textFont);
         informationLabel.add(classNumber);
         informationLabel.add(trainNumber);

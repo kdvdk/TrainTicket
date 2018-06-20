@@ -8,19 +8,39 @@ public class TrainClass {
     private String depaturePlace;
     private String goalPlace;
     private float dinstance;
-    private Date depatureTime;
+    private Date depatureDay;
     private int passengerNumber;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public TrainClass() {
     }
 
-    public TrainClass(String classNumber, String trainNumber, String depaturePlace, String goalPlace, float dinstance, Date depatureTime, int passengerNumber) {
+    public TrainClass(String classNumber, String trainNumber, String depaturePlace, String goalPlace, float dinstance, Date depatureDay, int passengerNumber, String time) {
         this.classNumber = classNumber;
         this.trainNumber = trainNumber;
         this.depaturePlace = depaturePlace;
         this.goalPlace = goalPlace;
         this.dinstance = dinstance;
-        this.depatureTime = depatureTime;
+        this.depatureDay = depatureDay;
+        this.passengerNumber = passengerNumber;
+        this.time = time;
+    }
+
+    public TrainClass(String classNumber, String trainNumber, String depaturePlace, String goalPlace, float dinstance, Date depatureDay, int passengerNumber) {
+        this.classNumber = classNumber;
+        this.trainNumber = trainNumber;
+        this.depaturePlace = depaturePlace;
+        this.goalPlace = goalPlace;
+        this.dinstance = dinstance;
+        this.depatureDay = depatureDay;
         this.passengerNumber = passengerNumber;
     }
 
@@ -64,12 +84,12 @@ public class TrainClass {
         this.dinstance = dinstance;
     }
 
-    public Date getDepatureTime() {
-        return depatureTime;
+    public Date getDepatureDay() {
+        return depatureDay;
     }
 
-    public void setDepatureTime(Date depatureTime) {
-        this.depatureTime = depatureTime;
+    public void setDepatureDay(Date depatureDay) {
+        this.depatureDay = depatureDay;
     }
 
     public int getPassengerNumber() {

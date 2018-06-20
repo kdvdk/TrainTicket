@@ -120,7 +120,7 @@ public class SqlUtiles {
 //            preparedStatement.setString(3, formatString1(trainClass.getDepaturePlace()));
 //            preparedStatement.setString(4, formatString1(trainClass.getGoalPlace()));
 //            preparedStatement.setFloat(5,trainClass.getDinstance());
-//            preparedStatement.setDate(6,formatString1(trainClass.getDepatureTime().toString()));
+//            preparedStatement.setDate(6,formatString1(trainClass.getDepatureDay().toString()));
 //            preparedStatement.setInt(7,trainClass.getPassengerNumber());
 //            System.out.println(preparedStatement);
 //            return executeUpdate(preparedStatement);
@@ -128,14 +128,15 @@ public class SqlUtiles {
 //            e.printStackTrace();
 //            return false;
 //        }
-        String sql = "INSERT INTO Classes VALUES(cn,ctn,cdp,cgp,cdis,cde,cpn)";
+        String sql = "INSERT INTO Classes VALUES(cn,ctn,cdp,cgp,cdis,cde,cpn,time)";
         sql = sql.replace("cn",formatString1(trainClass.getClassNumber()));
         sql = sql.replace("ctn",formatString1(trainClass.getTrainNumber()));
         sql = sql.replace("cdp",formatString1(trainClass.getDepaturePlace()));
         sql = sql.replace("cgp",formatString1(trainClass.getGoalPlace()));
         sql = sql.replace("cdis",trainClass.getDinstance()+"");
-        sql = sql.replace("cde",formatString1(trainClass.getDepatureTime().toString()));
+        sql = sql.replace("cde",formatString1(trainClass.getDepatureDay().toString()));
         sql = sql.replace("cpn",trainClass.getPassengerNumber()+"");
+        sql = sql.replace("time",formatString1(trainClass.getTime()+""));
         System.out.println(sql);
         return executeUpdate(sql);
 
@@ -146,9 +147,10 @@ public class SqlUtiles {
      * @param trainClass
      * @return
      */
-//    public Boolean deleteClasses(TrainClass trainClass){
-//        String sql = "DELETE FROM Train"
-//    }
+    public Boolean deleteClasses(TrainClass trainClass){
+        String sql = "DELETE FROM Classes WHERE ClassesNumber = '"+trainClass.getClassNumber()+"'";
+        return executeUpdate(sql);
+    }
     /**
      * 查询班次
      * @return
@@ -156,7 +158,7 @@ public class SqlUtiles {
     public List<TrainClass> queryClasses() throws SQLException {
         ResultSet resultSet;
         List<TrainClass> mList = new ArrayList<>();
-        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance,ClassesDepatureTime,ClassesPassengerNumber FROM Classes";
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance,ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes";
         resultSet = executeQuery(sql);
         while (resultSet.next()){
             mList.add(new TrainClass(
@@ -166,8 +168,10 @@ public class SqlUtiles {
                         resultSet.getString("ClassesGoalPlace").trim(),
                         resultSet.getFloat("ClassesDistance"),
                         resultSet.getDate("ClassesDepatureTime") ,
-                        resultSet.getInt("ClassesPassengerNumber")
+                        resultSet.getInt("ClassesPassengerNumber"),
+                        resultSet.getString("DepatureTime").trim()
                     ));
+
         }
         return mList;
     }
