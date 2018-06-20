@@ -1,14 +1,18 @@
 package com.fragment;
 
+import com.activity.LoginActivity;
 import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.db.SqlUser;
 import com.ui.MyButton;
+import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class InformationFragment extends BaseFragment {
     private JLabel avatarName;
@@ -26,6 +30,13 @@ public class InformationFragment extends BaseFragment {
     private JScrollPane moneyScrollPane ;
     private JList moneyList;
 
+    private JLabel reBoot;
+
+    private JFrame myFrame ;
+
+    public InformationFragment(JFrame myFrame) {
+        this.myFrame = myFrame;
+    }
 
     @Override
     public void initView() {
@@ -85,6 +96,44 @@ public class InformationFragment extends BaseFragment {
         titleText2.setForeground(Color.GRAY);
 
 
+
+
+        ImageIcon reboot = new ImageIcon(UserActivity.class.getResource("images//reboot.png"));//背景图案
+        reboot.setImage(reboot.getImage().
+                getScaledInstance(30,
+                        30,
+                        Image.SCALE_DEFAULT));
+        reBoot = new MyLabel("", 190, 470, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
+        reBoot.setIcon(reboot);
+        reBoot.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                myFrame.dispose();
+                LoginActivity loginActivity = new LoginActivity();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        this.add(reBoot);
         this.add(moneyScrollPane);
         this.add(titleText2);
         //this.add(line2);

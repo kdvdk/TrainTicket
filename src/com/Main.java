@@ -14,10 +14,10 @@ public class Main {
 
     public static void main(String[] args) {
         initStyle();
-        //LoginActivity loginActivity = new LoginActivity();
+        LoginActivity loginActivity = new LoginActivity();
         //RegisterActivity registerActivity = new RegisterActivity();
         //UserActivity mainActivity = new UserActivity();
-        TrainManagerActivity managerActivity = new TrainManagerActivity();
+        //TrainManagerActivity managerActivity = new TrainManagerActivity();
     }
 
 

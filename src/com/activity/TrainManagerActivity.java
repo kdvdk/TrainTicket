@@ -11,6 +11,8 @@ import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,6 +37,8 @@ public class TrainManagerActivity extends BaseActivity {
     private JTextField classesText;
     private JTextField idText;
     private MyButton idTitleText;
+
+    private JLabel reBoot ;
 
     @Override
     public void initView() {
@@ -117,6 +121,41 @@ public class TrainManagerActivity extends BaseActivity {
         idTitleText = new MyButton("身份证找人",xStar,yStar+60,110,30,textFont,0);
         idText = new MyTextField(xStar+130,yStar+60-5,200,40,titleFont);
 
+
+        ImageIcon reboot = new ImageIcon(UserActivity.class.getResource("images//reboot.png"));//背景图案
+        reboot.setImage(reboot.getImage().
+                getScaledInstance(30,
+                        30,
+                        Image.SCALE_DEFAULT));
+        reBoot = new MyLabel("", 190, 470, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
+        reBoot.setIcon(reboot);
+        reBoot.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                myFrame.dispose();
+                LoginActivity loginActivity = new LoginActivity();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         //时间控件
         datePicker = getDatePicker();
         datePicker.setBounds(150, 63, 100, 25);
@@ -130,6 +169,7 @@ public class TrainManagerActivity extends BaseActivity {
         myFrame.add(datePicker);
         myFrame.add(classesTitleText);
         myFrame.add(classesText);
+        myFrame.add(reBoot);
         myFrame.add(idTitleText);
         myFrame.add(bgLabel, new Integer(Integer.MIN_VALUE));
         myFrame.setVisible(true);

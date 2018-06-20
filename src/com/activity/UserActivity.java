@@ -30,12 +30,12 @@ public class UserActivity extends BaseActivity {
         Font titleFont = new Font("宋体", Font.PLAIN, 18);
         UIManager.put("TabbedPane.tabAreaInsets"
                 , new javax.swing.plaf.InsetsUIResource(10, 40, 2, 20));
-
+        myFrame = new MyFrame();
         //tab切换内容
         firstFragment = new Place2PlaceFragment();
         secondFragment = new TicketsQueryFragment();
         thirdFragment = new BuyRecordFragment();
-        forthFragment = new InformationFragment();
+        forthFragment = new InformationFragment(myFrame);
 
 
         //tab
@@ -50,7 +50,7 @@ public class UserActivity extends BaseActivity {
 
         container = new JPanel(new BorderLayout());
         container.add(tabbedPane);
-        myFrame = new MyFrame();
+
 //        myFrame.setBG(new BackgroundUi("images//bg.png"));
         myFrame.add(container);
         myFrame.setResizable(false);
