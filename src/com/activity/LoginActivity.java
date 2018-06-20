@@ -143,6 +143,8 @@ public class LoginActivity extends BaseActivity {
                                     containerFrame.dispose();
                                 } else if (user.getType() == 1) {
                                     System.out.println("火车管理员登录");
+                                    TrainManagerActivity trainManagerActivity = new TrainManagerActivity();
+                                    containerFrame.dispose();
                                 } else {
                                     System.out.println("最高权限登录");
                                 }

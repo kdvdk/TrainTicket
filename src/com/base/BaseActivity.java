@@ -2,8 +2,9 @@ package com.base;
 
 import com.db.SqlUser;
 
-public abstract class BaseActivity {
+import javax.swing.*;
 
+public abstract class BaseActivity {
     /**
      * 每个活动持有一个SQL对象
      */
