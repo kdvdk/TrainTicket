@@ -175,6 +175,32 @@ public class SqlUtiles {
         }
         return mList;
     }
+
+    /**
+     * 按班次号查询
+     * @param classesNumber
+     * @return
+     * @throws SQLException
+     */
+    public TrainClass queryClasses(String classesNumber) throws SQLException {
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance,ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes WHERE ClassesNumber = '"+classesNumber+"'";
+        ResultSet resultSet = executeQuery(sql);
+        TrainClass re = new TrainClass();
+        re.setClassNumber(" ");
+        while (resultSet.next()){
+            re = new TrainClass(
+                    resultSet.getString("ClassesNumber").trim(),
+                    resultSet.getString("ClassesTrainNumber").trim()   ,
+                    resultSet.getString("ClassesDepaturePlace").trim(),
+                    resultSet.getString("ClassesGoalPlace").trim(),
+                    resultSet.getFloat("ClassesDistance"),
+                    resultSet.getDate("ClassesDepatureTime") ,
+                    resultSet.getInt("ClassesPassengerNumber"),
+                    resultSet.getString("DepatureTime").trim()
+            );
+        }
+        return re;
+    }
     /**
      * 更新类sql语言执行者
      * @param sql

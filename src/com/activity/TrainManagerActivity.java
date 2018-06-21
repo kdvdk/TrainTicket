@@ -183,7 +183,17 @@ public class TrainManagerActivity extends BaseActivity {
         classesTitleText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SqlUtiles sqlUtiles = getSqlUtiles();
+                try {
+                    TrainClass trainClass = sqlUtiles.queryClasses(classesText.getText());
+                    if(trainClass.getClassNumber().equals(" ")){
+                        JOptionPane.showMessageDialog(dialogFrame,"查无此班次","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        ClassesDialog classesDialog = new ClassesDialog(trainClass);
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
         classesText = new MyTextField(xStar+130,yStar-5,200,40,titleFont);
