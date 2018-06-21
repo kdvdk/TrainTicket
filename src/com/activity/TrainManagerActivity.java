@@ -259,6 +259,11 @@ public class TrainManagerActivity extends BaseActivity {
         return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
     }
 
+    @Override
+    public void addListener() {
+
+    }
+
     private void loadData() {
         classList.clear();
         SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());

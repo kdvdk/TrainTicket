@@ -31,8 +31,8 @@ public class LoginActivity extends BaseActivity {
     private JLabel iconContainer;
     private JLabel welcomeText;
     private JLabel message;
-
-
+    private JTextField email;
+    private JLabel backMessage;
     private SqlUtiles sqlUtiles;
 
     /**
@@ -60,10 +60,9 @@ public class LoginActivity extends BaseActivity {
 
         passwordTextLabel = new MyLabel("密码", 50, 190, 60, 50, font);
 
-
         //找回密码
-        JLabel backMessage = new MyLabel("输入注册时的邮箱,若正确即可登录", 70, 240, 350, 50, new Font("宋体", Font.PLAIN, 20));
-        JTextField email = new MyTextField(70, 300, 250, 50, font);
+        backMessage = new MyLabel("输入注册时的邮箱,若正确即可登录", 70, 240, 350, 50, new Font("宋体", Font.PLAIN, 20));
+        email = new MyTextField(70, 300, 250, 50, font);
         backMessage.setVisible(false);
         email.setVisible(false);
 
@@ -73,93 +72,18 @@ public class LoginActivity extends BaseActivity {
         message.setFont(new Font("宋体", Font.PLAIN, 15));
         message.setForeground(Color.red);
         message.setText("密码错误");
-        message.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                email.setVisible(true);
-                backMessage.setVisible(true);
-                message.setVisible(false);
-            }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
 
         //按钮
         buttonLogin = new JButton("登陆");         //更改成loginButton
         buttonLogin.setBounds(70, 390, 100, 50);
         buttonLogin.setFont(font);
-        buttonLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (email.isVisible()) {
-                    String emailText = email.getText();
-                    String limit = "WHERE UserEmail = '" + emailText + "'" + "AND UserPhoneNumber = '"+accountTextField.getText()+"'";
-                    sqlUtiles = new SqlUtiles(getSqlUser());
-                    User user = sqlUtiles.queryUser(limit);
-                    if (user.getUserEmail().trim().equals(emailText)) {
-                        System.out.println("登录成功");
-                        Main.user = user;
-                        openActivity(user);
-                    }
-                } else {
-                    if (accountTextField.getText().equals("")) {
-                        System.out.println("用户名为空");
-                    } else {
-                        String account = accountTextField.getText();
-                        String password = passwordField.getText();
-                        String limit = "WHERE UserPhoneNumber = '" + account + "'";
-                        sqlUtiles = new SqlUtiles(getSqlUser());
-                        User user = sqlUtiles.queryUser(limit);
-                        if (user.getUserPhone().equals("-")) {
-                            message.setText("查无此账号,请先注册");
-                            message.setVisible(true);
-                        } else {
-                            System.out.println(user.getUserPassWord());
-                            System.out.println(password);
-                            if (user.getUserPassWord().trim().equals(password)) {
-                                setMessage("登录成功");
-                                System.out.println("登录成功");
-                                Main.user = user;
-                                openActivity(user);
-                            } else {
-                                setMessage("密码错误_忘记密码？请点我");
-                                System.out.println("密码错误");
-                            }
-                        }
 
-                    }
-                }
-            }
-        });
 
         buttonRegister = new JButton("注册");
         buttonRegister.setBounds(230, 390, 100, 50);
         buttonRegister.setFont(font);
-        buttonRegister.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                RegisterActivity registerActivity = new RegisterActivity();
-                containerFrame.dispose();
-            }
-        });
+
 
         //加入文本框
         accountTextField = new JTextField();
@@ -203,12 +127,97 @@ public class LoginActivity extends BaseActivity {
         return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 
+    @Override
+    public void addListener() {
+        buttonRegister.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterActivity registerActivity = new RegisterActivity();
+                containerFrame.dispose();
+            }
+        });
+        buttonLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (email.isVisible()) {
+                    String emailText = email.getText();
+                    String limit = "WHERE UserEmail = '" + emailText + "'" + "AND UserPhoneNumber = '" + accountTextField.getText() + "'";
+                    sqlUtiles = new SqlUtiles(getSqlUser());
+                    User user = sqlUtiles.queryUser(limit);
+                    if (user.getUserEmail().trim().equals(emailText)) {
+                        System.out.println("登录成功");
+                        Main.user = user;
+                        openActivity(user);
+                    }
+                } else {
+                    if (accountTextField.getText().equals("")) {
+                        System.out.println("用户名为空");
+                    } else {
+                        String account = accountTextField.getText();
+                        String password = passwordField.getText();
+                        String limit = "WHERE UserPhoneNumber = '" + account + "'";
+                        sqlUtiles = new SqlUtiles(getSqlUser());
+                        User user = sqlUtiles.queryUser(limit);
+                        if (user.getUserPhone().equals("-")) {
+                            message.setText("查无此账号,请先注册");
+                            message.setVisible(true);
+                        } else {
+                            System.out.println(user.getUserPassWord());
+                            System.out.println(password);
+                            if (user.getUserPassWord().trim().equals(password)) {
+                                setMessage("登录成功");
+                                System.out.println("登录成功");
+                                Main.user = user;
+                                openActivity(user);
+                            } else {
+                                setMessage("密码错误_忘记密码？请点我");
+                                System.out.println("密码错误");
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+
+        message.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                email.setVisible(true);
+                backMessage.setVisible(true);
+                message.setVisible(false);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+    }
+
+
+
     private void setMessage(String s) {
         message.setText(s);
         message.setVisible(true);
     }
 
-    private void openActivity(User user){
+    private void openActivity(User user) {
         if (user.getType() == 0) {
             System.out.println("普通用户登录");
             UserActivity activity = new UserActivity();

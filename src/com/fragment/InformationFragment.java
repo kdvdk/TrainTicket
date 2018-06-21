@@ -6,9 +6,8 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.IdCard;
 import com.db.SqlUser;
-import com.ui.AddIdCardDialog;
+import com.ui.IdCardDialog;
 import com.ui.MyButton;
-import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
@@ -20,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InformationFragment extends BaseFragment {
     private JLabel avatarName;
@@ -29,10 +30,14 @@ public class InformationFragment extends BaseFragment {
     private JButton addButton;
     private JButton deleteButton;
     private JButton changeButton;
+    private JButton addMoneyButton;
+    private JButton changeMoneyButton;
+    private JButton deleteMoneyButton;
     private JLabel line;
     private JLabel line2;
     private JLabel titleText;
     private JLabel titleText2;
+    private List<IdCard> dataList = new ArrayList<>();
 
     private JScrollPane moneyScrollPane;
     private JList moneyList;
@@ -84,26 +89,26 @@ public class InformationFragment extends BaseFragment {
         titleText = new MyLabel("常用个人信息：", 30, 140, 200, 30, textFont);
         titleText.setForeground(Color.GRAY);
 
-        list = new JList();
-        moneyList = new JList();
+        list = new JList<String>();
+        moneyList = new JList<String>();
         loadData();
         scrollPane = new JScrollPane(list);
         scrollPane.setBounds(30, 180, 200, 150);
         moneyScrollPane = new JScrollPane(moneyList);
-        moneyScrollPane.setBounds(30, 370, 345, 100);
-
+        moneyScrollPane.setBounds(30, 370, 200, 100);
         int x_start = 280;
-        int y_start = 200;
-        int mergin = 40;
+        int y_start = 370;
+        int mergin = 35;
         Font buttonFont = new Font("黑体", Font.PLAIN, 15);
+        changeMoneyButton = new MyButton("修改", x_start, y_start, 80, 25, buttonFont, 0);
+        addMoneyButton = new MyButton("新增", x_start, y_start += mergin, 80, 25, buttonFont, 1);
+        deleteMoneyButton = new MyButton("删除", x_start, y_start += mergin, 80, 25, buttonFont, 2);
+
+        x_start = 280;
+        y_start = 200;
+        mergin = 40;
         changeButton = new MyButton("修改", x_start, y_start, 80, 25, buttonFont, 0);
         addButton = new MyButton("新增", x_start, y_start += mergin, 80, 25, buttonFont, 1);
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AddIdCardDialog addIdCardDialog = new AddIdCardDialog(informationFragment);
-            }
-        });
         deleteButton = new MyButton("删除", x_start, y_start += mergin, 80, 25, buttonFont, 2);
 
         line2 = new MyLabel("---------------------------------------------", 30, 350, 360, 10, titleFont);
@@ -119,6 +124,53 @@ public class InformationFragment extends BaseFragment {
                         Image.SCALE_DEFAULT));
         reBoot = new MyLabel("", 190, 470, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
         reBoot.setIcon(reboot);
+
+        this.add(changeMoneyButton);
+        this.add(addMoneyButton);
+        this.add(deleteMoneyButton);
+        this.add(reBoot);
+        this.add(moneyScrollPane);
+        this.add(titleText2);
+        //this.add(line2);
+        this.add(addButton);
+        this.add(changeButton);
+        this.add(deleteButton);
+        this.add(scrollPane);
+        this.add(titleText);
+        this.add(line);
+        this.add(email);
+        this.add(avatarName);
+        this.add(avatarLabel);
+        this.add(bgLabel);
+    }
+
+    @Override
+    public SqlUser initSqlUser() {
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
+    }
+
+    @Override
+    public void loadData() {
+        ListModel listModel = null;
+        try {
+            dataList = getSqlUtiles().queryIdCard(Main.user);
+            listModel = new DefaultComboBoxModel<String>(ChangeUtiles.idCardListToArray(dataList));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        list.setModel(listModel);
+        ListModel moneyModel = new DefaultComboBoxModel<String>(new String[]{
+                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace(),
+                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace()
+        });
+        moneyList.setModel(moneyModel);
+    }
+
+    @Override
+    public void addListener() {
+        /**
+         * 注销按钮
+         */
         reBoot.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -147,41 +199,34 @@ public class InformationFragment extends BaseFragment {
             }
         });
 
-        this.add(reBoot);
-        this.add(moneyScrollPane);
-        this.add(titleText2);
-        //this.add(line2);
-        this.add(addButton);
-        this.add(changeButton);
-        this.add(deleteButton);
-        this.add(scrollPane);
-        this.add(titleText);
-        this.add(line);
-        this.add(email);
-        this.add(avatarName);
-        this.add(avatarLabel);
-        this.add(bgLabel);
-    }
-
-    @Override
-    public SqlUser initSqlUser() {
-        return SqlUser.newInstance(SqlUser.USER_TYPE);
-    }
-
-    @Override
-    public void loadData() {
-        ListModel listModel = null;
-        try {
-            listModel = new DefaultComboBoxModel(ChangeUtiles.idCardListToArray(getSqlUtiles().queryIdCard(Main.user)));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        list.setModel(listModel);
-        ListModel moneyModel = new DefaultComboBoxModel(new String[]{
-                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace(),
-                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace()
+        /**
+         * 个人信息按钮
+         */
+        changeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IdCardDialog addIdCardDialog = new IdCardDialog(informationFragment, dataList.get(list.getSelectedIndex()),
+                        IdCardDialog.CHANGE);
+                System.out.println("点击");
+            }
         });
-        moneyList.setModel(moneyModel);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IdCardDialog addIdCardDialog = new IdCardDialog(informationFragment, IdCardDialog.ADD);
+            }
+        });
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        /**
+         * moneyCard按钮
+         */
+
     }
 
 }

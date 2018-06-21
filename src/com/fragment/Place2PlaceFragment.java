@@ -89,9 +89,9 @@ public class Place2PlaceFragment extends BaseFragment {
             public void actionPerformed(ActionEvent e) {
                 mDataList.clear();
                 try {
-                    if(startPlace.getSelectedIndex()==0||goalPlace.getSelectedIndex()==0){
+                    if (startPlace.getSelectedIndex() == 0 || goalPlace.getSelectedIndex() == 0) {
                         loadData();
-                    }else{
+                    } else {
                         mDataList = getSqlUtiles().queryClasses(startPlace.getItemAt(startPlace.getSelectedIndex()),
                                 goalPlace.getItemAt(goalPlace.getSelectedIndex()),
                                 ChangeUtiles.createDate(datePicker.getText().split(" ")[0]));
@@ -156,6 +156,11 @@ public class Place2PlaceFragment extends BaseFragment {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addListener() {
+
     }
 
     /**

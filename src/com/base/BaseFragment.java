@@ -31,6 +31,7 @@ public abstract class BaseFragment extends JPanel {
             @Override
             public void run() {
                 initView();
+                addListener();
             }
         });
         titleFont = new Font("黑体", Font.PLAIN, 18);
@@ -50,5 +51,5 @@ public abstract class BaseFragment extends JPanel {
     public void showMessageDialog(String message) {
         JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    public abstract void addListener();
 }

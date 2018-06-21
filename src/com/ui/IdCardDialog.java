@@ -15,18 +15,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 
-public class AddIdCardDialog extends BaseActivity {
+public class IdCardDialog extends BaseActivity {
 
     private JFrame myFrame;
     private JTextField idNumberText;
     private JTextField idName;
     private JTextField idSex;
     private JTextField idBirthday;
-
+    private JButton okButton;
     private BaseFragment informationFragment;
+    private int CODE;
+    private IdCard idCard = null;
 
-    public AddIdCardDialog(BaseFragment informationFragment) {
+    public static int CHANGE = 1;
+    public static int ADD = 0;
+
+    public IdCardDialog(BaseFragment informationFragment, int CODE) {
         this.informationFragment = informationFragment;
+        this.CODE = CODE;
+    }
+
+    public IdCardDialog(BaseFragment informationFragment, IdCard idCard, int CODE) {
+        this.informationFragment = informationFragment;
+        this.idCard = idCard;
+        this.CODE = CODE;
     }
 
     @Override
@@ -46,6 +58,10 @@ public class AddIdCardDialog extends BaseActivity {
 
         JLabel numberTitle = new MyLabel("身份证号", x_star, y_star, 80, 30, textFont);
         idNumberText = new MyTextField(x_star + 80, y_star, 150, 40, titleFont);
+        if (CODE == CHANGE) {
+            idNumberText.setText(idCard.getIdCardNumber());
+            idNumberText.setEnabled(false);
+        }
 
         JLabel nameTitle = new MyLabel("姓名", x_star, y_star += mergin, 80, 30, textFont);
         idName = new MyTextField(x_star + 80, y_star, 150, 40, titleFont);
@@ -56,23 +72,10 @@ public class AddIdCardDialog extends BaseActivity {
         JLabel birthdayTitle = new MyLabel("出生日期", x_star, y_star += mergin, 80, 30, textFont);
         idBirthday = new MyTextField(x_star + 80, y_star, 150, 40, titleFont);
 
-        JButton okButton = new MyButton("添加", x_star + 75, y_star += mergin + 10, 100, 40, textFont, 1);
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String number = idNumberText.getText();
-                String name = idName.getText();
-                String sex = idSex.getText();
-                Date birthday = ChangeUtiles.createDate(idBirthday.getText());
-                if (getSqlUtiles().insertIdCard(new IdCard(number, name, sex, birthday), Main.user)) {
-                    showMessageDialog("增添成功");
-                    myFrame.dispose();
-                }else{
-                    showMessageDialog("增添失败");
-                }
-                informationFragment.loadData();
-            }
-        });
+        okButton = new MyButton("添加", x_star + 75, y_star += mergin + 10, 100, 40, textFont, 1);
+        if (CODE == CHANGE) {
+            okButton.setText("确认修改");
+        }
 
         myFrame = new JFrame("添加身份证");
         myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
@@ -94,6 +97,30 @@ public class AddIdCardDialog extends BaseActivity {
     @Override
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(Main.user.getType());
+    }
+
+    @Override
+    public void addListener() {
+        if (CODE == ADD) {
+            okButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String number = idNumberText.getText();
+                    String name = idName.getText();
+                    String sex = idSex.getText();
+                    Date birthday = ChangeUtiles.createDate(idBirthday.getText());
+                    if (getSqlUtiles().insertIdCard(new IdCard(number, name, sex, birthday), Main.user)) {
+                        showMessageDialog("增添成功");
+                        myFrame.dispose();
+                    } else {
+                        showMessageDialog("增添失败");
+                    }
+                    informationFragment.loadData();
+                }
+            });
+        } else {
+
+        }
     }
 
 }

@@ -125,6 +125,11 @@ public class TicketsQueryFragment extends BaseFragment {
     public void loadData() {
     }
 
+    @Override
+    public void addListener() {
+
+    }
+
     private void updateText(TrainClass trainClass) {
         classNumber.setText("班次号：" + trainClass.getClassNumber());
         trainNumber.setText("火车号：" + trainClass.getTrainNumber());

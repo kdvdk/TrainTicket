@@ -31,6 +31,7 @@ public abstract class BaseActivity {
             @Override
             public void run() {
                 initView();
+                addListener();
             }
         });
         titleFont = new Font("黑体", Font.PLAIN, 18);
@@ -53,4 +54,6 @@ public abstract class BaseActivity {
     protected SqlUser getSqlUser() {
         return this.sqlUser;
     }
+
+    public abstract void addListener();
 }

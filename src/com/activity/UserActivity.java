@@ -61,4 +61,9 @@ public class UserActivity extends BaseActivity {
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
+
+    @Override
+    public void addListener() {
+
+    }
 }

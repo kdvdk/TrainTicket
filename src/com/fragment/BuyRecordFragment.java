@@ -85,4 +85,9 @@ public class BuyRecordFragment extends BaseFragment {
         mList.setModel(listModel);
     }
 
+    @Override
+    public void addListener() {
+
+    }
+
 }

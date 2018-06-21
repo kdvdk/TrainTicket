@@ -172,6 +172,11 @@ public class RegisterActivity extends BaseActivity {
         return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 
+    @Override
+    public void addListener() {
+
+    }
+
     private void banck(){
         LoginActivity loginActivity = new LoginActivity();
         myFrame.dispose();
