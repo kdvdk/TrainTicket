@@ -54,10 +54,11 @@ public class BuyRecordFragment extends BaseFragment {
 
     @Override
     public SqlUser initSqlUser() {
-        return null;
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 
-    private void loadData() {
+    @Override
+    public void loadData() {
         listModel = new DefaultComboBoxModel<>(new String[]{
                 "还未使用的：",
                 "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",

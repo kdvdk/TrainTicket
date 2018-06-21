@@ -2,6 +2,7 @@ package com.fragment;
 
 import com.activity.UserActivity;
 import com.base.BaseFragment;
+import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyLabel;
@@ -15,6 +16,7 @@ import javax.swing.text.Document;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class TicketsQueryFragment extends BaseFragment {
 
@@ -29,8 +31,10 @@ public class TicketsQueryFragment extends BaseFragment {
     private JLabel trainNumber;
     private JLabel depaturePlace;
     private JLabel goalPlace;
-    private JLabel depatureTime;
+    private JLabel depatureTimeLabel;
     private JLabel restSeetNumber;
+
+    private JLabel depatureTime;
 
     @Override
     public void initView() {
@@ -69,12 +73,21 @@ public class TicketsQueryFragment extends BaseFragment {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                okButton.setText("购买");
+
+                if (okButton.getText().equals("查询")) {
+                    try {
+                        updateText(getSqlUtiles().queryClasses(inputTextField.getText()));
+
+                        okButton.setText("购买");
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                }
             }
         });
 
         informationLabel = new JLabel();
-        informationLabel.setBounds(160, 130, 260, 300);
+        informationLabel.setBounds(130, 110, 260, 300);
 
         int starty = 10;
         int margin = 40;
@@ -82,13 +95,16 @@ public class TicketsQueryFragment extends BaseFragment {
         trainNumber = new MyLabel("火车号：" + ConstantsUtils.TESTCLASS.getTrainNumber(), 10, starty += margin, 200, 50, textFont);
         depaturePlace = new MyLabel("出发地点：" + ConstantsUtils.TESTCLASS.getDepaturePlace(), 10, starty += margin, 200, 50, textFont);
         goalPlace = new MyLabel("目的地：" + ConstantsUtils.TESTCLASS.getGoalPlace(), 10, starty += margin, 200, 50, textFont);
-        depatureTime = new MyLabel("出发时间：" + ConstantsUtils.TESTCLASS.getDepatureDay(), 10, starty += margin, 200, 50, textFont);
+        depatureTimeLabel = new MyLabel("出发时间：", 10, starty += margin, 200, 50, textFont);
+        depatureTime = new MyLabel(ConstantsUtils.TESTCLASS.getDepatureDay() + "", 10, starty += margin, 200, 50, textFont);
         restSeetNumber = new MyLabel("剩余座位：" + ConstantsUtils.TESTCLASS.getPassengerNumber(), 10, starty += margin, 200, 50, textFont);
+        informationLabel.setVisible(false);
+        informationLabel.add(depatureTime);
         informationLabel.add(classNumber);
         informationLabel.add(trainNumber);
         informationLabel.add(depaturePlace);
         informationLabel.add(goalPlace);
-        informationLabel.add(depatureTime);
+        informationLabel.add(depatureTimeLabel);
         informationLabel.add(restSeetNumber);
         //        informationLabel.setBackground(Color.red);
 
@@ -102,6 +118,20 @@ public class TicketsQueryFragment extends BaseFragment {
 
     @Override
     public SqlUser initSqlUser() {
-        return null;
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
+    }
+
+    @Override
+    public void loadData() {
+    }
+
+    private void updateText(TrainClass trainClass) {
+        classNumber.setText("班次号：" + trainClass.getClassNumber());
+        trainNumber.setText("火车号：" + trainClass.getTrainNumber());
+        depaturePlace.setText("出发地点：" + trainClass.getDepaturePlace());
+        goalPlace.setText("目的地：" + trainClass.getGoalPlace());
+        depatureTime.setText("" + trainClass.getDepatureDay() + "  " + trainClass.getTime());
+        restSeetNumber.setText("剩余座位：" + trainClass.getPassengerNumber() + "");
+        informationLabel.setVisible(true);
     }
 }

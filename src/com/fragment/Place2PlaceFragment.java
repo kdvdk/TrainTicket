@@ -2,16 +2,24 @@ package com.fragment;
 
 import com.activity.UserActivity;
 import com.base.BaseFragment;
+import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
 import com.ui.MyButton;
 import com.ui.MyDatePicker;
 import com.ui.MyLabel;
+import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
+import com.utils.SqlUtiles;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Place2PlaceFragment extends BaseFragment {
@@ -29,6 +37,10 @@ public class Place2PlaceFragment extends BaseFragment {
     private JScrollPane scrollPane;
 
     private DatePicker datePicker;
+
+
+    private String[] datas;
+    private List<TrainClass> mDataList = new ArrayList<>();
 
     @Override
     public void initView() {
@@ -63,11 +75,7 @@ public class Place2PlaceFragment extends BaseFragment {
         left.setLayout(null);
         //左侧list
         classesList = new JList();
-//        classesList.setBounds();
-//        classesList.setPreferredSize();
-        ListModel listModel = new DefaultComboBoxModel(ConstantsUtils.CLASSES);
-//        classesList.setListData(ConstantsUtils.CLASSES);
-        classesList.setModel(listModel);
+        loadData();
         scrollPane = new JScrollPane();
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setViewportView(classesList);
@@ -79,6 +87,25 @@ public class Place2PlaceFragment extends BaseFragment {
         //右侧
         JLabel right = new JLabel();
         queryButton = new MyButton("查询", 10, 135, 80, 30, new Font("宋体", Font.PLAIN, 15), 1);
+        queryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mDataList.clear();
+                try {
+                    if(startPlace.getSelectedIndex()==0||goalPlace.getSelectedIndex()==0){
+                        loadData();
+                    }else{
+                        mDataList = getSqlUtiles().queryClasses(startPlace.getItemAt(startPlace.getSelectedIndex()),
+                                goalPlace.getItemAt(goalPlace.getSelectedIndex()),
+                                ChangeUtiles.createDate(datePicker.getText().split(" ")[0]));
+                        datas = ChangeUtiles.trainClassesToArray(mDataList);
+                    }
+                    updateListData();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         right.add(queryButton);
         buyButton = new MyButton("购买", 10, 235, 80, 30, new Font("宋体", Font.PLAIN, 15), 1);
         right.add(buyButton);
@@ -119,12 +146,27 @@ public class Place2PlaceFragment extends BaseFragment {
 
     @Override
     public SqlUser initSqlUser() {
-        return null;
+        return SqlUser.newInstance(SqlUser.USER_TYPE);
     }
 
-    private void loadData(String start, String goal) {
-
+    @Override
+    public void loadData() {
+        mDataList.clear();
+        try {
+            mDataList = getSqlUtiles().queryClasses();
+            datas = ChangeUtiles.trainClassesToArray(mDataList);
+            updateListData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    /**
+     * 更新列表调用
+     */
+    private void updateListData() {
+        ListModel listModel = new DefaultComboBoxModel(datas);
+        classesList.setModel(listModel);
+    }
 
 }

@@ -115,12 +115,12 @@ public class SqlUtiles {
 //        String sql = "INSERT INTO Classes VALUES(?,?,?,?,?,?,?)";
 //        try {
 //            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, formatString1(trainClass.getClassNumber()));
-//            preparedStatement.setString(2, formatString1(trainClass.getTrainNumber()));
-//            preparedStatement.setString(3, formatString1(trainClass.getDepaturePlace()));
-//            preparedStatement.setString(4, formatString1(trainClass.getGoalPlace()));
+//            preparedStatement.setString(1, formatString(trainClass.getClassNumber()));
+//            preparedStatement.setString(2, formatString(trainClass.getTrainNumber()));
+//            preparedStatement.setString(3, formatString(trainClass.getDepaturePlace()));
+//            preparedStatement.setString(4, formatString(trainClass.getGoalPlace()));
 //            preparedStatement.setFloat(5,trainClass.getDinstance());
-//            preparedStatement.setDate(6,formatString1(trainClass.getDepatureDay().toString()));
+//            preparedStatement.setDate(6,formatString(trainClass.getDepatureDay().toString()));
 //            preparedStatement.setInt(7,trainClass.getPassengerNumber());
 //            System.out.println(preparedStatement);
 //            return executeUpdate(preparedStatement);
@@ -129,14 +129,14 @@ public class SqlUtiles {
 //            return false;
 //        }
         String sql = "INSERT INTO Classes VALUES(cn,ctn,cdp,cgp,cdis,cde,cpn,time)";
-        sql = sql.replace("cn",formatString1(trainClass.getClassNumber()));
-        sql = sql.replace("ctn",formatString1(trainClass.getTrainNumber()));
-        sql = sql.replace("cdp",formatString1(trainClass.getDepaturePlace()));
-        sql = sql.replace("cgp",formatString1(trainClass.getGoalPlace()));
+        sql = sql.replace("cn", formatString(trainClass.getClassNumber()));
+        sql = sql.replace("ctn", formatString(trainClass.getTrainNumber()));
+        sql = sql.replace("cdp", formatString(trainClass.getDepaturePlace()));
+        sql = sql.replace("cgp", formatString(trainClass.getGoalPlace()));
         sql = sql.replace("cdis",trainClass.getDinstance()+"");
-        sql = sql.replace("cde",formatString1(trainClass.getDepatureDay().toString()));
+        sql = sql.replace("cde", formatString(trainClass.getDepatureDay().toString()));
         sql = sql.replace("cpn",trainClass.getPassengerNumber()+"");
-        sql = sql.replace("time",formatString1(trainClass.getTime()+""));
+        sql = sql.replace("time", formatString(trainClass.getTime()+""));
         System.out.println(sql);
         return executeUpdate(sql);
 
@@ -201,6 +201,36 @@ public class SqlUtiles {
         }
         return re;
     }
+
+    /**
+     * 按起终点查询
+     * @param startplace
+     * @param goalplace
+     * @return
+     * @throws SQLException
+     */
+    public List<TrainClass> queryClasses(String startplace ,String goalplace,Date depatureDay) throws SQLException {
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance," +
+                "ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes WHERE ClassesDepaturePlace = '"
+                +startplace+"' AND ClassesGoalPlace = '"+goalplace+"' AND ClassesDepatureTime = '"+depatureDay+"'";
+        ResultSet resultSet;
+        resultSet = executeQuery(sql);
+        List<TrainClass> mList = new ArrayList<>();
+        while (resultSet.next()){
+            mList.add( new TrainClass(
+                    resultSet.getString("ClassesNumber").trim(),
+                    resultSet.getString("ClassesTrainNumber").trim()   ,
+                    resultSet.getString("ClassesDepaturePlace").trim(),
+                    resultSet.getString("ClassesGoalPlace").trim(),
+                    resultSet.getFloat("ClassesDistance"),
+                    resultSet.getDate("ClassesDepatureTime") ,
+                    resultSet.getInt("ClassesPassengerNumber"),
+                    resultSet.getString("DepatureTime").trim()
+            ));
+        }
+        return mList;
+    }
+
     /**
      * 更新类sql语言执行者
      * @param sql
@@ -282,19 +312,7 @@ public class SqlUtiles {
         }
     }
 
-    private String formatString20(String input){
-        StringBuffer re = new StringBuffer("'"+input);
-        int length = input.length();
-        int add_number = 20 - length;
-        for(int i = 0; i < add_number -1 ; i++) {
-             re =  re.append(" ");
-        }
-        re.append("'");
-        System.out.println(re);
-        return new String(re);
-    }
-
-    private String formatString1(String input){
+    private String formatString(String input){
         System.out.println("'"+input+"'");
         return  "'"+input+"'";
     }

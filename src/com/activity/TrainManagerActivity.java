@@ -7,6 +7,7 @@ import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
 import com.ui.*;
+import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 import com.utils.SqlUtiles;
 
@@ -46,16 +47,16 @@ public class TrainManagerActivity extends BaseActivity {
     private JTextField idText;
     private MyButton idTitleText;
 
-    private JLabel reBoot ;
+    private JLabel reBoot;
 
     private JFrame dialogFrame;
-    private String [] datas;
+    private String[] datas;
     private List<TrainClass> classList = new ArrayList<>();
 
     @Override
     public void initView() {
         dialogFrame = new JFrame();
-        dialogFrame.setSize(400,400);
+        dialogFrame.setSize(400, 400);
         dialogFrame.setLocationRelativeTo(null);
         dialogFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         myFrame = new MyFrame();
@@ -114,23 +115,24 @@ public class TrainManagerActivity extends BaseActivity {
                 String day = datePicker.getText().split(" ")[0];
                 String time = datePicker.getText().split(" ")[1];
 //                System.out.println(time);
-                String inputContent = JOptionPane.showInputDialog(dialogFrame,"输入列车号");
-                String distanceCode = String.valueOf(startPlace.getSelectedIndex())+String.valueOf(goalPlace.getSelectedIndex());
+                String inputContent = JOptionPane.showInputDialog(dialogFrame, "输入列车号");
+                String distanceCode = String.valueOf(startPlace.getSelectedIndex()) + String.valueOf(goalPlace.getSelectedIndex());
                 SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
 //                Train train = sqlUtiles.queryTrain(inputContent);
-                if(start_index>goal_index){
-                    distanceCode = String.valueOf(goalPlace.getSelectedIndex())+String.valueOf(startPlace.getSelectedIndex());
+                if (start_index > goal_index) {
+                    distanceCode = String.valueOf(goalPlace.getSelectedIndex()) + String.valueOf(startPlace.getSelectedIndex());
                 }
                 String temp = new String(inputContent);
                 System.out.println(temp);
-                float distance = Main.DISTANCEMAP.get(distanceCode);
-                TrainClass trainClass = new TrainClass(inputContent.split("-")[1]+start_index+goal_index,temp,start,goal,distance,ConstantsUtils.createDate(day),0);
+                float distance = ConstantsUtils.DISTANCEMAP.get(distanceCode);
+                TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
+                        temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
                 trainClass.setTime(time);
-                if(sqlUtiles.addClass(trainClass)){
-                    JOptionPane.showMessageDialog(dialogFrame,"成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                if (sqlUtiles.addClass(trainClass)) {
+                    JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                     loadData();
-                }else{
-                    JOptionPane.showMessageDialog(dialogFrame,"失败","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(dialogFrame, "失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -140,16 +142,16 @@ public class TrainManagerActivity extends BaseActivity {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SqlUtiles sqlUtiles = getSqlUtiles();
-                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))){
-                    JOptionPane.showMessageDialog(dialogFrame,"删除成功","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))) {
+                    JOptionPane.showMessageDialog(dialogFrame, "删除成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                     loadData();
-                }else{
-                    JOptionPane.showMessageDialog(dialogFrame,"删除失败","消息提示",JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(dialogFrame, "删除失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
         right.add(deleteButton);
-        queryButton = new MyButton("查看",10,125,80,30,new Font("宋体", Font.PLAIN, 15),1);
+        queryButton = new MyButton("查看", 10, 125, 80, 30, new Font("宋体", Font.PLAIN, 15), 1);
         queryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,25 +172,24 @@ public class TrainManagerActivity extends BaseActivity {
         ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//manager_bg.jpg"));//背景图案
         bg.setImage(bg.getImage().
                 getScaledInstance(ConstantsUtils.LOGIN_WIDTH,
-                        ConstantsUtils.LOGIN_HEIGH ,
+                        ConstantsUtils.LOGIN_HEIGH,
                         Image.SCALE_DEFAULT));
         JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH );
+        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH);
 
 
-
-        int xStar = 30 ;
+        int xStar = 30;
         int yStar = 420;
-        classesTitleText = new MyButton("查询班次",xStar,yStar,110,30,textFont,0);
+        classesTitleText = new MyButton("查询班次", xStar, yStar, 110, 30, textFont, 0);
         classesTitleText.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SqlUtiles sqlUtiles = getSqlUtiles();
                 try {
                     TrainClass trainClass = sqlUtiles.queryClasses(classesText.getText());
-                    if(trainClass.getClassNumber().equals(" ")){
-                        JOptionPane.showMessageDialog(dialogFrame,"查无此班次","消息提示",JOptionPane.INFORMATION_MESSAGE);
-                    }else{
+                    if (trainClass.getClassNumber().equals(" ")) {
+                        JOptionPane.showMessageDialog(dialogFrame, "查无此班次", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
                         ClassesDialog classesDialog = new ClassesDialog(trainClass);
                     }
                 } catch (SQLException e1) {
@@ -196,10 +197,10 @@ public class TrainManagerActivity extends BaseActivity {
                 }
             }
         });
-        classesText = new MyTextField(xStar+130,yStar-5,200,40,titleFont);
+        classesText = new MyTextField(xStar + 130, yStar - 5, 200, 40, titleFont);
 
-        idTitleText = new MyButton("身份证找人",xStar,yStar+60,110,30,textFont,0);
-        idText = new MyTextField(xStar+130,yStar+60-5,200,40,titleFont);
+        idTitleText = new MyButton("身份证找人", xStar, yStar + 60, 110, 30, textFont, 0);
+        idText = new MyTextField(xStar + 130, yStar + 60 - 5, 200, 40, titleFont);
 
 
         ImageIcon reboot = new ImageIcon(UserActivity.class.getResource("images//reboot.png"));//背景图案
@@ -262,12 +263,12 @@ public class TrainManagerActivity extends BaseActivity {
         return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
     }
 
-    private void loadData(){
+    private void loadData() {
         classList.clear();
         SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
         try {
             classList = sqlUtiles.queryClasses();
-            datas = ConstantsUtils.trainClassesToArray(classList);
+            datas = ChangeUtiles.trainClassesToArray(classList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
