@@ -4,7 +4,9 @@ import com.Main;
 import com.activity.LoginActivity;
 import com.activity.UserActivity;
 import com.base.BaseFragment;
+import com.bean.IdCard;
 import com.db.SqlUser;
+import com.ui.AddIdCardDialog;
 import com.ui.MyButton;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
@@ -13,6 +15,8 @@ import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -37,12 +41,15 @@ public class InformationFragment extends BaseFragment {
 
     private JFrame myFrame;
 
+    private BaseFragment informationFragment;
+
     public InformationFragment(JFrame myFrame) {
         this.myFrame = myFrame;
     }
 
     @Override
     public void initView() {
+        informationFragment = this;
         titleFont = new Font("仿宋", Font.PLAIN, 20);
         this.setLayout(null);
         //背景图
@@ -91,6 +98,12 @@ public class InformationFragment extends BaseFragment {
         Font buttonFont = new Font("黑体", Font.PLAIN, 15);
         changeButton = new MyButton("修改", x_start, y_start, 80, 25, buttonFont, 0);
         addButton = new MyButton("新增", x_start, y_start += mergin, 80, 25, buttonFont, 1);
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddIdCardDialog addIdCardDialog = new AddIdCardDialog(informationFragment);
+            }
+        });
         deleteButton = new MyButton("删除", x_start, y_start += mergin, 80, 25, buttonFont, 2);
 
         line2 = new MyLabel("---------------------------------------------", 30, 350, 360, 10, titleFont);
@@ -157,7 +170,6 @@ public class InformationFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-
         ListModel listModel = null;
         try {
             listModel = new DefaultComboBoxModel(ChangeUtiles.idCardListToArray(getSqlUtiles().queryIdCard(Main.user)));
@@ -171,4 +183,5 @@ public class InformationFragment extends BaseFragment {
         });
         moneyList.setModel(moneyModel);
     }
+
 }

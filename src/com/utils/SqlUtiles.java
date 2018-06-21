@@ -251,7 +251,11 @@ public class SqlUtiles {
      * @return
      */
     public boolean insertIdCard(IdCard idCard, User user) {
-        return false;
+        String sql = "INSERT INTO IdCard VALUES(" + formatString(idCard.getIdCardNumber()) + ","
+                + formatString(idCard.getName()) + "," + formatString(idCard.getSex()) + ","
+                + formatString(idCard.getBirthday().toString()) + "," + formatString(user.getUserPhone())+")";
+        System.out.println(sql);
+        return executeUpdate(sql);
     }
 
     /**
