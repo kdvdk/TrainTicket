@@ -253,7 +253,7 @@ public class SqlUtiles {
     public boolean insertIdCard(IdCard idCard, User user) {
         String sql = "INSERT INTO IdCard VALUES(" + formatString(idCard.getIdCardNumber()) + ","
                 + formatString(idCard.getName()) + "," + formatString(idCard.getSex()) + ","
-                + formatString(idCard.getBirthday().toString()) + "," + formatString(user.getUserPhone())+")";
+                + formatString(idCard.getBirthday().toString()) + "," + formatString(user.getUserPhone()) + ")";
         System.out.println(sql);
         return executeUpdate(sql);
     }
@@ -279,6 +279,20 @@ public class SqlUtiles {
             ));
         }
         return list;
+    }
+
+    /**
+     * 修改idcard信息
+     *
+     * @param idCard
+     * @return
+     */
+    public boolean changeIdCard(IdCard idCard) {
+        String sql = "UPDATE IdCard SET IdCardName=" + formatString(idCard.getName()) + "," + "IdCardSex="
+                + formatString(idCard.getSex()) + ",IdCardBirthday=" + formatString(idCard.getBirthday().toString())
+                + " WHERE IdCardNumber=" + formatString(idCard.getIdCardNumber());
+        System.out.println(sql);
+        return executeUpdate(sql);
     }
 
     /**

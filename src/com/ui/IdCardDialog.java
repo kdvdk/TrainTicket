@@ -105,11 +105,7 @@ public class IdCardDialog extends BaseActivity {
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    String number = idNumberText.getText();
-                    String name = idName.getText();
-                    String sex = idSex.getText();
-                    Date birthday = ChangeUtiles.createDate(idBirthday.getText());
-                    if (getSqlUtiles().insertIdCard(new IdCard(number, name, sex, birthday), Main.user)) {
+                    if (getSqlUtiles().insertIdCard(getIdCard(), Main.user)) {
                         showMessageDialog("增添成功");
                         myFrame.dispose();
                     } else {
@@ -119,8 +115,27 @@ public class IdCardDialog extends BaseActivity {
                 }
             });
         } else {
-
+            okButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (getSqlUtiles().changeIdCard(getIdCard())) {
+                        showMessageDialog("修改成功");
+                        myFrame.dispose();
+                        informationFragment.loadData();
+                    } else {
+                        showMessageDialog("修改失败");
+                    }
+                }
+            });
         }
+    }
+
+    private IdCard getIdCard() {
+        String number = idNumberText.getText();
+        String name = idName.getText();
+        String sex = idSex.getText();
+        Date birthday = ChangeUtiles.createDate(idBirthday.getText());
+        return new IdCard(number, name, sex, birthday);
     }
 
 }
