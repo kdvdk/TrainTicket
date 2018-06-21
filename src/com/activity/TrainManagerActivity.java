@@ -1,8 +1,6 @@
 package com.activity;
 
-import com.Main;
 import com.base.BaseActivity;
-import com.bean.Train;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
@@ -21,9 +19,7 @@ import java.awt.event.MouseListener;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class TrainManagerActivity extends BaseActivity {
     private JComboBox<String> startPlace;
@@ -268,7 +264,7 @@ public class TrainManagerActivity extends BaseActivity {
         SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
         try {
             classList = sqlUtiles.queryClasses();
-            datas = ChangeUtiles.trainClassesToArray(classList);
+            datas = ChangeUtiles.trainClassesListToArray(classList);
         } catch (SQLException e) {
             e.printStackTrace();
         }

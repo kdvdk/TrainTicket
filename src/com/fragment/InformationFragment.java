@@ -1,5 +1,6 @@
 package com.fragment;
 
+import com.Main;
 import com.activity.LoginActivity;
 import com.activity.UserActivity;
 import com.base.BaseFragment;
@@ -7,12 +8,14 @@ import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyFrame;
 import com.ui.MyLabel;
+import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 public class InformationFragment extends BaseFragment {
     private JLabel avatarName;
@@ -154,21 +157,14 @@ public class InformationFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-        ListModel listModel = new DefaultComboBoxModel(new String[]{
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-                ConstantsUtils.TESTIDCARD.getName() + "  " + ConstantsUtils.TESTIDCARD.getIdCardNumber(),
-        });
-        list.setModel(listModel);
 
+        ListModel listModel = null;
+        try {
+            listModel = new DefaultComboBoxModel(ChangeUtiles.idCardListToArray(getSqlUtiles().queryIdCard(Main.user)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        list.setModel(listModel);
         ListModel moneyModel = new DefaultComboBoxModel(new String[]{
                 "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace(),
                 "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace()

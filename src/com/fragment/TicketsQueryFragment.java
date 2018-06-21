@@ -131,7 +131,7 @@ public class TicketsQueryFragment extends BaseFragment {
         depaturePlace.setText("出发地点：" + trainClass.getDepaturePlace());
         goalPlace.setText("目的地：" + trainClass.getGoalPlace());
         depatureTime.setText("" + trainClass.getDepatureDay() + "  " + trainClass.getTime());
-        restSeetNumber.setText("剩余座位：" + trainClass.getPassengerNumber() + "");
+        restSeetNumber.setText("剩余座位：" + (10 * 40 - trainClass.getPassengerNumber()) + "");
         informationLabel.setVisible(true);
     }
 }

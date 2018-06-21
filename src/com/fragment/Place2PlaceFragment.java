@@ -10,7 +10,6 @@ import com.ui.MyDatePicker;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
-import com.utils.SqlUtiles;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,9 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class Place2PlaceFragment extends BaseFragment {
 
@@ -98,7 +95,7 @@ public class Place2PlaceFragment extends BaseFragment {
                         mDataList = getSqlUtiles().queryClasses(startPlace.getItemAt(startPlace.getSelectedIndex()),
                                 goalPlace.getItemAt(goalPlace.getSelectedIndex()),
                                 ChangeUtiles.createDate(datePicker.getText().split(" ")[0]));
-                        datas = ChangeUtiles.trainClassesToArray(mDataList);
+                        datas = ChangeUtiles.trainClassesListToArray(mDataList);
                     }
                     updateListData();
                 } catch (SQLException e1) {
@@ -154,7 +151,7 @@ public class Place2PlaceFragment extends BaseFragment {
         mDataList.clear();
         try {
             mDataList = getSqlUtiles().queryClasses();
-            datas = ChangeUtiles.trainClassesToArray(mDataList);
+            datas = ChangeUtiles.trainClassesListToArray(mDataList);
             updateListData();
         } catch (SQLException e) {
             e.printStackTrace();

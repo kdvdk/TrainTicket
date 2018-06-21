@@ -1,5 +1,6 @@
 package com.utils;
 
+import com.bean.IdCard;
 import com.bean.TrainClass;
 
 import java.sql.Date;
@@ -32,11 +33,21 @@ public class ChangeUtiles {
      * @param mList
      * @return
      */
-    public static String[] trainClassesToArray(List<TrainClass> mList) {
+    public static String[] trainClassesListToArray(List<TrainClass> mList) {
         String[] re = new String[mList.size()];
         for (int i = 0; i < mList.size(); i++) {
             TrainClass item = mList.get(i);
             re[i] = item.getClassNumber() + " " + item.getDepaturePlace() + " to " + item.getGoalPlace() + " " + item.getDepatureDay();
+            System.out.println(re[i]);
+        }
+        return re;
+    }
+
+    public static String[] idCardListToArray(List<IdCard> mList) {
+        String[] re = new String[mList.size()];
+        for (int i = 0; i < mList.size(); i++) {
+            IdCard item = mList.get(i);
+            re[i] = item.getName() + "  " + item.getIdCardNumber();
             System.out.println(re[i]);
         }
         return re;

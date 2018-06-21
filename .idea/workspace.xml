@@ -2,32 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2d7831f-81a5-4594-aba9-594f3a2f7ba9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/utils/ChangeUtiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/activity/TrainManagerActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/base/BaseFragment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/base/BaseFragment$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/base/BaseFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/base/BaseFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/BuyRecordFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/BuyRecordFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/InformationFragment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/InformationFragment$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/InformationFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/InformationFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/Place2PlaceFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/Place2PlaceFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/TicketsQueryFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/fragment/TicketsQueryFragment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/ConstantsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/ConstantsUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/SqlUtiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TrainTicket/com/utils/SqlUtiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/base/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/base/BaseFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/utils/ChangeUtiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/ChangeUtiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -58,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="25">
-              <caret line="138" column="31" selection-start-line="138" selection-start-column="31" selection-end-line="138" selection-end-column="31" />
+              <caret line="135" column="31" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -67,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
-              <caret line="126" column="47" selection-start-line="126" selection-start-column="47" selection-end-line="126" selection-end-column="47" />
+              <caret line="122" column="47" selection-start-line="122" selection-start-column="47" selection-end-line="122" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChangeUtiles.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChangeUtiles.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/utils/ChangeUtiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+            <state relative-caret-position="484">
+              <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,31 +78,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyDatePicker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/ui/MyDatePicker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#222#223#0" expanded="true" />
-                <element signature="e#244#245#0" expanded="true" />
-                <element signature="e#285#286#0" expanded="true" />
-                <element signature="e#318#319#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BuyRecordFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="60" column="28" lean-forward="true" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -133,11 +87,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TicketsQueryFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SqlUtiles.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2925">
+              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#465#466#0" expanded="true" />
+                <element signature="e#522#523#0" expanded="true" />
+                <element signature="e#9603#9604#0" expanded="true" />
+                <element signature="e#9629#9630#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdCard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/bean/IdCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TicketsQueryFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
+            <state relative-caret-position="359">
+              <caret line="133" column="84" selection-start-line="133" selection-start-column="84" selection-end-line="133" selection-end-column="84" />
             </state>
           </provider>
         </entry>
@@ -224,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/com/fragment/TicketsQuery.java" />
         <option value="$PROJECT_DIR$/src/com/bean/Ticket.java" />
         <option value="$PROJECT_DIR$/src/com/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/bean/IdCard.java" />
         <option value="$PROJECT_DIR$/src/com/bean/CreditCard.java" />
         <option value="$PROJECT_DIR$/src/com/activity/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/src/com/bean/Train.java" />
@@ -237,16 +215,17 @@
         <option value="$PROJECT_DIR$/src/com/bean/TrainClass.java" />
         <option value="$PROJECT_DIR$/src/com/ui/ClassesDialog.java" />
         <option value="$PROJECT_DIR$/src/com/ui/MyDatePicker.java" />
-        <option value="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" />
         <option value="$PROJECT_DIR$/src/com/base/BaseFragment.java" />
         <option value="$PROJECT_DIR$/src/com/fragment/InformationFragment.java" />
         <option value="$PROJECT_DIR$/src/com/fragment/BuyRecordFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/utils/ChangeUtiles.java" />
         <option value="$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java" />
         <option value="$PROJECT_DIR$/src/com/Main.java" />
         <option value="$PROJECT_DIR$/src/com/utils/ConstantsUtils.java" />
         <option value="$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java" />
         <option value="$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/bean/IdCard.java" />
+        <option value="$PROJECT_DIR$/src/com/utils/SqlUtiles.java" />
+        <option value="$PROJECT_DIR$/src/com/utils/ChangeUtiles.java" />
       </list>
     </option>
   </component>
@@ -512,12 +491,12 @@
       <workItem from="1529465686050" duration="10217000" />
       <workItem from="1529484143191" duration="5713000" />
       <workItem from="1529497347537" duration="6877000" />
-      <workItem from="1529548071545" duration="5377000" />
+      <workItem from="1529548071545" duration="7880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121256000" />
+    <option name="totallyTimeSpent" value="123759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -533,11 +512,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28135222" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28135222" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.23991276" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12686567" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12686567" />
       <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293348" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -722,13 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/bean/IdCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bean/CreditCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -796,17 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/base/BaseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -862,16 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/utils/ChangeUtiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -882,7 +833,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/activity/TrainManagerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
-          <caret line="126" column="47" selection-start-line="126" selection-start-column="47" selection-end-line="126" selection-end-column="47" />
+          <caret line="122" column="47" selection-start-line="122" selection-start-column="47" selection-end-line="122" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -902,7 +853,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/fragment/Place2PlaceFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
-          <caret line="138" column="31" selection-start-line="138" selection-start-column="31" selection-end-line="138" selection-end-column="31" />
+          <caret line="135" column="31" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -930,10 +881,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/bean/IdCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/fragment/TicketsQueryFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="129" column="40" selection-start-line="129" selection-start-column="40" selection-end-line="129" selection-end-column="40" />
+        <state relative-caret-position="359">
+          <caret line="133" column="84" selection-start-line="133" selection-start-column="84" selection-end-line="133" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/utils/SqlUtiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2925">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#465#466#0" expanded="true" />
+            <element signature="e#522#523#0" expanded="true" />
+            <element signature="e#9603#9604#0" expanded="true" />
+            <element signature="e#9629#9630#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/utils/ChangeUtiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
