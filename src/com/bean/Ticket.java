@@ -1,6 +1,7 @@
 package com.bean;
 
 public class Ticket {
+    private String ticketTrainNumber;
     private String ticketNumber;
     private String classNumber;
     private String seatNumber;
@@ -8,6 +9,7 @@ public class Ticket {
     private float ticketPrice;
 
     public Ticket() {
+
     }
 
     public Ticket(String ticketNumber, String classNumber, String seatNumber, String idCardNumber, float ticketPrice) {
@@ -20,6 +22,14 @@ public class Ticket {
 
     public String getTicketNumber() {
         return ticketNumber;
+    }
+
+    public String getTicketTrainNumber() {
+        return ticketTrainNumber;
+    }
+
+    public void setTicketTrainNumber(String ticketTrainNumber) {
+        this.ticketTrainNumber = ticketTrainNumber;
     }
 
     public void setTicketNumber(String ticketNumber) {

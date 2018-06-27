@@ -1,13 +1,11 @@
 package com.utils;
 
-import com.bean.IdCard;
-import com.bean.Train;
-import com.bean.TrainClass;
-import com.bean.User;
+import com.bean.*;
 import com.db.SqlUser;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class SqlUtiles {
@@ -90,20 +88,21 @@ public class SqlUtiles {
      * @return
      */
     public Train queryTrain(String trainNumber) {
-        String sql = "SELECT TrainNumber,TrainName,TrainCompartmentNumber,TrainCapacityOfCompartment,TrainSpeed FROM Train WHERE TrainNumber = ?";
+        String sql = "SELECT TrainNumber,TrainName,TrainCompartmentNumber,TrainCapacityOfCompartment,TrainSpeed,price FROM Train WHERE TrainNumber = ?";
         Train train = new Train();
         train.setTrainNumber(" ");
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, trainNumber.trim());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            sql = sql.replace("?", formatString(trainNumber));
+            ResultSet resultSet = executeQuery(sql);
+            System.out.println(sql);
             while (resultSet.next()) {
                 train = new Train(
                         resultSet.getString("TrainNumber").trim(),
                         resultSet.getString("TrainName").trim(),
                         resultSet.getInt("TrainCompartmentNumber"),
                         resultSet.getInt("TrainCapacityOfCompartment"),
-                        resultSet.getFloat("TrainSpeed")
+                        resultSet.getFloat("TrainSpeed"),
+                        resultSet.getFloat("price")
                 );
             }
 
@@ -214,6 +213,57 @@ public class SqlUtiles {
     }
 
     /**
+     * 买票
+     *
+     * @param trainClass
+     * @param idCard
+     * @return
+     */
+    public boolean buyTicket(TrainClass trainClass, IdCard idCard, int nearWindow) throws SQLException {
+        Ticket ticket = new Ticket();
+        ticket.setTicketNumber(" ");
+        Train train = queryTrain(trainClass.getTrainNumber());
+        TrainClass trainClassQuery = queryClasses(trainClass.getClassNumber());
+        int passengerNumber = trainClassQuery.getPassengerNumber();
+        if (passengerNumber + 1 >= train.getCapacityOfCompartment() * train.getCompartmentNumber()) {
+            System.out.println("该班次已满");
+            return false;
+        }
+        int seatNumber = passengerNumber;
+        if (nearWindow == 1) {
+            seatNumber += 1;
+            while (seatNumber % 4 != 0 && seatNumber % 4 != 1) {
+                seatNumber++;
+            }
+        } else {
+            seatNumber += 1;
+            while (seatNumber % 4 == 0 && seatNumber % 4 == 1) {
+                seatNumber++;
+            }
+        }
+        //更新班次
+        trainClass.setPassengerNumber(passengerNumber + 1);
+        updateClassesPassengerNumber(trainClass);
+        Seat seat = new Seat(
+                train.getTrainNumber(),
+                seatNumber + "",
+                train.getPrice()
+        );
+        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4) + seatNumber);
+        ticket.setSeatNumber(seatNumber + "");
+        ticket.setIdCardNumber(idCard.getIdCardNumber());
+        ticket.setTicketTrainNumber(train.getTrainNumber());
+        ticket.setTicketPrice(seat.getPrice());
+
+        String sql = "INSERT INTO Ticket VALUES(" + formatString(ticket.getTicketTrainNumber()) + ","
+                + formatString(ticket.getClassNumber()) + "," + formatString(ticket.getSeatNumber()) + ","
+                + formatString(ticket.getIdCardNumber()) + "," + ticket.getTicketPrice() + ")";
+        return executeUpdate(sql);
+
+
+    }
+
+    /**
      * 按起终点查询
      *
      * @param startplace
@@ -243,6 +293,19 @@ public class SqlUtiles {
         return mList;
     }
 
+
+    /**
+     * 更新班次信息
+     *
+     * @param trainClass
+     * @return
+     */
+    public boolean updateClassesPassengerNumber(TrainClass trainClass) {
+        String sql = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
+                + " WHERE ClassesNumber = " + trainClass.getClassNumber();
+        System.out.println(sql);
+        return executeUpdate(sql);
+    }
 
     /**
      * 添加身份证
@@ -303,13 +366,14 @@ public class SqlUtiles {
      */
     private boolean executeUpdate(String sql) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate(sql);
             if (result > 0) {
                 System.out.println("SqlUtiles :SQL 执行成功");
+                statement.close();
                 return true;
             } else {
+                statement.close();
                 return false;
             }
         } catch (SQLException e) {
@@ -317,6 +381,8 @@ public class SqlUtiles {
             System.out.println("SqlUtiles :SQL update 执行失败 " + e.toString());
             return false;
         }
+
+
     }
 
     /**
@@ -330,6 +396,7 @@ public class SqlUtiles {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             //statement.close();
+            statement.close();
             return resultSet;
         } catch (SQLException e) {
             System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());

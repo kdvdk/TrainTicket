@@ -6,16 +6,18 @@ public class Train {
     private int compartmentNumber;
     private int capacityOfCompartment;
     private float trainSpeed;
+    private float price = 0f;
 
     public Train() {
     }
 
-    public Train(String trainNumber, String trainName, int compartmentNumber, int capacityOfCompartment, float trainSpeed) {
+    public Train(String trainNumber, String trainName, int compartmentNumber, int capacityOfCompartment, float trainSpeed, float price) {
         this.trainNumber = trainNumber;
         this.trainName = trainName;
         this.compartmentNumber = compartmentNumber;
         this.capacityOfCompartment = capacityOfCompartment;
         this.trainSpeed = trainSpeed;
+        this.price = price;
     }
 
     public String getTrainNumber() {
@@ -56,5 +58,13 @@ public class Train {
 
     public void setTrainSpeed(float trainSpeed) {
         this.trainSpeed = trainSpeed;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
