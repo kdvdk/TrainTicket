@@ -5,6 +5,7 @@ import com.base.BaseFragment;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
+import com.ui.IdCardChooseDialog;
 import com.ui.MyButton;
 import com.ui.MyDatePicker;
 import com.ui.MyLabel;
@@ -160,7 +161,12 @@ public class Place2PlaceFragment extends BaseFragment {
 
     @Override
     public void addListener() {
-
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog();
+            }
+        });
     }
 
     /**
