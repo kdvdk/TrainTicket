@@ -243,7 +243,7 @@ public class SqlUtiles {
         }
         //更新班次
         trainClass.setPassengerNumber(passengerNumber + 1);
-        updateClassesPassengerNumber(trainClass);
+        boolean update = updateClassesPassengerNumber(trainClass);
         Seat seat = new Seat(
                 train.getTrainNumber(),
                 seatNumber + "",
@@ -258,9 +258,13 @@ public class SqlUtiles {
         String sql = "INSERT INTO Ticket VALUES(" + formatString(ticket.getTicketTrainNumber()) + ","
                 + formatString(ticket.getClassNumber()) + "," + formatString(ticket.getSeatNumber()) + ","
                 + formatString(ticket.getIdCardNumber()) + "," + ticket.getTicketPrice() + ")";
-        return executeUpdate(sql);
 
+//        String updateSQL = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
+//                + " WHERE ClassesNumber = " + formatString(trainClass.getClassNumber());
 
+        System.out.println(sql);
+//        System.out.println(updateSQL);
+        return executeUpdate(sql) && update;
     }
 
     /**
@@ -337,11 +341,32 @@ public class SqlUtiles {
             list.add(new IdCard(
                     resultSet.getString("IdCardNumber").trim(),
                     resultSet.getString("IdCardName").trim(),
-                    resultSet.getString("IdCardName").trim(),
+                    resultSet.getString("IdCardSex").trim(),
                     resultSet.getDate("IdCardBirthday")
             ));
         }
         return list;
+    }
+
+    /**
+     * 查询身份证
+     *
+     * @param id
+     * @return
+     */
+    public IdCard queryIdCard(String id) throws SQLException {
+        String sql = "SELECT IdCardNumber,IdCardName,IdCardSex,IdCardBirthday FROM IdCard WHERE IdCardNumber = "
+                + formatString(id);
+        IdCard idCard = new IdCard();
+        idCard.setIdCardNumber(" ");
+        ResultSet resultSet = executeQuery(sql);
+        while (resultSet.next()) {
+            idCard.setIdCardNumber(resultSet.getString("IdCardNumber").trim());
+            idCard.setName(resultSet.getString("IdCardName").trim());
+            idCard.setBirthday(resultSet.getDate("IdCardBirthday"));
+            idCard.setSex(resultSet.getString("IdCardSex").trim());
+        }
+        return idCard;
     }
 
     /**
@@ -370,7 +395,7 @@ public class SqlUtiles {
             int result = statement.executeUpdate(sql);
             if (result > 0) {
                 System.out.println("SqlUtiles :SQL 执行成功");
-                statement.close();
+//                statement.close();
                 return true;
             } else {
                 statement.close();
@@ -396,7 +421,7 @@ public class SqlUtiles {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             //statement.close();
-            statement.close();
+//            statement.close();
             return resultSet;
         } catch (SQLException e) {
             System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());
@@ -406,46 +431,46 @@ public class SqlUtiles {
     }
 
 
-    /**
-     * 更新类sql语言执行者
-     *
-     * @param preparedStatement
-     * @return
-     */
-    private boolean executeUpdate(PreparedStatement preparedStatement) {
-        try {
-            int result = preparedStatement.executeUpdate();
-            if (result > 0) {
-                System.out.println("SqlUtiles :SQL 执行成功");
-                return true;
-            } else {
-                return false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("SqlUtiles :SQL update 执行失败 " + e.toString());
-            return false;
-        }
+//    /**
+//     * 更新类sql语言执行者
+//     *
+//     * @param preparedStatement
+//     * @return
+//     */
+//    private boolean executeUpdate(PreparedStatement preparedStatement) {
+//        try {
+//            int result = preparedStatement.executeUpdate();
+//            if (result > 0) {
+//                System.out.println("SqlUtiles :SQL 执行成功");
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("SqlUtiles :SQL update 执行失败 " + e.toString());
+//            return false;
+//        }
+//
+//    }
 
-    }
-
-    /**
-     * 查询类sql语句执行者
-     *
-     * @param preparedStatement
-     * @return
-     */
-    private ResultSet executeQuery(PreparedStatement preparedStatement) {
-        try {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            //statement.close();
-            return resultSet;
-        } catch (SQLException e) {
-            System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    /**
+//     * 查询类sql语句执行者
+//     *
+//     * @param preparedStatement
+//     * @return
+//     */
+//    private ResultSet executeQuery(PreparedStatement preparedStatement) {
+//        try {
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            //statement.close();
+//            return resultSet;
+//        } catch (SQLException e) {
+//            System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     private String formatString(String input) {
         System.out.println("'" + input + "'");
