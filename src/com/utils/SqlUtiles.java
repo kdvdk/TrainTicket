@@ -1,5 +1,6 @@
 package com.utils;
 
+import com.Main;
 import com.bean.*;
 import com.db.SqlUser;
 
@@ -372,6 +373,50 @@ public class SqlUtiles {
     }
 
     /**
+     * 添加、删除、使用、查银行卡
+     *
+     * @param creditCard
+     * @return
+     */
+    public boolean insertCreditCard(CreditCard creditCard) {
+        String sql = "INSERT INTO CreditCard VALUES( " + formatString(creditCard.getCardNumber())
+                + "," + formatString(Main.user.getUserPhone()) + "," + creditCard.getBalace() + ")";
+        return executeUpdate(sql);
+    }
+
+    public boolean deleteCreditCard(CreditCard creditCard) {
+        String sql = "DELETE FROM CreditCard WHERE CreditNumber = " + creditCard.getCardNumber();
+        return executeUpdate(sql);
+    }
+
+    public boolean useCreditCard(CreditCard creditCard, float balance) {
+        float newBalance = creditCard.getBalace() - balance;
+        if (newBalance > 0) {
+            String sql = "UPDATE CreditCard set CreditBalace = " + newBalance + " WHERE CreditNumver = "
+                    + creditCard.getCardNumber();
+            return executeUpdate(sql);
+        } else {
+            return false;
+        }
+    }
+
+    public List<CreditCard> queryCreditCard(User user) throws SQLException {
+        String sql = "SELECT * FROM CreditCard WHERE CreditOwner = " + formatString(user.getUserPhone());
+        ResultSet resultSet;
+        resultSet = executeQuery(sql);
+        List<CreditCard> list = new ArrayList<>();
+        while (resultSet.next()) {
+            list.add(new CreditCard(
+                    resultSet.getString(1).trim(),
+                    resultSet.getString(2).trim(),
+                    resultSet.getFloat(3)
+            ));
+        }
+        return list;
+    }
+
+
+    /**
      * 添加身份证
      *
      * @param idCard
@@ -406,6 +451,12 @@ public class SqlUtiles {
             ));
         }
         return list;
+    }
+
+
+    public boolean deleteIdCard(IdCard idCard) {
+        String sql = "DELETE FROM IdCard WHERE IdCardNumber = " + formatString(idCard.getIdCardNumber());
+        return executeUpdate(sql);
     }
 
 
@@ -475,6 +526,7 @@ public class SqlUtiles {
      * @return
      */
     private boolean executeUpdate(String sql) {
+        System.out.println(sql);
         try {
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate(sql);
@@ -515,47 +567,6 @@ public class SqlUtiles {
         }
     }
 
-
-//    /**
-//     * 更新类sql语言执行者
-//     *
-//     * @param preparedStatement
-//     * @return
-//     */
-//    private boolean executeUpdate(PreparedStatement preparedStatement) {
-//        try {
-//            int result = preparedStatement.executeUpdate();
-//            if (result > 0) {
-//                System.out.println("SqlUtiles :SQL 执行成功");
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            System.out.println("SqlUtiles :SQL update 执行失败 " + e.toString());
-//            return false;
-//        }
-//
-//    }
-
-//    /**
-//     * 查询类sql语句执行者
-//     *
-//     * @param preparedStatement
-//     * @return
-//     */
-//    private ResultSet executeQuery(PreparedStatement preparedStatement) {
-//        try {
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            //statement.close();
-//            return resultSet;
-//        } catch (SQLException e) {
-//            System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
     private String formatString(String input) {
         System.out.println("'" + input + "'");

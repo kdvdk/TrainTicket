@@ -1,5 +1,6 @@
 package com.utils;
 
+import com.bean.CreditCard;
 import com.bean.IdCard;
 import com.bean.Ticket;
 import com.bean.TrainClass;
@@ -64,6 +65,16 @@ public class ChangeUtiles {
             re[i] = "车票号：" + item.getTicketNumber() + " 班次号："
                     + item.getClassNumber() + " " + trainClass.getDepaturePlace() + " to " + trainClass.getGoalPlace()
                     + " 出发时间：" + trainClass.getDepatureDay();
+            System.out.println(re[i]);
+        }
+        return re;
+    }
+
+    public static String[] creditCardListToArray(List<CreditCard> mList) {
+        String[] re = new String[mList.size()];
+        for (int i = 0; i < mList.size(); i++) {
+            CreditCard item = mList.get(i);
+            re[i] = "卡号：" + item.getCardNumber() + "  余额：" + item.getBalace();
             System.out.println(re[i]);
         }
         return re;

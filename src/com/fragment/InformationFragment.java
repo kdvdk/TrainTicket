@@ -4,8 +4,10 @@ import com.Main;
 import com.activity.LoginActivity;
 import com.activity.UserActivity;
 import com.base.BaseFragment;
+import com.bean.CreditCard;
 import com.bean.IdCard;
 import com.db.SqlUser;
+import com.ui.CreditCardDialog;
 import com.ui.IdCardDialog;
 import com.ui.MyButton;
 import com.ui.MyLabel;
@@ -47,6 +49,8 @@ public class InformationFragment extends BaseFragment {
     private JFrame myFrame;
 
     private BaseFragment informationFragment;
+
+    private List<CreditCard> creditCardList;
 
     public InformationFragment(JFrame myFrame) {
         this.myFrame = myFrame;
@@ -125,7 +129,7 @@ public class InformationFragment extends BaseFragment {
         reBoot = new MyLabel("", 190, 470, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
         reBoot.setIcon(reboot);
 
-        this.add(changeMoneyButton);
+
         this.add(addMoneyButton);
         this.add(deleteMoneyButton);
         this.add(reBoot);
@@ -159,10 +163,13 @@ public class InformationFragment extends BaseFragment {
             e.printStackTrace();
         }
         list.setModel(listModel);
-        ListModel moneyModel = new DefaultComboBoxModel<String>(new String[]{
-                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace(),
-                "卡号：" + ConstantsUtils.TESTCARD.getCardNumber() + "  余额：" + ConstantsUtils.TESTCARD.getBalace()
-        });
+        ListModel moneyModel = null;
+        try {
+            creditCardList = getSqlUtiles().queryCreditCard(Main.user);
+            moneyModel = new DefaultComboBoxModel<String>(ChangeUtiles.creditCardListToArray(creditCardList));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         moneyList.setModel(moneyModel);
     }
 
@@ -219,14 +226,45 @@ public class InformationFragment extends BaseFragment {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if (getSqlUtiles().deleteIdCard(dataList.get(list.getSelectedIndex()))) {
+                    showMessageDialog("删除成功");
+                    loadData();
+                } else {
+                    showMessageDialog("删除失败123456789    wangtian");
+                }
             }
         });
 
         /**
          * moneyCard按钮
          */
+        addMoneyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CreditCardDialog creditCardDialog = new CreditCardDialog(informationFragment);
+            }
+        });
 
+        deleteMoneyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (getSqlUtiles().deleteCreditCard(creditCardList.get(moneyList.getSelectedIndex()))) {
+                    showMessageDialog("删除成功");
+                    loadData();
+                } else {
+                    showMessageDialog("删除失败");
+                }
+            }
+        });
+    }
+
+    /**
+     * 外部获得银行卡
+     *
+     * @return
+     */
+    public List<CreditCard> getCreditCardList() {
+        return this.creditCardList;
     }
 
 }
