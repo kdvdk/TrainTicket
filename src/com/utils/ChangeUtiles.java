@@ -56,11 +56,11 @@ public class ChangeUtiles {
         return re;
     }
 
-    public static String[] ticketsListToArray(List<Ticket> mList, BuyRecordFragment fragment) throws SQLException {
+    public static String[] ticketsListToArray(List<Ticket> mList, SqlUtiles sqlUtiles) throws SQLException {
         String[] re = new String[mList.size()];
         for (int i = mList.size() - 1; i >= 0; i--) {
             Ticket item = mList.get(i);
-            TrainClass trainClass = fragment.getSqlUtiles().queryClasses(item.getClassNumber());
+            TrainClass trainClass = sqlUtiles.queryClasses(item.getClassNumber());
             re[i] = "车票号：" + item.getTicketNumber() + " 班次号："
                     + item.getClassNumber() + " " + trainClass.getDepaturePlace() + " to " + trainClass.getGoalPlace()
                     + " 出发时间：" + trainClass.getDepatureDay();
@@ -68,4 +68,6 @@ public class ChangeUtiles {
         }
         return re;
     }
+
+
 }

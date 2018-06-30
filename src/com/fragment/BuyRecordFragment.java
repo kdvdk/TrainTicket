@@ -5,6 +5,7 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.Ticket;
 import com.db.SqlUser;
+import com.ui.InformationDialog;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
@@ -71,7 +72,7 @@ public class BuyRecordFragment extends BaseFragment {
         datas.clear();
         datas = getSqlUtiles().queryTickets(Main.user);
         try {
-            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas,this));
+            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas, getSqlUtiles()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,17 +85,17 @@ public class BuyRecordFragment extends BaseFragment {
         informationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                InformationDialog informationDialog = new InformationDialog(datas.get(mList.getSelectedIndex()));
             }
         });
 
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getSqlUtiles().returnTheTicket(datas.get(mList.getSelectedIndex()))){
+                if (getSqlUtiles().returnTheTicket(datas.get(mList.getSelectedIndex()))) {
                     showMessageDialog("退票成功");
                     loadData();
-                }else{
+                } else {
                     showMessageDialog("退票失败");
                 }
             }

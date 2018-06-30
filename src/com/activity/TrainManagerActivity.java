@@ -1,6 +1,7 @@
 package com.activity;
 
 import com.base.BaseActivity;
+import com.bean.IdCard;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
@@ -38,10 +39,10 @@ public class TrainManagerActivity extends BaseActivity {
     private DatePicker datePicker;
     private MyFrame myFrame;
 
-    private JButton classesTitleText;
+    private JButton queryClassesButton;
     private JTextField classesText;
     private JTextField idText;
-    private MyButton idTitleText;
+    private MyButton queryPeopleButton;
 
     private JLabel reBoot;
 
@@ -134,26 +135,10 @@ public class TrainManagerActivity extends BaseActivity {
         });
         right.add(newDataButton);
         deleteButton = new MyButton("删除", 10, 195, 80, 30, new Font("宋体", Font.PLAIN, 15), 2);
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                SqlUtiles sqlUtiles = getSqlUtiles();
-                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))) {
-                    JOptionPane.showMessageDialog(dialogFrame, "删除成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-                    loadData();
-                } else {
-                    JOptionPane.showMessageDialog(dialogFrame, "删除失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        });
+
         right.add(deleteButton);
         queryButton = new MyButton("查看", 10, 125, 80, 30, new Font("宋体", Font.PLAIN, 15), 1);
-        queryButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ClassesDialog classesDialog = new ClassesDialog(classList.get(classesList.getSelectedIndex()));
-            }
-        });
+
         right.add(queryButton);
 
         splitPane.setLeftComponent(left);
@@ -176,8 +161,86 @@ public class TrainManagerActivity extends BaseActivity {
 
         int xStar = 30;
         int yStar = 420;
-        classesTitleText = new MyButton("查询班次", xStar, yStar, 110, 30, textFont, 0);
-        classesTitleText.addActionListener(new ActionListener() {
+        queryClassesButton = new MyButton("查询班次", xStar, yStar, 110, 30, textFont, 0);
+
+        classesText = new MyTextField(xStar + 130, yStar - 5, 200, 40, titleFont);
+
+        queryPeopleButton = new MyButton("身份证找人", xStar, yStar + 60, 110, 30, textFont, 0);
+        idText = new MyTextField(xStar + 130, yStar + 60 - 5, 200, 40, titleFont);
+
+
+        ImageIcon reboot = new ImageIcon(UserActivity.class.getResource("images//reboot.png"));//背景图案
+        reboot.setImage(reboot.getImage().
+                getScaledInstance(30,
+                        30,
+                        Image.SCALE_DEFAULT));
+        reBoot = new MyLabel("", 190, 520, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
+        reBoot.setIcon(reboot);
+
+        //时间控件
+        MyDatePicker myDatePicker = new MyDatePicker();
+        datePicker = myDatePicker.getDatePicker();
+        datePicker.setBounds(135, 63, 130, 25);
+        datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
+        myFrame.add(new JLabel("                                                                  "));
+        myFrame.add(startPlace);
+        myFrame.add(idText);
+        myFrame.add(exchangeIcon);
+        myFrame.add(goalPlace);
+        myFrame.add(splitPane);
+        myFrame.add(datePicker);
+        myFrame.add(queryClassesButton);
+        myFrame.add(classesText);
+        myFrame.add(reBoot);
+        myFrame.add(queryPeopleButton);
+        myFrame.add(bgLabel, new Integer(Integer.MIN_VALUE));
+        myFrame.setVisible(true);
+
+    }
+
+    @Override
+    public SqlUser initSqlUser() {
+        return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
+    }
+
+    @Override
+    public void addListener() {
+        queryPeopleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                IdCard idCard = null;
+                try {
+                    idCard = getSqlUtiles().queryIdCard(idText.getText());
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+                if (idCard.getIdCardNumber().equals(" ")) {
+                    showMessageDialog("查无此用户");
+                } else {
+                    PeopleDetailDialog peopleDetailDialog = new PeopleDetailDialog(idCard);
+                }
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SqlUtiles sqlUtiles = getSqlUtiles();
+                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))) {
+                    JOptionPane.showMessageDialog(dialogFrame, "删除成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    loadData();
+                } else {
+                    JOptionPane.showMessageDialog(dialogFrame, "删除失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        queryButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ClassesDialog classesDialog = new ClassesDialog(classList.get(classesList.getSelectedIndex()));
+            }
+        });
+        queryClassesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SqlUtiles sqlUtiles = getSqlUtiles();
@@ -193,19 +256,6 @@ public class TrainManagerActivity extends BaseActivity {
                 }
             }
         });
-        classesText = new MyTextField(xStar + 130, yStar - 5, 200, 40, titleFont);
-
-        idTitleText = new MyButton("身份证找人", xStar, yStar + 60, 110, 30, textFont, 0);
-        idText = new MyTextField(xStar + 130, yStar + 60 - 5, 200, 40, titleFont);
-
-
-        ImageIcon reboot = new ImageIcon(UserActivity.class.getResource("images//reboot.png"));//背景图案
-        reboot.setImage(reboot.getImage().
-                getScaledInstance(30,
-                        30,
-                        Image.SCALE_DEFAULT));
-        reBoot = new MyLabel("", 190, 520, 100, 50, new Font("黑体", Font.HANGING_BASELINE, 20));
-        reBoot.setIcon(reboot);
         reBoot.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -233,35 +283,6 @@ public class TrainManagerActivity extends BaseActivity {
 
             }
         });
-        //时间控件
-        MyDatePicker myDatePicker = new MyDatePicker();
-        datePicker = myDatePicker.getDatePicker();
-        datePicker.setBounds(135, 63, 130, 25);
-        datePicker.setFont(new Font("黑体", Font.PLAIN, 18));
-        myFrame.add(new JLabel("                                                                  "));
-        myFrame.add(startPlace);
-        myFrame.add(idText);
-        myFrame.add(exchangeIcon);
-        myFrame.add(goalPlace);
-        myFrame.add(splitPane);
-        myFrame.add(datePicker);
-        myFrame.add(classesTitleText);
-        myFrame.add(classesText);
-        myFrame.add(reBoot);
-        myFrame.add(idTitleText);
-        myFrame.add(bgLabel, new Integer(Integer.MIN_VALUE));
-        myFrame.setVisible(true);
-
-    }
-
-    @Override
-    public SqlUser initSqlUser() {
-        return SqlUser.newInstance(SqlUser.MANAGER_TYPE);
-    }
-
-    @Override
-    public void addListener() {
-
     }
 
     private void loadData() {

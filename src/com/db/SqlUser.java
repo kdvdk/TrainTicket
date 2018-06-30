@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 
 public class SqlUser {
 
-    public static int ROOT_TYPE = 0;
     public static int USER_TYPE = 1;
     public static int MANAGER_TYPE = 2;
 
@@ -34,10 +33,10 @@ public class SqlUser {
                     Class.forName(ConstantsUtils.DRIVER_NAME);
                     this.connection = DriverManager
                             .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_ROOT, ConstantsUtils.PWD);
-                    System.out.println("数据库链接成功");
+                    System.out.println("数据库连接成功");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("数据库链接失败");
+                    System.out.println("数据库连接失败");
                 }
             }
         } else if (type == 1) {
@@ -46,10 +45,10 @@ public class SqlUser {
                     Class.forName(ConstantsUtils.DRIVER_NAME);
                     this.connection = DriverManager
                             .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_USER, ConstantsUtils.PWD);
-                    System.out.println("数据库链接成功");
+                    System.out.println("数据库连接成功");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("数据库链接失败");
+                    System.out.println("数据库连接失败");
                 }
             }
         } else {
@@ -58,10 +57,10 @@ public class SqlUser {
                     Class.forName(ConstantsUtils.DRIVER_NAME);
                     this.connection = DriverManager
                             .getConnection(ConstantsUtils.DBURL, ConstantsUtils.NAME_MANAGER, ConstantsUtils.PWD);
-                    System.out.println("数据库链接成功");
+                    System.out.println("数据库连接成功");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    System.out.println("数据库链接失败");
+                    System.out.println("数据库连接失败");
                 }
             }
         }

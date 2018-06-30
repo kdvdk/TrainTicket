@@ -119,22 +119,7 @@ public class SqlUtiles {
      * @param trainClass
      */
     public boolean addClass(TrainClass trainClass) {
-//        String sql = "INSERT INTO Classes VALUES(?,?,?,?,?,?,?)";
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setString(1, formatString(trainClass.getClassNumber()));
-//            preparedStatement.setString(2, formatString(trainClass.getTrainNumber()));
-//            preparedStatement.setString(3, formatString(trainClass.getDepaturePlace()));
-//            preparedStatement.setString(4, formatString(trainClass.getGoalPlace()));
-//            preparedStatement.setFloat(5,trainClass.getDinstance());
-//            preparedStatement.setDate(6,formatString(trainClass.getDepatureDay().toString()));
-//            preparedStatement.setInt(7,trainClass.getPassengerNumber());
-//            System.out.println(preparedStatement);
-//            return executeUpdate(preparedStatement);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
+
         String sql = "INSERT INTO Classes VALUES(cn,ctn,cdp,cgp,cdis,cde,cpn,time)";
         sql = sql.replace("cn", formatString(trainClass.getClassNumber()));
         sql = sql.replace("ctn", formatString(trainClass.getTrainNumber()));
@@ -422,6 +407,31 @@ public class SqlUtiles {
         }
         return list;
     }
+
+
+    /**
+     * 查询车票记录
+     *
+     * @param idCard
+     * @return
+     */
+    public List<Ticket> queryTicketById(IdCard idCard) throws SQLException {
+        String sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = " + formatString(idCard.getIdCardNumber());
+        List<Ticket> mList = new ArrayList<>();
+        ResultSet resultSet = executeQuery(sql);
+        while (resultSet.next()) {
+            mList.add(new Ticket(
+                    resultSet.getString(1).trim(),
+                    resultSet.getString(2).trim(),
+                    resultSet.getString(3).trim(),
+                    resultSet.getString(4).trim(),
+                    resultSet.getFloat(5),
+                    resultSet.getInt(6)
+            ));
+        }
+        return mList;
+    }
+
 
     /**
      * 查询身份证
