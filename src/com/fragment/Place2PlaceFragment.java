@@ -40,6 +40,12 @@ public class Place2PlaceFragment extends BaseFragment {
     private String[] datas;
     private List<TrainClass> mDataList = new ArrayList<>();
 
+    private BuyRecordFragment buyRecordFragment;
+
+    public Place2PlaceFragment(BuyRecordFragment buyRecordFragment) {
+        this.buyRecordFragment = buyRecordFragment;
+    }
+
     @Override
     public void initView() {
         this.setLayout(null);
@@ -164,7 +170,8 @@ public class Place2PlaceFragment extends BaseFragment {
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(mDataList.get(classesList.getSelectedIndex()));
+                IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(
+                        mDataList.get(classesList.getSelectedIndex()), buyRecordFragment);
             }
         });
     }

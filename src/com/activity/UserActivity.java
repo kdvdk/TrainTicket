@@ -21,7 +21,7 @@ public class UserActivity extends BaseActivity {
     private JTabbedPane tabbedPane;
     private JPanel firstFragment;
     private JPanel secondFragment;
-    private JPanel thirdFragment;
+    private BuyRecordFragment thirdFragment;
     private JPanel forthFragment;
 
     @Override
@@ -32,11 +32,11 @@ public class UserActivity extends BaseActivity {
                 , new javax.swing.plaf.InsetsUIResource(10, 40, 2, 20));
         myFrame = new MyFrame();
         //tab切换内容
-        firstFragment = new Place2PlaceFragment();
+
         secondFragment = new TicketsQueryFragment();
         thirdFragment = new BuyRecordFragment();
         forthFragment = new InformationFragment(myFrame);
-
+        firstFragment = new Place2PlaceFragment(thirdFragment);
 
         //tab
         tabbedPane = new JTabbedPane();

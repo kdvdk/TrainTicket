@@ -6,6 +6,7 @@ import com.base.BaseActivity;
 import com.bean.IdCard;
 import com.bean.TrainClass;
 import com.db.SqlUser;
+import com.fragment.BuyRecordFragment;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 
@@ -34,10 +35,17 @@ public class IdCardChooseDialog extends BaseActivity {
     private int seatType;
     private TrainClass trainClass;
     private int nearWindows;
+    private BuyRecordFragment fragment = null;
 
     public IdCardChooseDialog(TrainClass trainClass) {
         super();
         this.trainClass = trainClass;
+    }
+
+    public IdCardChooseDialog(TrainClass trainClass, BuyRecordFragment fragment) {
+        super();
+        this.trainClass = trainClass;
+        this.fragment = fragment;
     }
 
     @Override
@@ -134,11 +142,14 @@ public class IdCardChooseDialog extends BaseActivity {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (getSqlUtiles().buyTicket(trainClass, dataList.get(mList.getSelectedIndex()), nearWindows, seatType)){
+                    if (getSqlUtiles().buyTicket(trainClass, dataList.get(mList.getSelectedIndex()), nearWindows, seatType)) {
                         showMessageDialog("订购成功");
                         System.out.println("购票成功");
-                    }else {
-                        showMessageDialog("订购失败");
+                        if (fragment != null) {
+                            fragment.loadData();
+                        }
+                    } else {
+                        showMessageDialog("你已经定过次趟列车！");
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();

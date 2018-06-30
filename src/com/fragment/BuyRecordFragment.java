@@ -1,14 +1,22 @@
 package com.fragment;
 
+import com.Main;
 import com.activity.UserActivity;
 import com.base.BaseFragment;
+import com.bean.Ticket;
 import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyLabel;
+import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuyRecordFragment extends BaseFragment {
 
@@ -17,11 +25,12 @@ public class BuyRecordFragment extends BaseFragment {
     private JScrollPane scrollPane;
     private JLabel container;
 
-    private JLabel[] dataList;
 
     private ListModel<String> listModel;
     private JButton informationButton;
     private JButton returnButton;
+
+    private List<Ticket> datas = new ArrayList<>();
 
     @Override
     public void initView() {
@@ -34,7 +43,7 @@ public class BuyRecordFragment extends BaseFragment {
                         Image.SCALE_DEFAULT));
         JLabel bgLabel = new JLabel(bg);
         bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH, ConstantsUtils.LOGIN_HEIGH - 70);
-
+        mList = new JList<>();
         loadData();
         scrollPane = new JScrollPane(mList);
         scrollPane.setBounds(0, 0, 300, 400);
@@ -59,35 +68,37 @@ public class BuyRecordFragment extends BaseFragment {
 
     @Override
     public void loadData() {
-        listModel = new DefaultComboBoxModel<>(new String[]{
-                "还未使用的：",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "已经使用了的：",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1",
-                "车票号：" + ConstantsUtils.TESTTICKET.getTicketNumber() + " 班次号：" + ConstantsUtils.TESTTICKET.getClassNumber() + " 出发时间：" + "2018-11-1"
-        });
-        mList = new JList<>();
+        datas.clear();
+        datas = getSqlUtiles().queryTickets(Main.user);
+        try {
+            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas,this));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         mList.setModel(listModel);
     }
 
     @Override
     public void addListener() {
 
+        informationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (getSqlUtiles().returnTheTicket(datas.get(mList.getSelectedIndex()))){
+                    showMessageDialog("退票成功");
+                    loadData();
+                }else{
+                    showMessageDialog("退票失败");
+                }
+            }
+        });
     }
 
 }

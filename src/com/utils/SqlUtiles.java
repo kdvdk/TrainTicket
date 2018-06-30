@@ -296,6 +296,52 @@ public class SqlUtiles {
         return executeUpdate(sql) && update;
     }
 
+
+    /**
+     * 查票
+     *
+     * @param user
+     * @return
+     */
+    public List<Ticket> queryTickets(User user) {
+        String sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = ";
+        List<IdCard> idCards = null;
+        List<Ticket> tickets = new ArrayList<>();
+        try {
+            idCards = queryIdCard(user);
+            for (IdCard idCard : idCards) {
+                sql = sql + formatString(idCard.getIdCardNumber());
+                ResultSet resultSet = executeQuery(sql);
+                System.out.println(sql);
+                while (resultSet.next()) {
+                    tickets.add(new Ticket(
+                            resultSet.getString(1).trim(),
+                            resultSet.getString(2).trim(),
+                            resultSet.getString(3).trim(),
+                            resultSet.getString(4).trim(),
+                            resultSet.getFloat(5),
+                            resultSet.getInt(6)
+                    ));
+                }
+                sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = ";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tickets;
+    }
+
+    /**
+     * 退票
+     *
+     * @param ticket
+     * @return
+     */
+    public boolean returnTheTicket(Ticket ticket) {
+        String sql = "DELETE FROM Ticket WHERE TicketTrainNumber = " + formatString(ticket.getTicketNumber());
+        return executeUpdate(sql);
+    }
+
     /**
      * 按起终点查询
      *
