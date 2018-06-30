@@ -185,7 +185,7 @@ public class ConstantsUtils {
     public static TrainClass TESTCLASS = new TrainClass("00001", "WANG-101", "成都",
             "上海", 23982.1f, new Date(2018, 6, 18), 100);
     public static Ticket TESTTICKET = new Ticket("N13223","WANG-123","07-A2",
-            "510122199711011233",23.7f);
+            "510122199711011233",23.7f,1);
     public static IdCard TESTIDCARD = new IdCard("510122199711015523","王锐","男",new Date(2018));
 
     public static CreditCard TESTCARD = new CreditCard("5123541564216","王锐",780f);

@@ -5,7 +5,6 @@ import com.db.SqlUser;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class SqlUtiles {
@@ -88,7 +87,7 @@ public class SqlUtiles {
      * @return
      */
     public Train queryTrain(String trainNumber) {
-        String sql = "SELECT TrainNumber,TrainName,TrainCompartmentNumber,TrainCapacityOfCompartment,TrainSpeed,price FROM Train WHERE TrainNumber = ?";
+        String sql = "SELECT TrainNumber,TrainName,TrainCompartmentNumber,TrainCapacityOfCompartment,TrainSpeed,firstPrice,secondPrice,bedPrice FROM Train WHERE TrainNumber = ?";
         Train train = new Train();
         train.setTrainNumber(" ");
         try {
@@ -102,7 +101,9 @@ public class SqlUtiles {
                         resultSet.getInt("TrainCompartmentNumber"),
                         resultSet.getInt("TrainCapacityOfCompartment"),
                         resultSet.getFloat("TrainSpeed"),
-                        resultSet.getFloat("price")
+                        resultSet.getFloat("firstPrice"),
+                        resultSet.getFloat("secondPrice"),
+                        resultSet.getFloat("bedPrice")
                 );
             }
 
@@ -219,7 +220,7 @@ public class SqlUtiles {
      * @param idCard
      * @return
      */
-    public boolean buyTicket(TrainClass trainClass, IdCard idCard, int nearWindow) throws SQLException {
+    public boolean buyTicket(TrainClass trainClass, IdCard idCard, int nearWindow, int seatType) throws SQLException {
         Ticket ticket = new Ticket();
         ticket.setTicketNumber(" ");
         Train train = queryTrain(trainClass.getTrainNumber());
@@ -232,32 +233,60 @@ public class SqlUtiles {
         int seatNumber = passengerNumber;
         if (nearWindow == 1) {
             seatNumber += 1;
-            while (seatNumber % 4 != 0 && seatNumber % 4 != 1) {
+            while (seatNumber % 4 != 0 || seatNumber % 4 != 1) {
                 seatNumber++;
             }
         } else {
             seatNumber += 1;
-            while (seatNumber % 4 == 0 && seatNumber % 4 == 1) {
+            while (seatNumber % 4 == 0 || seatNumber % 4 == 1) {
                 seatNumber++;
             }
         }
         //更新班次
         trainClass.setPassengerNumber(passengerNumber + 1);
         boolean update = updateClassesPassengerNumber(trainClass);
-        Seat seat = new Seat(
-                train.getTrainNumber(),
-                seatNumber + "",
-                train.getPrice()
-        );
-        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4) + seatNumber);
+        Seat seat = null;
+
+        switch (seatType) {
+            case 0:
+                //一等座
+                seat = new Seat(
+                        train.getTrainNumber(),
+                        seatNumber + "",
+                        train.getFirstPrice()
+                );
+                break;
+            case 1:
+                seatNumber += 120;
+                seat = new Seat(
+                        train.getTrainNumber(),
+                        seatNumber + "",
+                        train.getSecondPrice()
+                );
+                break;
+            case 2:
+                seatNumber += 240;
+                seat = new Seat(
+                        train.getTrainNumber(),
+                        seatNumber + "",
+                        train.getBedPrice()
+                );
+                break;
+            default:
+                break;
+        }
+        ticket.setClassNumber(trainClass.getClassNumber());
+        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4, 9) + seatNumber);
         ticket.setSeatNumber(seatNumber + "");
         ticket.setIdCardNumber(idCard.getIdCardNumber());
         ticket.setTicketTrainNumber(train.getTrainNumber());
         ticket.setTicketPrice(seat.getPrice());
+        ticket.setCompartment(seatNumber / 40 + 1);
 
-        String sql = "INSERT INTO Ticket VALUES(" + formatString(ticket.getTicketTrainNumber()) + ","
+        String sql = "INSERT INTO Ticket VALUES(" + formatString(ticket.getTicketNumber()) + ","
                 + formatString(ticket.getClassNumber()) + "," + formatString(ticket.getSeatNumber()) + ","
-                + formatString(ticket.getIdCardNumber()) + "," + ticket.getTicketPrice() + ")";
+                + formatString(ticket.getIdCardNumber()) + "," + ticket.getTicketPrice() + "," + ticket.getCompartment()
+                + ")";
 
 //        String updateSQL = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
 //                + " WHERE ClassesNumber = " + formatString(trainClass.getClassNumber());

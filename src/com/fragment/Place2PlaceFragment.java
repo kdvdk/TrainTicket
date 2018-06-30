@@ -164,7 +164,7 @@ public class Place2PlaceFragment extends BaseFragment {
         buyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog();
+                IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(mDataList.get(classesList.getSelectedIndex()));
             }
         });
     }

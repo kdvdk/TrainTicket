@@ -7,17 +7,27 @@ public class Ticket {
     private String seatNumber;
     private String idCardNumber;
     private float ticketPrice;
+    private int compartment;
 
     public Ticket() {
 
     }
 
-    public Ticket(String ticketNumber, String classNumber, String seatNumber, String idCardNumber, float ticketPrice) {
+    public Ticket(String ticketNumber, String classNumber, String seatNumber, String idCardNumber, float ticketPrice, int compartment) {
         this.ticketNumber = ticketNumber;
         this.classNumber = classNumber;
         this.seatNumber = seatNumber;
         this.idCardNumber = idCardNumber;
         this.ticketPrice = ticketPrice;
+        this.compartment = compartment;
+    }
+
+    public int getCompartment() {
+        return compartment;
+    }
+
+    public void setCompartment(int compartment) {
+        this.compartment = compartment;
     }
 
     public String getTicketNumber() {
