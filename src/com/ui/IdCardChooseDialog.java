@@ -7,6 +7,7 @@ import com.bean.IdCard;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.fragment.BuyRecordFragment;
+import com.fragment.InformationFragment;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 
@@ -36,16 +37,18 @@ public class IdCardChooseDialog extends BaseActivity {
     private TrainClass trainClass;
     private int nearWindows;
     private BuyRecordFragment fragment = null;
+    private InformationFragment informationFragment;
 
     public IdCardChooseDialog(TrainClass trainClass) {
         super();
         this.trainClass = trainClass;
     }
 
-    public IdCardChooseDialog(TrainClass trainClass, BuyRecordFragment fragment) {
+    public IdCardChooseDialog(TrainClass trainClass, BuyRecordFragment fragment, InformationFragment informationFragment) {
         super();
         this.trainClass = trainClass;
         this.fragment = fragment;
+        this.informationFragment = informationFragment;
     }
 
     @Override
@@ -141,19 +144,9 @@ public class IdCardChooseDialog extends BaseActivity {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    if (getSqlUtiles().buyTicket(trainClass, dataList.get(mList.getSelectedIndex()), nearWindows, seatType)) {
-                        showMessageDialog("订购成功");
-                        System.out.println("购票成功");
-                        if (fragment != null) {
-                            fragment.loadData();
-                        }
-                    } else {
-                        showMessageDialog("你已经定过次趟列车！");
-                    }
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
+                ChossesCreditCardDialog chossesCreditCardDialog = new ChossesCreditCardDialog(trainClass,
+                        dataList.get(mList.getSelectedIndex()), nearWindows, seatType, fragment,informationFragment);
+                myFrame.dispose();
             }
         });
     }

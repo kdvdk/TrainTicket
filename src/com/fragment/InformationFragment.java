@@ -230,7 +230,7 @@ public class InformationFragment extends BaseFragment {
                     showMessageDialog("删除成功");
                     loadData();
                 } else {
-                    showMessageDialog("删除失败123456789    wangtian");
+                    showMessageDialog("删除失败");
                 }
             }
         });

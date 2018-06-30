@@ -206,7 +206,7 @@ public class SqlUtiles {
      * @param idCard
      * @return
      */
-    public boolean buyTicket(TrainClass trainClass, IdCard idCard, int nearWindow, int seatType) throws SQLException {
+    public boolean buyTicket(TrainClass trainClass, IdCard idCard, int nearWindow, int seatType, CreditCard creditCard) throws SQLException {
         Ticket ticket = new Ticket();
         ticket.setTicketNumber(" ");
         Train train = queryTrain(trainClass.getTrainNumber());
@@ -268,18 +268,19 @@ public class SqlUtiles {
         ticket.setTicketTrainNumber(train.getTrainNumber());
         ticket.setTicketPrice(seat.getPrice());
         ticket.setCompartment(seatNumber / 40 + 1);
-
         String sql = "INSERT INTO Ticket VALUES(" + formatString(ticket.getTicketNumber()) + ","
                 + formatString(ticket.getClassNumber()) + "," + formatString(ticket.getSeatNumber()) + ","
                 + formatString(ticket.getIdCardNumber()) + "," + ticket.getTicketPrice() + "," + ticket.getCompartment()
                 + ")";
-
-//        String updateSQL = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
-//                + " WHERE ClassesNumber = " + formatString(trainClass.getClassNumber());
-
+        boolean insert = false;
+        if (useCreditCard(creditCard, ticket.getTicketPrice())) {
+            insert = executeUpdate(sql);
+        } else {
+            insert = false;
+        }
         System.out.println(sql);
 //        System.out.println(updateSQL);
-        return executeUpdate(sql) && update;
+        return insert && update;
     }
 
 
@@ -392,7 +393,7 @@ public class SqlUtiles {
     public boolean useCreditCard(CreditCard creditCard, float balance) {
         float newBalance = creditCard.getBalace() - balance;
         if (newBalance > 0) {
-            String sql = "UPDATE CreditCard set CreditBalace = " + newBalance + " WHERE CreditNumver = "
+            String sql = "UPDATE CreditCard set CreditBalace = " + newBalance + " WHERE CreditNumber = "
                     + creditCard.getCardNumber();
             return executeUpdate(sql);
         } else {

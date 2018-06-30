@@ -22,7 +22,7 @@ public class UserActivity extends BaseActivity {
     private JPanel firstFragment;
     private JPanel secondFragment;
     private BuyRecordFragment thirdFragment;
-    private JPanel forthFragment;
+    private InformationFragment forthFragment;
 
     @Override
     public void initView() {
@@ -36,7 +36,7 @@ public class UserActivity extends BaseActivity {
         secondFragment = new TicketsQueryFragment();
         thirdFragment = new BuyRecordFragment();
         forthFragment = new InformationFragment(myFrame);
-        firstFragment = new Place2PlaceFragment(thirdFragment);
+        firstFragment = new Place2PlaceFragment(thirdFragment, forthFragment);
 
         //tab
         tabbedPane = new JTabbedPane();
