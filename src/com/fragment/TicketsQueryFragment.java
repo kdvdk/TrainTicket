@@ -4,6 +4,7 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.TrainClass;
 import com.db.SqlUser;
+import com.ui.IdCardChooseDialog;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
@@ -33,8 +34,9 @@ public class TicketsQueryFragment extends BaseFragment {
     private JLabel goalPlace;
     private JLabel depatureTimeLabel;
     private JLabel restSeetNumber;
-
+    private Document document;
     private JLabel depatureTime;
+    private TrainClass trainClass;
 
     @Override
     public void initView() {
@@ -51,40 +53,11 @@ public class TicketsQueryFragment extends BaseFragment {
 
         inputLabel = new MyLabel("请输入班次号:", 20, 50, 150, 50, titleFont);
         inputTextField = new MyTextField(150, 50, 220, 50, titleFont);
-        Document document = inputTextField.getDocument();
-        document.addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                okButton.setText("查询");
-            }
+        document = inputTextField.getDocument();
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                okButton.setText("查询");
-            }
-        });
 
         okButton = new MyButton("查询", 155, 420, 100, 50, textFont, 1);
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                if (okButton.getText().equals("查询")) {
-                    try {
-                        updateText(getSqlUtiles().queryClasses(inputTextField.getText()));
-
-                        okButton.setText("购买");
-                    } catch (SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
 
         informationLabel = new JLabel();
         informationLabel.setBounds(130, 110, 260, 300);
@@ -127,7 +100,40 @@ public class TicketsQueryFragment extends BaseFragment {
 
     @Override
     public void addListener() {
+        document.addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                okButton.setText("查询");
+            }
 
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                okButton.setText("查询");
+            }
+        });
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (okButton.getText().equals("查询")) {
+                    try {
+                        trainClass = getSqlUtiles().queryClasses(inputTextField.getText());
+                        updateText(trainClass);
+
+                        okButton.setText("购买");
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+                } else {
+                    IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(trainClass);
+                }
+            }
+        });
     }
 
     private void updateText(TrainClass trainClass) {

@@ -134,11 +134,13 @@ public class IdCardChooseDialog extends BaseActivity {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    getSqlUtiles().buyTicket(trainClass, dataList.get(mList.getSelectedIndex()), nearWindows, seatType);
-                    showMessageDialog("订购成功");
-                    myFrame.dispose();
+                    if (getSqlUtiles().buyTicket(trainClass, dataList.get(mList.getSelectedIndex()), nearWindows, seatType)){
+                        showMessageDialog("订购成功");
+                        System.out.println("购票成功");
+                    }else {
+                        showMessageDialog("订购失败");
+                    }
                 } catch (SQLException e1) {
-                    showMessageDialog("订购失败");
                     e1.printStackTrace();
                 }
             }

@@ -233,7 +233,7 @@ public class SqlUtiles {
         int seatNumber = passengerNumber;
         if (nearWindow == 1) {
             seatNumber += 1;
-            while (seatNumber % 4 != 0 || seatNumber % 4 != 1) {
+            while (seatNumber % 4 != 0 && seatNumber % 4 != 1) {
                 seatNumber++;
             }
         } else {
