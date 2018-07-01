@@ -5,7 +5,7 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.Ticket;
 import com.db.SqlUser;
-import com.ui.InformationDialog;
+import com.dialog.InformationDialog;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;

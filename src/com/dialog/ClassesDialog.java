@@ -1,7 +1,8 @@
-package com.ui;
+package com.dialog;
 
 import com.activity.UserActivity;
 import com.bean.TrainClass;
+import com.ui.MyLabel;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;

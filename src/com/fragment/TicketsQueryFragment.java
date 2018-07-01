@@ -4,7 +4,7 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.TrainClass;
 import com.db.SqlUser;
-import com.ui.IdCardChooseDialog;
+import com.dialog.IdCardChooseDialog;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.ui.MyTextField;

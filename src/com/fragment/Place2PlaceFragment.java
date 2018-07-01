@@ -5,7 +5,7 @@ import com.base.BaseFragment;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.eltima.components.ui.DatePicker;
-import com.ui.IdCardChooseDialog;
+import com.dialog.IdCardChooseDialog;
 import com.ui.MyButton;
 import com.ui.MyDatePicker;
 import com.ui.MyLabel;

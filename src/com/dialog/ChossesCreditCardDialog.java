@@ -1,4 +1,4 @@
-package com.ui;
+package com.dialog;
 
 import com.Main;
 import com.activity.UserActivity;
@@ -10,6 +10,8 @@ import com.bean.Ticket;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.fragment.InformationFragment;
+import com.ui.MyButton;
+import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
 
