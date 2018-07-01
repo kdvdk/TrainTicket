@@ -37,14 +37,8 @@ public class MyFrame extends JFrame {
         this.setBounds(x, y, width, heigh);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle(ConstantsUtils.TITLE);
-        //this.getContentPane().add(new JPanel());
     }
 
-//    public static MyFrame newInstance() {
-//        MyFrame myFrame = new MyFrame();
-//        myFrame.getContentPane().add(new JPanel());
-//        return myFrame;
-//    }
 
     /**
      * 设置背景图
