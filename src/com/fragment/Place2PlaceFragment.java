@@ -147,7 +147,6 @@ public class Place2PlaceFragment extends BaseFragment {
         this.add(splitPane);
         this.add(datePicker);
         this.add(bgLabel, new Integer(Integer.MIN_VALUE));
-
     }
 
     @Override
@@ -185,5 +184,4 @@ public class Place2PlaceFragment extends BaseFragment {
         ListModel listModel = new DefaultComboBoxModel(datas);
         classesList.setModel(listModel);
     }
-
 }
