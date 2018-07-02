@@ -32,7 +32,7 @@ public class SqlUtiles {
     public Boolean InsertUser(User user) {
         String sql = INSERT_SQL.replace("table", "UserTrain");
         String values = "'" + user.getUserPhone() + "','" + user.getUserPassWord() + "','" + user.getUserEmail() + "','" + user.getUserAvatarName()
-                + "'," + user.getUserIdCardNumber() + ",'" + user.getUsualDepature() + "'," + user.getType();
+                + "'," + user.getType();
         sql = sql.replace("x", values);
         System.out.println(sql);
         if (executeUpdate(sql)) {
@@ -55,7 +55,7 @@ public class SqlUtiles {
         User user = new User();
         user.setUserPhone("-");
         String sql = QUERY_SQL.replace("sth",
-                "UserPhoneNumber,UserPassWord,UserEmail,UserAppName,UserIdCardNumber,UserUsualDepature,UserType");
+                "UserPhoneNumber,UserPassWord,UserEmail,UserAppName,UserType");
         sql = sql.replace("table", "UserTrain");
         sql = sql + limit;
         System.out.println(sql);
@@ -67,8 +67,6 @@ public class SqlUtiles {
                         resultSet.getString("UserPassWord").trim(),
                         resultSet.getString("UserEmail").trim(),
                         resultSet.getString("UserAppName").trim(),
-                        resultSet.getString("UserIdCardNumber"),
-                        resultSet.getString("UserUsualDepature").trim(),
                         resultSet.getInt("UserType")
                 );
             }
@@ -142,8 +140,11 @@ public class SqlUtiles {
      * @return
      */
     public Boolean deleteClasses(TrainClass trainClass) {
-        String sql = "DELETE FROM Classes WHERE ClassesNumber = '" + trainClass.getClassNumber() + "'";
-        return executeUpdate(sql);
+        String sql1 = "DELETE FROM Ticket WHERE TicketClassesNumber = " + formatString(trainClass.getClassNumber());
+
+        String sql2 = "DELETE FROM Classes WHERE ClassesNumber = '" + trainClass.getClassNumber() + "'";
+        executeUpdate(sql1);
+        return executeUpdate(sql2);
     }
 
     /**
@@ -154,7 +155,8 @@ public class SqlUtiles {
     public List<TrainClass> queryClasses() throws SQLException {
         ResultSet resultSet;
         List<TrainClass> mList = new ArrayList<>();
-        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance,ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes";
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance," +
+                "ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes ORDER BY ClassesDepatureTime DESC";
         resultSet = executeQuery(sql);
         while (resultSet.next()) {
             mList.add(new TrainClass(
@@ -262,7 +264,7 @@ public class SqlUtiles {
                 break;
         }
         ticket.setClassNumber(trainClass.getClassNumber());
-        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4, 9) + seatNumber);
+        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4, 9));
         ticket.setSeatNumber(seatNumber + "");
         ticket.setIdCardNumber(idCard.getIdCardNumber());
         ticket.setTicketTrainNumber(train.getTrainNumber());
@@ -326,6 +328,14 @@ public class SqlUtiles {
      */
     public boolean returnTheTicket(Ticket ticket) {
         String sql = "DELETE FROM Ticket WHERE TicketTrainNumber = " + formatString(ticket.getTicketNumber());
+        try {
+            TrainClass trainClass = queryClasses(ticket.getClassNumber());
+            trainClass.setPassengerNumber(trainClass.getPassengerNumber() - 1);
+            updateClassesPassengerNumber(trainClass);
+            useCreditCard(queryCreditCard(Main.user).get(0), -(ticket.getTicketPrice()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return executeUpdate(sql);
     }
 
@@ -468,7 +478,8 @@ public class SqlUtiles {
      * @return
      */
     public List<Ticket> queryTicketById(IdCard idCard) throws SQLException {
-        String sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = " + formatString(idCard.getIdCardNumber());
+        String sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = " + formatString(idCard.getIdCardNumber())
+                +" ORDER BY TicketClassesNumber DESC";
         List<Ticket> mList = new ArrayList<>();
         ResultSet resultSet = executeQuery(sql);
         while (resultSet.next()) {

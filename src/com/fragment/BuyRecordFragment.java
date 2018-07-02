@@ -31,7 +31,13 @@ public class BuyRecordFragment extends BaseFragment {
     private JButton informationButton;
     private JButton returnButton;
 
+    private InformationFragment informationFragment;
+
     private List<Ticket> datas = new ArrayList<>();
+
+    public BuyRecordFragment(InformationFragment informationFragment) {
+        this.informationFragment = informationFragment;
+    }
 
     @Override
     public void initView() {
@@ -69,6 +75,7 @@ public class BuyRecordFragment extends BaseFragment {
 
     @Override
     public void loadData() {
+        informationFragment.loadData();
         datas.clear();
         datas = getSqlUtiles().queryTickets(Main.user);
         try {

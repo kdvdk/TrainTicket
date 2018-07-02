@@ -37,6 +37,13 @@ public class TicketsQueryFragment extends BaseFragment {
     private Document document;
     private JLabel depatureTime;
     private TrainClass trainClass;
+    private BuyRecordFragment buyRecordFragment;
+    private InformationFragment informationFragment;
+
+    public TicketsQueryFragment(BuyRecordFragment buyRecordFragment, InformationFragment informationFragment) {
+        this.buyRecordFragment = buyRecordFragment;
+        this.informationFragment = informationFragment;
+    }
 
     @Override
     public void initView() {
@@ -124,13 +131,12 @@ public class TicketsQueryFragment extends BaseFragment {
                     try {
                         trainClass = getSqlUtiles().queryClasses(inputTextField.getText());
                         updateText(trainClass);
-
                         okButton.setText("购买");
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
                 } else {
-                    IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(trainClass);
+                    IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(trainClass, buyRecordFragment, informationFragment);
                 }
             }
         });

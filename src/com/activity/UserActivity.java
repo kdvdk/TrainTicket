@@ -33,10 +33,12 @@ public class UserActivity extends BaseActivity {
         myFrame = new MyFrame();
         //tab切换内容
 
-        secondFragment = new TicketsQueryFragment();
-        thirdFragment = new BuyRecordFragment();
+
         forthFragment = new InformationFragment(myFrame);
+        thirdFragment = new BuyRecordFragment(forthFragment);
         firstFragment = new Place2PlaceFragment(thirdFragment, forthFragment);
+        secondFragment = new TicketsQueryFragment(thirdFragment, forthFragment);
+
 
         //tab
         tabbedPane = new JTabbedPane();
