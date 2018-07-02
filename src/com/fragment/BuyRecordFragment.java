@@ -77,9 +77,9 @@ public class BuyRecordFragment extends BaseFragment {
     public void loadData() {
         informationFragment.loadData();
         datas.clear();
-        datas = getSqlUtiles().queryTickets(Main.user);
+        datas = getSqlHelper().queryTickets(Main.user);
         try {
-            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas, getSqlUtiles()));
+            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas, getSqlHelper()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,7 +99,7 @@ public class BuyRecordFragment extends BaseFragment {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getSqlUtiles().returnTheTicket(datas.get(mList.getSelectedIndex()))) {
+                if (getSqlHelper().returnTheTicket(datas.get(mList.getSelectedIndex()))) {
                     showMessageDialog("退票成功");
                     loadData();
                 } else {

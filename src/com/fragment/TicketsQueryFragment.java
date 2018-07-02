@@ -129,7 +129,7 @@ public class TicketsQueryFragment extends BaseFragment {
 
                 if (okButton.getText().equals("查询")) {
                     try {
-                        trainClass = getSqlUtiles().queryClasses(inputTextField.getText());
+                        trainClass = getSqlHelper().queryClasses(inputTextField.getText());
                         updateText(trainClass);
                         okButton.setText("购买");
                     } catch (SQLException e1) {

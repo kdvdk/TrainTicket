@@ -1,7 +1,7 @@
 package com.base;
 
 import com.db.SqlUser;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public abstract class BaseFragment extends JPanel {
      * 每个活动持有一个SQL对象
      */
     private SqlUser sqlUser = null;
-    private SqlUtiles sqlUtiles = null;
+    private SqlHelper sqlHelper = null;
 
     protected SqlUser getSqlUser() {
         return sqlUser;
@@ -26,7 +26,7 @@ public abstract class BaseFragment extends JPanel {
         dialogFrame.setLocationRelativeTo(null);
         dialogFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.sqlUser = initSqlUser();
-        this.sqlUtiles = new SqlUtiles(sqlUser);
+        this.sqlHelper = new SqlHelper(sqlUser);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -42,8 +42,8 @@ public abstract class BaseFragment extends JPanel {
 
     public abstract SqlUser initSqlUser();
 
-    public SqlUtiles getSqlUtiles() {
-        return sqlUtiles;
+    public SqlHelper getSqlHelper() {
+        return sqlHelper;
     }
 
     public abstract void loadData();

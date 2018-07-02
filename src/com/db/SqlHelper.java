@@ -1,15 +1,16 @@
-package com.utils;
+package com.db;
 
 import com.Main;
 import com.bean.*;
 import com.db.SqlUser;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import com.utils.ConstantsUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlUtiles {
+public class SqlHelper {
 
     private Connection connection = null;
 
@@ -22,7 +23,7 @@ public class SqlUtiles {
      *
      * @param sqlUser
      */
-    public SqlUtiles(SqlUser sqlUser) {
+    public SqlHelper(SqlUser sqlUser) {
         this.connection = sqlUser.getConnection();
     }
 
@@ -548,7 +549,7 @@ public class SqlUtiles {
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate(sql);
             if (result > 0) {
-                System.out.println("SqlUtiles :SQL 执行成功");
+                System.out.println("SqlHelper :SQL 执行成功");
 //                statement.close();
                 return true;
             } else {
@@ -557,7 +558,7 @@ public class SqlUtiles {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SqlUtiles :SQL update 执行失败 " + e.toString());
+            System.out.println("SqlHelper :SQL update 执行失败 " + e.toString());
             return false;
         }
 
@@ -578,7 +579,7 @@ public class SqlUtiles {
 //            statement.close();
             return resultSet;
         } catch (SQLException e) {
-            System.out.println("SqlUtiles :SQL query 执行失败 " + e.toString());
+            System.out.println("SqlHelper :SQL query 执行失败 " + e.toString());
             e.printStackTrace();
             return null;
         }

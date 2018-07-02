@@ -1,7 +1,7 @@
 package com.base;
 
 import com.db.SqlUser;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public abstract class BaseActivity {
      */
     private SqlUser sqlUser = null;
 
-    private SqlUtiles sqlUtiles;
+    private SqlHelper sqlHelper;
 
     /**
      * View初始化自动调用
@@ -26,7 +26,7 @@ public abstract class BaseActivity {
         dialogFrame.setLocationRelativeTo(null);
         dialogFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.sqlUser = initSqlUser();
-        sqlUtiles = new SqlUtiles(sqlUser);
+        sqlHelper = new SqlHelper(sqlUser);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -43,8 +43,8 @@ public abstract class BaseActivity {
         JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public SqlUtiles getSqlUtiles() {
-        return sqlUtiles;
+    public SqlHelper getSqlHelper() {
+        return sqlHelper;
     }
 
     public abstract void initView();

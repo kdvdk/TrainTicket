@@ -157,7 +157,7 @@ public class InformationFragment extends BaseFragment {
     public void loadData() {
         ListModel listModel = null;
         try {
-            dataList = getSqlUtiles().queryIdCard(Main.user);
+            dataList = getSqlHelper().queryIdCard(Main.user);
             listModel = new DefaultComboBoxModel<String>(ChangeUtiles.idCardListToArray(dataList));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -165,7 +165,7 @@ public class InformationFragment extends BaseFragment {
         list.setModel(listModel);
         ListModel moneyModel = null;
         try {
-            creditCardList = getSqlUtiles().queryCreditCard(Main.user);
+            creditCardList = getSqlHelper().queryCreditCard(Main.user);
             moneyModel = new DefaultComboBoxModel<String>(ChangeUtiles.creditCardListToArray(creditCardList));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -226,7 +226,7 @@ public class InformationFragment extends BaseFragment {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getSqlUtiles().deleteIdCard(dataList.get(list.getSelectedIndex()))) {
+                if (getSqlHelper().deleteIdCard(dataList.get(list.getSelectedIndex()))) {
                     showMessageDialog("删除成功");
                     loadData();
                 } else {
@@ -248,7 +248,7 @@ public class InformationFragment extends BaseFragment {
         deleteMoneyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (getSqlUtiles().deleteCreditCard(creditCardList.get(moneyList.getSelectedIndex()))) {
+                if (getSqlHelper().deleteCreditCard(creditCardList.get(moneyList.getSelectedIndex()))) {
                     showMessageDialog("删除成功");
                     loadData();
                 } else {

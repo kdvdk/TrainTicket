@@ -1,23 +1,18 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.base.BaseFragment;
 import com.bean.CreditCard;
 import com.bean.IdCard;
-import com.bean.Ticket;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.fragment.InformationFragment;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
-import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -73,7 +68,7 @@ public class ChossesCreditCardDialog extends BaseDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (getSqlUtiles().buyTicket(trainClass, idCard, nearWindows, seatType, datas.get(mList.getSelectedIndex()))) {
+                    if (getSqlHelper().buyTicket(trainClass, idCard, nearWindows, seatType, datas.get(mList.getSelectedIndex()))) {
                         showMessageDialog("购买成功");
                         fragment.loadData();
                         informationFragment.loadData();
@@ -95,7 +90,7 @@ public class ChossesCreditCardDialog extends BaseDialog {
     public void loadData() {
         ListModel listModel = null;
         try {
-            datas = getSqlUtiles().queryCreditCard(Main.user);
+            datas = getSqlHelper().queryCreditCard(Main.user);
             listModel = new DefaultComboBoxModel<String>(ChangeUtiles.creditCardListToArray(datas));
             System.out.println(listModel.getElementAt(0));
         } catch (SQLException e) {

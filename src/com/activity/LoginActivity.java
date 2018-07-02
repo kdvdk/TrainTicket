@@ -8,7 +8,7 @@ import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class LoginActivity extends BaseActivity {
     private JLabel message;
     private JTextField email;
     private JLabel backMessage;
-    private SqlUtiles sqlUtiles;
+    private SqlHelper sqlHelper;
 
     /**
      * 初始化View
@@ -142,8 +142,8 @@ public class LoginActivity extends BaseActivity {
                 if (email.isVisible()) {
                     String emailText = email.getText();
                     String limit = "WHERE UserEmail = '" + emailText + "'" + "AND UserPhoneNumber = '" + accountTextField.getText() + "'";
-                    sqlUtiles = new SqlUtiles(getSqlUser());
-                    User user = sqlUtiles.queryUser(limit);
+                    sqlHelper = new SqlHelper(getSqlUser());
+                    User user = sqlHelper.queryUser(limit);
                     if (user.getUserEmail().trim().equals(emailText)) {
                         System.out.println("登录成功");
                         Main.user = user;
@@ -156,8 +156,8 @@ public class LoginActivity extends BaseActivity {
                         String account = accountTextField.getText();
                         String password = passwordField.getText();
                         String limit = "WHERE UserPhoneNumber = '" + account + "'";
-                        sqlUtiles = new SqlUtiles(getSqlUser());
-                        User user = sqlUtiles.queryUser(limit);
+                        sqlHelper = new SqlHelper(getSqlUser());
+                        User user = sqlHelper.queryUser(limit);
                         if (user.getUserPhone().equals("-")) {
                             message.setText("查无此账号,请先注册");
                             message.setVisible(true);

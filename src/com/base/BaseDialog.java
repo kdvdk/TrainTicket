@@ -3,7 +3,7 @@ package com.base;
 import com.activity.UserActivity;
 import com.db.SqlUser;
 import com.utils.ConstantsUtils;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,11 +13,11 @@ public abstract class BaseDialog {
     protected JLabel bgLabel;
     protected Font textFont;
     protected Font titleFont;
-    protected SqlUtiles sqlUtiles;
+    protected SqlHelper sqlHelper;
     private JFrame dialogFrame;
 
     public BaseDialog() {
-        this.sqlUtiles = new SqlUtiles(initSqlUser());
+        this.sqlHelper = new SqlHelper(initSqlUser());
         dialogFrame = new JFrame();
         dialogFrame.setSize(400, 400);
         dialogFrame.setLocationRelativeTo(null);
@@ -59,8 +59,8 @@ public abstract class BaseDialog {
 
     public abstract SqlUser initSqlUser();
 
-    public SqlUtiles getSqlUtiles() {
-        return sqlUtiles;
+    public SqlHelper getSqlHelper() {
+        return sqlHelper;
     }
 
     public void showMessageDialog(String message) {

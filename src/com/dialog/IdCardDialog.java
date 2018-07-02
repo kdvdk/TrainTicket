@@ -1,8 +1,6 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.base.BaseFragment;
 import com.bean.IdCard;
@@ -11,10 +9,8 @@ import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ChangeUtiles;
-import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -99,7 +95,7 @@ public class IdCardDialog extends BaseDialog {
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (getSqlUtiles().insertIdCard(getIdCard(), Main.user)) {
+                    if (getSqlHelper().insertIdCard(getIdCard(), Main.user)) {
                         showMessageDialog("增添成功");
                         myFrame.dispose();
                     } else {
@@ -112,7 +108,7 @@ public class IdCardDialog extends BaseDialog {
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (getSqlUtiles().changeIdCard(getIdCard())) {
+                    if (getSqlHelper().changeIdCard(getIdCard())) {
                         showMessageDialog("修改成功");
                         myFrame.dispose();
                         informationFragment.loadData();

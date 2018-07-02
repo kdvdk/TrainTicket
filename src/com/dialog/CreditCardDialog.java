@@ -1,20 +1,16 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.base.BaseFragment;
 import com.bean.CreditCard;
 import com.db.SqlUser;
-import com.fragment.InformationFragment;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -71,7 +67,7 @@ public class CreditCardDialog extends BaseDialog {
             public void actionPerformed(ActionEvent e) {
                 CreditCard creditCard = new CreditCard(cardNumberInput.getText(), Main.user.getUserPhone(),
                         Float.valueOf(cardBalanceInput.getText()));
-                if (getSqlUtiles().insertCreditCard(creditCard)) {
+                if (getSqlHelper().insertCreditCard(creditCard)) {
                     showMessageDialog("添加成功");
                     myFrame.dispose();
                     informationFragment.loadData();

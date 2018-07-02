@@ -101,7 +101,7 @@ public class Place2PlaceFragment extends BaseFragment {
                     if (startPlace.getSelectedIndex() == 0 || goalPlace.getSelectedIndex() == 0) {
                         loadData();
                     } else {
-                        mDataList = getSqlUtiles().queryClasses(startPlace.getItemAt(startPlace.getSelectedIndex()),
+                        mDataList = getSqlHelper().queryClasses(startPlace.getItemAt(startPlace.getSelectedIndex()),
                                 goalPlace.getItemAt(goalPlace.getSelectedIndex()),
                                 ChangeUtiles.createDate(datePicker.getText().split(" ")[0]));
                         datas = ChangeUtiles.trainClassesListToArray(mDataList);
@@ -158,7 +158,7 @@ public class Place2PlaceFragment extends BaseFragment {
     public void loadData() {
         mDataList.clear();
         try {
-            mDataList = getSqlUtiles().queryClasses();
+            mDataList = getSqlHelper().queryClasses();
             datas = ChangeUtiles.trainClassesListToArray(mDataList);
             updateListData();
         } catch (SQLException e) {

@@ -1,8 +1,6 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.bean.IdCard;
 import com.bean.Ticket;
@@ -10,10 +8,8 @@ import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
-import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -91,8 +87,8 @@ public class PeopleDetailDialog extends BaseDialog {
     public void loadData() {
         datas.clear();
         try {
-            datas = getSqlUtiles().queryTicketById(idCard);
-            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas, getSqlUtiles()));
+            datas = getSqlHelper().queryTicketById(idCard);
+            listModel = new DefaultComboBoxModel<>(ChangeUtiles.ticketsListToArray(datas, getSqlHelper()));
         } catch (SQLException e) {
             e.printStackTrace();
         }

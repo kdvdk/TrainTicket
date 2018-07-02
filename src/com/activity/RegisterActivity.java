@@ -9,7 +9,7 @@ import com.ui.MyFrame;
 import com.ui.MyLabel;
 import com.ui.MyTextField;
 import com.utils.ConstantsUtils;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,7 +43,7 @@ public class RegisterActivity extends BaseActivity {
     private JLabel container;
 
 
-    private SqlUtiles sqlUtiles;
+    private SqlHelper sqlHelper;
 
     @Override
     public void initView() {
@@ -109,8 +109,8 @@ public class RegisterActivity extends BaseActivity {
                     user.setUserPassWord(password);
                     user.setUsualDepature(usualDepature);
                     Main.user = user;
-                    sqlUtiles = new SqlUtiles(getSqlUser());
-                    if (sqlUtiles.InsertUser(user)){
+                    sqlHelper = new SqlHelper(getSqlUser());
+                    if (sqlHelper.InsertUser(user)){
                         System.out.println("注册成功");
                         banck();
                     }else{

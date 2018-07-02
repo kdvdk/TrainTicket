@@ -10,7 +10,7 @@ import com.eltima.components.ui.DatePicker;
 import com.ui.*;
 import com.utils.ChangeUtiles;
 import com.utils.ConstantsUtils;
-import com.utils.SqlUtiles;
+import com.db.SqlHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -116,8 +116,8 @@ public class TrainManagerActivity extends BaseActivity {
 //                System.out.println(time);
                 String inputContent = JOptionPane.showInputDialog(dialogFrame, "输入列车号");
                 String distanceCode = String.valueOf(startPlace.getSelectedIndex()) + String.valueOf(goalPlace.getSelectedIndex());
-                SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
-//                Train train = sqlUtiles.queryTrain(inputContent);
+                SqlHelper sqlHelper = new SqlHelper(getSqlUser());
+//                Train train = sqlHelper.queryTrain(inputContent);
                 if (start_index > goal_index) {
                     distanceCode = String.valueOf(goalPlace.getSelectedIndex()) + String.valueOf(startPlace.getSelectedIndex());
                 }
@@ -127,7 +127,7 @@ public class TrainManagerActivity extends BaseActivity {
                 TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
                         temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
                 trainClass.setTime(time);
-                if (sqlUtiles.addClass(trainClass)) {
+                if (sqlHelper.addClass(trainClass)) {
                     JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                     loadData();
                 } else {
@@ -212,7 +212,7 @@ public class TrainManagerActivity extends BaseActivity {
             public void actionPerformed(ActionEvent e) {
                 IdCard idCard = null;
                 try {
-                    idCard = getSqlUtiles().queryIdCard(idText.getText());
+                    idCard = getSqlHelper().queryIdCard(idText.getText());
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -227,8 +227,8 @@ public class TrainManagerActivity extends BaseActivity {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SqlUtiles sqlUtiles = getSqlUtiles();
-                if (sqlUtiles.deleteClasses(classList.get(classesList.getSelectedIndex()))) {
+                SqlHelper sqlHelper = getSqlHelper();
+                if (sqlHelper.deleteClasses(classList.get(classesList.getSelectedIndex()))) {
                     JOptionPane.showMessageDialog(dialogFrame, "删除成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                     loadData();
                 } else {
@@ -245,9 +245,9 @@ public class TrainManagerActivity extends BaseActivity {
         queryClassesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SqlUtiles sqlUtiles = getSqlUtiles();
+                SqlHelper sqlHelper = getSqlHelper();
                 try {
-                    TrainClass trainClass = sqlUtiles.queryClasses(classesText.getText());
+                    TrainClass trainClass = sqlHelper.queryClasses(classesText.getText());
                     if (trainClass.getClassNumber().equals(" ")) {
                         JOptionPane.showMessageDialog(dialogFrame, "查无此班次", "消息提示", JOptionPane.INFORMATION_MESSAGE);
                     } else {
@@ -289,9 +289,9 @@ public class TrainManagerActivity extends BaseActivity {
 
     private void loadData() {
         classList.clear();
-        SqlUtiles sqlUtiles = new SqlUtiles(getSqlUser());
+        SqlHelper sqlHelper = new SqlHelper(getSqlUser());
         try {
-            classList = sqlUtiles.queryClasses();
+            classList = sqlHelper.queryClasses();
             datas = ChangeUtiles.trainClassesListToArray(classList);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,18 +1,14 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.bean.Ticket;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.ui.MyButton;
 import com.ui.MyLabel;
-import com.utils.ConstantsUtils;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -47,7 +43,7 @@ public class InformationDialog extends BaseDialog {
         ticketNumber = new MyLabel("车票号：" + ticket.getTicketNumber(), x_star, y_star += mergin, 300, 30, textFont);
         classesNumber = new MyLabel("班次号：" + trainClass.getClassNumber(), x_star, y_star += mergin, 300, 30, textFont);
         try {
-            peopleName = new MyLabel("乘车人：" + getSqlUtiles().queryIdCard(ticket.getIdCardNumber()).getName() + " " + ticket.getIdCardNumber()
+            peopleName = new MyLabel("乘车人：" + getSqlHelper().queryIdCard(ticket.getIdCardNumber()).getName() + " " + ticket.getIdCardNumber()
                     , x_star, y_star += mergin, 300, 30, textFont);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,7 +82,7 @@ public class InformationDialog extends BaseDialog {
     @Override
     public void loadData() {
         try {
-            this.trainClass = getSqlUtiles().queryClasses(ticket.getClassNumber());
+            this.trainClass = getSqlHelper().queryClasses(ticket.getClassNumber());
         } catch (SQLException e) {
             e.printStackTrace();
         }

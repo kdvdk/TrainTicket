@@ -4,7 +4,7 @@ import com.bean.CreditCard;
 import com.bean.IdCard;
 import com.bean.Ticket;
 import com.bean.TrainClass;
-import com.fragment.BuyRecordFragment;
+import com.db.SqlHelper;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -57,11 +57,11 @@ public class ChangeUtiles {
         return re;
     }
 
-    public static String[] ticketsListToArray(List<Ticket> mList, SqlUtiles sqlUtiles) throws SQLException {
+    public static String[] ticketsListToArray(List<Ticket> mList, SqlHelper sqlHelper) throws SQLException {
         String[] re = new String[mList.size()];
         for (int i = mList.size() - 1; i >= 0; i--) {
             Ticket item = mList.get(i);
-            TrainClass trainClass = sqlUtiles.queryClasses(item.getClassNumber());
+            TrainClass trainClass = sqlHelper.queryClasses(item.getClassNumber());
             re[i] = "车票号：" + item.getTicketNumber() + " 班次号："
                     + item.getClassNumber() + " " + trainClass.getDepaturePlace() + " to " + trainClass.getGoalPlace()
                     + " 出发时间：" + trainClass.getDepatureDay();

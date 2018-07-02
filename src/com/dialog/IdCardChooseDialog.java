@@ -1,8 +1,6 @@
 package com.dialog;
 
 import com.Main;
-import com.activity.UserActivity;
-import com.base.BaseActivity;
 import com.base.BaseDialog;
 import com.bean.IdCard;
 import com.bean.TrainClass;
@@ -12,7 +10,6 @@ import com.fragment.InformationFragment;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
-import com.utils.ConstantsUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -142,7 +139,7 @@ public class IdCardChooseDialog extends BaseDialog {
     public void loadData() {
         ListModel listModel = null;
         try {
-            dataList = getSqlUtiles().queryIdCard(Main.user);
+            dataList = getSqlHelper().queryIdCard(Main.user);
             listModel = new DefaultComboBoxModel<String>(ChangeUtiles.idCardListToArray(dataList));
         } catch (SQLException e) {
             e.printStackTrace();
