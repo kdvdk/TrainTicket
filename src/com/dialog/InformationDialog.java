@@ -3,6 +3,7 @@ package com.dialog;
 import com.Main;
 import com.activity.UserActivity;
 import com.base.BaseActivity;
+import com.base.BaseDialog;
 import com.bean.Ticket;
 import com.bean.TrainClass;
 import com.db.SqlUser;
@@ -16,8 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-public class InformationDialog extends BaseActivity {
-    private JFrame myFrame;
+public class InformationDialog extends BaseDialog {
+
     private JLabel place;
     private JLabel ticketNumber;
     private JLabel classesNumber;
@@ -41,15 +42,6 @@ public class InformationDialog extends BaseActivity {
     @Override
     public void initView() {
         loadData();
-        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//information_bg.jpg"));//背景图案
-        bg.setImage(bg.getImage().
-                getScaledInstance(ConstantsUtils.LOGIN_WIDTH - 100,
-                        ConstantsUtils.LOGIN_HEIGH - 200,
-                        Image.SCALE_DEFAULT));
-        JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH - 100, ConstantsUtils.LOGIN_HEIGH - 200);
-
-
         place = new MyLabel("出发地：" + trainClass.getDepaturePlace() + "    目的地：" + trainClass.getGoalPlace(),
                 x_star, y_star, 300, 30, textFont);
         ticketNumber = new MyLabel("车票号：" + ticket.getTicketNumber(), x_star, y_star += mergin, 300, 30, textFont);
@@ -65,10 +57,6 @@ public class InformationDialog extends BaseActivity {
         price = new MyLabel("车票费：" + ticket.getTicketPrice(), x_star, y_star += mergin, 300, 30, textFont);
         okButton = new MyButton("确认", x_star + 70, y_star += 50, 100, 40, textFont, MyButton.TYPE_OK);
 
-        myFrame = new JFrame("详细信息");
-        myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
-                ConstantsUtils.LOGIN_HEIGH - 200);
-
         myFrame.add(okButton);
         myFrame.add(peopleName);
         myFrame.add(depatureTime);
@@ -77,8 +65,7 @@ public class InformationDialog extends BaseActivity {
         myFrame.add(ticketNumber);
         myFrame.add(classesNumber);
         myFrame.add(place);
-        myFrame.add(bgLabel);
-        myFrame.setVisible(true);
+        initFrame("images//information_bg.jpg");
     }
 
     @Override
@@ -96,7 +83,8 @@ public class InformationDialog extends BaseActivity {
         });
     }
 
-    private void loadData() {
+    @Override
+    public void loadData() {
         try {
             this.trainClass = getSqlUtiles().queryClasses(ticket.getClassNumber());
         } catch (SQLException e) {

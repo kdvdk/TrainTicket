@@ -3,6 +3,7 @@ package com.dialog;
 import com.Main;
 import com.activity.UserActivity;
 import com.base.BaseActivity;
+import com.base.BaseDialog;
 import com.bean.IdCard;
 import com.bean.TrainClass;
 import com.db.SqlUser;
@@ -21,8 +22,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IdCardChooseDialog extends BaseActivity {
-    private JFrame myFrame;
+public class IdCardChooseDialog extends BaseDialog {
+
     private JButton okButton;
     //    private JButton cancelButton;
     private JLabel titleLabel;
@@ -38,13 +39,9 @@ public class IdCardChooseDialog extends BaseActivity {
     private int seatType;
     private TrainClass trainClass;
     private int nearWindows;
-    private BuyRecordFragment fragment = null;
+    private BuyRecordFragment fragment;
     private InformationFragment informationFragment;
 
-    public IdCardChooseDialog(TrainClass trainClass) {
-        super();
-        this.trainClass = trainClass;
-    }
 
     public IdCardChooseDialog(TrainClass trainClass, BuyRecordFragment fragment, InformationFragment informationFragment) {
         super();
@@ -55,13 +52,6 @@ public class IdCardChooseDialog extends BaseActivity {
 
     @Override
     public void initView() {
-        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//idcard_bg.jpg"));//背景图案
-        bg.setImage(bg.getImage().
-                getScaledInstance(ConstantsUtils.LOGIN_WIDTH - 100,
-                        ConstantsUtils.LOGIN_HEIGH - 200,
-                        Image.SCALE_DEFAULT));
-        JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH - 100, ConstantsUtils.LOGIN_HEIGH - 200);
 
         int x_star = 30;
         int y_star = 30;
@@ -96,18 +86,13 @@ public class IdCardChooseDialog extends BaseActivity {
 
         okButton = new MyButton("确认", x_star + 70, y_star + 270, 100, 40, textFont, MyButton.TYPE_OK);
 
-        myFrame = new JFrame();
-        myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
-                ConstantsUtils.LOGIN_HEIGH - 200);
         myFrame.setTitle("选择乘客");
         myFrame.add(titleLabel);
         myFrame.add(scrollPane);
         myFrame.add(okButton);
         myFrame.add(panel);
         myFrame.add(windowButton);
-        myFrame.add(bgLabel);
-        myFrame.setLayout(null);
-        myFrame.setVisible(true);
+        initFrame("images//idcard_bg.jpg");
     }
 
     @Override
@@ -147,12 +132,13 @@ public class IdCardChooseDialog extends BaseActivity {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ChossesCreditCardDialog chossesCreditCardDialog = new ChossesCreditCardDialog(trainClass,
-                        dataList.get(mList.getSelectedIndex()), nearWindows, seatType, fragment,informationFragment);
+                        dataList.get(mList.getSelectedIndex()), nearWindows, seatType, fragment, informationFragment);
                 myFrame.dispose();
             }
         });
     }
 
+    @Override
     public void loadData() {
         ListModel listModel = null;
         try {

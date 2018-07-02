@@ -5,6 +5,7 @@ import com.bean.IdCard;
 import com.bean.TrainClass;
 import com.db.SqlUser;
 import com.dialog.ClassesDialog;
+import com.dialog.PeopleDetailDialog;
 import com.eltima.components.ui.DatePicker;
 import com.ui.*;
 import com.utils.ChangeUtiles;

@@ -1,6 +1,7 @@
 package com.base;
 
 import com.activity.UserActivity;
+import com.db.SqlUser;
 import com.utils.ConstantsUtils;
 import com.utils.SqlUtiles;
 
@@ -13,22 +14,31 @@ public abstract class BaseDialog {
     protected Font textFont;
     protected Font titleFont;
     protected SqlUtiles sqlUtiles;
+    private JFrame dialogFrame;
 
-    public BaseDialog(String bgPath) {
-        this.sqlUtiles = initSQL();
+    public BaseDialog() {
+        this.sqlUtiles = new SqlUtiles(initSqlUser());
+        dialogFrame = new JFrame();
+        dialogFrame.setSize(400, 400);
+        dialogFrame.setLocationRelativeTo(null);
+        dialogFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         textFont = new Font("宋体", Font.PLAIN, 16);
         titleFont = new Font("宋体", Font.PLAIN, 20);
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                initBG(bgPath);
+                myFrame = new JFrame();
+                myFrame.setLayout(null);
+                myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
+                        ConstantsUtils.LOGIN_HEIGH - 200);
                 initView();
                 addListener();
             }
         });
-        myFrame.setLayout(null);
-        myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
-                ConstantsUtils.LOGIN_HEIGH - 200);
+    }
+
+    public void initFrame(String bgPath) {
+        initBG(bgPath);
         myFrame.add(bgLabel);
         myFrame.setVisible(true);
     }
@@ -47,7 +57,15 @@ public abstract class BaseDialog {
 
     public abstract void addListener();
 
-    public abstract SqlUtiles initSQL();
+    public abstract SqlUser initSqlUser();
+
+    public SqlUtiles getSqlUtiles() {
+        return sqlUtiles;
+    }
+
+    public void showMessageDialog(String message) {
+        JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     public abstract void loadData();
 }

@@ -3,6 +3,7 @@ package com.dialog;
 import com.Main;
 import com.activity.UserActivity;
 import com.base.BaseActivity;
+import com.base.BaseDialog;
 import com.base.BaseFragment;
 import com.bean.IdCard;
 import com.db.SqlUser;
@@ -18,9 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 
-public class IdCardDialog extends BaseActivity {
+public class IdCardDialog extends BaseDialog {
 
-    private JFrame myFrame;
     private JTextField idNumberText;
     private JTextField idName;
     private JTextField idSex;
@@ -46,15 +46,6 @@ public class IdCardDialog extends BaseActivity {
 
     @Override
     public void initView() {
-        //背景图
-        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//idcard_bg.jpg"));//背景图案
-        bg.setImage(bg.getImage().
-                getScaledInstance(ConstantsUtils.LOGIN_WIDTH - 100,
-                        ConstantsUtils.LOGIN_HEIGH - 200,
-                        Image.SCALE_DEFAULT));
-        JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH - 100, ConstantsUtils.LOGIN_HEIGH - 200);
-
         int x_star = 30;
         int y_star = 40;
         int mergin = 60;
@@ -80,10 +71,6 @@ public class IdCardDialog extends BaseActivity {
             okButton.setText("确认修改");
         }
 
-        myFrame = new JFrame("添加身份证");
-        myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
-                ConstantsUtils.LOGIN_HEIGH - 200);
-        myFrame.setLayout(null);
         myFrame.add(idName);
         myFrame.add(okButton);
         myFrame.add(idBirthday);
@@ -93,13 +80,17 @@ public class IdCardDialog extends BaseActivity {
         myFrame.add(birthdayTitle);
         myFrame.add(nameTitle);
         myFrame.add(numberTitle);
-        myFrame.add(bgLabel);
-        myFrame.setVisible(true);
+        initFrame("images//idcard_bg.jpg");
     }
 
     @Override
     public SqlUser initSqlUser() {
         return SqlUser.newInstance(Main.user.getType());
+    }
+
+    @Override
+    public void loadData() {
+
     }
 
     @Override

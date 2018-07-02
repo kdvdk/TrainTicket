@@ -3,6 +3,7 @@ package com.dialog;
 import com.Main;
 import com.activity.UserActivity;
 import com.base.BaseActivity;
+import com.base.BaseDialog;
 import com.base.BaseFragment;
 import com.bean.CreditCard;
 import com.bean.IdCard;
@@ -22,10 +23,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ChossesCreditCardDialog extends BaseActivity {
+public class ChossesCreditCardDialog extends BaseDialog {
 
     private JLabel title;
-    private JFrame myFrame;
     private JList<String> mList;
     private List<CreditCard> datas;
     private JScrollPane scrollPane;
@@ -39,6 +39,7 @@ public class ChossesCreditCardDialog extends BaseActivity {
 
     public ChossesCreditCardDialog(TrainClass trainClass, IdCard idCard, int nearWindows, int seatType,
                                    BaseFragment fragment, InformationFragment information) {
+        super();
         this.trainClass = trainClass;
         this.idCard = idCard;
         this.nearWindows = nearWindows;
@@ -49,31 +50,16 @@ public class ChossesCreditCardDialog extends BaseActivity {
 
     @Override
     public void initView() {
-        ImageIcon bg = new ImageIcon(UserActivity.class.getResource("images//people_bg.jpg"));//背景图案
-        bg.setImage(bg.getImage().
-                getScaledInstance(ConstantsUtils.LOGIN_WIDTH - 100,
-                        ConstantsUtils.LOGIN_HEIGH - 200,
-                        Image.SCALE_DEFAULT));
-        JLabel bgLabel = new JLabel(bg);
-        bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH - 100, ConstantsUtils.LOGIN_HEIGH - 200);
-
         title = new MyLabel("请选择支付银行卡", 90, 30, 300, 40, textFont);
-
         mList = new JList<>();
         loadData();
         scrollPane = new JScrollPane(mList);
         scrollPane.setBounds(30, 80, 250, 200);
         okButton = new MyButton("确认", 100, 300, 100, 40, textFont, MyButton.TYPE_OK);
-
-        myFrame = new JFrame("选择银行卡");
-        myFrame.setLayout(null);
-        myFrame.setBounds(ConstantsUtils.LOGIN_X + 50, ConstantsUtils.LOGIN_Y + 100, ConstantsUtils.LOGIN_WIDTH - 100,
-                ConstantsUtils.LOGIN_HEIGH - 200);
         myFrame.add(okButton);
         myFrame.add(scrollPane);
         myFrame.add(title);
-        myFrame.add(bgLabel);
-        myFrame.setVisible(true);
+         initFrame("images//people_bg.jpg");
     }
 
     @Override
@@ -105,7 +91,8 @@ public class ChossesCreditCardDialog extends BaseActivity {
         });
     }
 
-    private void loadData() {
+    @Override
+    public void loadData() {
         ListModel listModel = null;
         try {
             datas = getSqlUtiles().queryCreditCard(Main.user);

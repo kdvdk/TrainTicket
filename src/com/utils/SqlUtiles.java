@@ -3,6 +3,7 @@ package com.utils;
 import com.Main;
 import com.bean.*;
 import com.db.SqlUser;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 public class SqlUtiles {
 
     private Connection connection = null;
+
 
     String INSERT_SQL = "INSERT INTO table VALUES(x);";
     String QUERY_SQL = "SELECT sth FROM table ";
@@ -220,8 +222,11 @@ public class SqlUtiles {
         }
         int seatNumber = passengerNumber;
         if (nearWindow == 1) {
+            ConstantsUtils.temp++;
+            seatNumber = ConstantsUtils.temp * 4;
             seatNumber += 1;
             while (seatNumber % 4 != 0 && seatNumber % 4 != 1) {
+                System.out.println(seatNumber);
                 seatNumber++;
             }
         } else {
@@ -264,7 +269,7 @@ public class SqlUtiles {
                 break;
         }
         ticket.setClassNumber(trainClass.getClassNumber());
-        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(4, 9));
+        ticket.setTicketNumber(trainClass.getClassNumber() + idCard.getIdCardNumber().substring(1, 5));
         ticket.setSeatNumber(seatNumber + "");
         ticket.setIdCardNumber(idCard.getIdCardNumber());
         ticket.setTicketTrainNumber(train.getTrainNumber());
@@ -479,7 +484,7 @@ public class SqlUtiles {
      */
     public List<Ticket> queryTicketById(IdCard idCard) throws SQLException {
         String sql = "SELECT * FROM Ticket WHERE TicketIdCardNumber = " + formatString(idCard.getIdCardNumber())
-                +" ORDER BY TicketClassesNumber DESC";
+                + " ORDER BY TicketClassesNumber DESC";
         List<Ticket> mList = new ArrayList<>();
         ResultSet resultSet = executeQuery(sql);
         while (resultSet.next()) {
