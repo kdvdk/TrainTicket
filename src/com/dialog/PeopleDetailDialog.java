@@ -5,6 +5,7 @@ import com.base.BaseDialog;
 import com.bean.IdCard;
 import com.bean.Ticket;
 import com.db.SqlUser;
+import com.fragment.InformationFragment;
 import com.ui.MyButton;
 import com.ui.MyLabel;
 import com.utils.ChangeUtiles;
@@ -12,6 +13,8 @@ import com.utils.ChangeUtiles;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +82,14 @@ public class PeopleDetailDialog extends BaseDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 myFrame.dispose();
+            }
+        });
+        mList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    InformationDialog informationDialog = new InformationDialog(datas.get(mList.getSelectedIndex()));
+                }
             }
         });
     }
