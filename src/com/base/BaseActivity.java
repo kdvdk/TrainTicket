@@ -48,6 +48,7 @@ public abstract class BaseActivity {
     public SqlHelper getSqlHelper() {
         return sqlHelper;
     }
+
     public abstract SqlUser initSqlUser();
 
     //初始化界面
@@ -60,4 +61,6 @@ public abstract class BaseActivity {
 
     //事件设置
     public abstract void addListener();
+
+    public abstract void loadData();
 }

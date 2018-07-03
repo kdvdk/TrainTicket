@@ -209,6 +209,10 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void loadData() {
+
+    }
 
 
     private void setMessage(String s) {

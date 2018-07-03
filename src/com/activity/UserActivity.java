@@ -27,7 +27,6 @@ public class UserActivity extends BaseActivity {
     @Override
     public void initView() {
         //通用格式
-        Font titleFont = new Font("宋体", Font.PLAIN, 18);
         UIManager.put("TabbedPane.tabAreaInsets"
                 , new javax.swing.plaf.InsetsUIResource(10, 40, 2, 20));
         myFrame = new MyFrame();
@@ -66,6 +65,11 @@ public class UserActivity extends BaseActivity {
 
     @Override
     public void addListener() {
+
+    }
+
+    @Override
+    public void loadData() {
 
     }
 }

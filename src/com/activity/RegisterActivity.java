@@ -168,6 +168,11 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void loadData() {
+
+    }
+
     private void banck() {
         LoginActivity loginActivity = new LoginActivity();
         myFrame.dispose();

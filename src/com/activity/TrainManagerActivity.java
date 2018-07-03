@@ -98,48 +98,10 @@ public class TrainManagerActivity extends BaseActivity {
         scrollPane.setBounds(10, 20, 230, 250);
 //        scrollPane.setViewportView(classesList);
         left.add(scrollPane);
-
-
         //右侧
         JLabel right = new JLabel();
         newDataButton = new MyButton("发布", 10, 55, 80, 30, new Font("宋体", Font.PLAIN, 15), 0);
-        newDataButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                System.out.println(listModel.getElementAt(classesList.getSelectedIndex()));
-                int start_index = startPlace.getSelectedIndex();
-                int goal_index = goalPlace.getSelectedIndex();
-                String start = startPlace.getItemAt(startPlace.getSelectedIndex());
-                String goal = goalPlace.getItemAt(goalPlace.getSelectedIndex());
-                String day = datePicker.getText().split(" ")[0];
-                String time = datePicker.getText().split(" ")[1];
-//                System.out.println(time);
-                String inputContent = JOptionPane.showInputDialog(dialogFrame, "输入列车号");
-                String distanceCode = String.valueOf(startPlace.getSelectedIndex()) + String.valueOf(goalPlace.getSelectedIndex());
-                SqlHelper sqlHelper = new SqlHelper(getSqlUser());
-//                Train train = sqlHelper.queryTrain(inputContent);
-                if (start_index > goal_index) {
-                    distanceCode = String.valueOf(goalPlace.getSelectedIndex()) + String.valueOf(startPlace.getSelectedIndex());
-                }
-                String temp = new String(inputContent);
-                if (temp.length() != 9) {
-                    showMessageDialog("请输入正确的火车号");
-                } else {
-                    //System.out.println(temp);
-                    float distance = ConstantsUtils.DISTANCEMAP.get(distanceCode);
-                    TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
-                            temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
-                    trainClass.setTime(time);
-                    if (sqlHelper.addClass(trainClass)) {
-                        JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-                        loadData();
-                    } else {
-                        JOptionPane.showMessageDialog(dialogFrame, "已有该元组信息，添加失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
 
-            }
-        });
         right.add(newDataButton);
         deleteButton = new MyButton("删除", 10, 195, 80, 30, new Font("宋体", Font.PLAIN, 15), 2);
 
@@ -290,9 +252,47 @@ public class TrainManagerActivity extends BaseActivity {
 
             }
         });
+        newDataButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                System.out.println(listModel.getElementAt(classesList.getSelectedIndex()));
+                int start_index = startPlace.getSelectedIndex();
+                int goal_index = goalPlace.getSelectedIndex();
+                String start = startPlace.getItemAt(startPlace.getSelectedIndex());
+                String goal = goalPlace.getItemAt(goalPlace.getSelectedIndex());
+                String day = datePicker.getText().split(" ")[0];
+                String time = datePicker.getText().split(" ")[1];
+//                System.out.println(time);
+                String inputContent = JOptionPane.showInputDialog(dialogFrame, "输入列车号");
+                String distanceCode = String.valueOf(startPlace.getSelectedIndex()) + String.valueOf(goalPlace.getSelectedIndex());
+                SqlHelper sqlHelper = new SqlHelper(getSqlUser());
+//                Train train = sqlHelper.queryTrain(inputContent);
+                if (start_index > goal_index) {
+                    distanceCode = String.valueOf(goalPlace.getSelectedIndex()) + String.valueOf(startPlace.getSelectedIndex());
+                }
+                String temp = new String(inputContent);
+                if (temp.length() != 9) {
+                    showMessageDialog("请输入正确的火车号");
+                } else {
+                    //System.out.println(temp);
+                    float distance = ConstantsUtils.DISTANCEMAP.get(distanceCode);
+                    TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
+                            temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
+                    trainClass.setTime(time);
+                    if (sqlHelper.addClass(trainClass)) {
+                        JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                        loadData();
+                    } else {
+                        JOptionPane.showMessageDialog(dialogFrame, "已有该元组信息，添加失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+
+            }
+        });
     }
 
-    private void loadData() {
+    @Override
+    public void loadData() {
         classList.clear();
         SqlHelper sqlHelper = new SqlHelper(getSqlUser());
         try {
