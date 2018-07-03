@@ -170,7 +170,6 @@ public class SqlHelper {
                     resultSet.getInt("ClassesPassengerNumber"),
                     resultSet.getString("DepatureTime").trim()
             ));
-
         }
         return mList;
     }

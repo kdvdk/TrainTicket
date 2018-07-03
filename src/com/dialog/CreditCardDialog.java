@@ -65,14 +65,18 @@ public class CreditCardDialog extends BaseDialog {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CreditCard creditCard = new CreditCard(cardNumberInput.getText(), Main.user.getUserPhone(),
-                        Float.valueOf(cardBalanceInput.getText()));
-                if (getSqlHelper().insertCreditCard(creditCard)) {
-                    showMessageDialog("添加成功");
-                    myFrame.dispose();
-                    informationFragment.loadData();
+                if (cardNumberInput.getText().length() < 3 || cardBalanceInput.getText().length() < 1) {
+                    showMessageDialog("输入有误");
                 } else {
-                    showMessageDialog("表中已有改元组，添加失败");
+                    CreditCard creditCard = new CreditCard(cardNumberInput.getText(), Main.user.getUserPhone(),
+                            Float.valueOf(cardBalanceInput.getText()));
+                    if (getSqlHelper().insertCreditCard(creditCard)) {
+                        showMessageDialog("添加成功");
+                        myFrame.dispose();
+                        informationFragment.loadData();
+                    } else {
+                        showMessageDialog("表中已有改元组，添加失败");
+                    }
                 }
             }
         });

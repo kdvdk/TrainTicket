@@ -99,7 +99,7 @@ public class IdCardDialog extends BaseDialog {
                         showMessageDialog("增添成功");
                         myFrame.dispose();
                     } else {
-                        showMessageDialog("表中已有该元组，增添失败");
+                        showMessageDialog("增添失败");
                     }
                     informationFragment.loadData();
                 }
@@ -108,12 +108,16 @@ public class IdCardDialog extends BaseDialog {
             okButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (getSqlHelper().changeIdCard(getIdCard())) {
-                        showMessageDialog("修改成功");
-                        myFrame.dispose();
-                        informationFragment.loadData();
+                    if (getIdCard().getName().equals(" ")) {
+                        showMessageDialog("增添失败");
                     } else {
-                        showMessageDialog("修改失败");
+                        if (getSqlHelper().changeIdCard(getIdCard())) {
+                            showMessageDialog("修改成功");
+                            myFrame.dispose();
+                            informationFragment.loadData();
+                        } else {
+                            showMessageDialog("修改失败");
+                        }
                     }
                 }
             });
@@ -125,7 +129,18 @@ public class IdCardDialog extends BaseDialog {
         String name = idName.getText();
         String sex = idSex.getText();
         Date birthday = ChangeUtiles.createDate(idBirthday.getText());
-        return new IdCard(number, name, sex, birthday);
+        if (number.length() < 10) {
+            showMessageDialog("身份证号输入错误");
+        } else if (name.length() < 1) {
+            showMessageDialog("名字输入错误");
+        } else if (sex.length() < 1) {
+            showMessageDialog("性别输入错误");
+        } else if (idBirthday.getText().length() < 3) {
+            showMessageDialog("出生日期输入错误");
+        } else {
+            return new IdCard(number, name, sex, birthday);
+        }
+        return new IdCard(" ", " ", " ", birthday);
     }
 
 }

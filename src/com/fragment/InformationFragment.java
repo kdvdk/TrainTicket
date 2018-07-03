@@ -83,8 +83,8 @@ public class InformationFragment extends BaseFragment {
 
 
         //avatarName = new MyLabel(Main.user.getUserAvatarName(),100,40,100,40,titleFont);
-        avatarName = new MyLabel("ScorpioMiku", 180, 30, 200, 40, titleFont);
-        email = new MyLabel("1056992492@qq.com", 180, 70, 200, 40, titleFont);
+        avatarName = new MyLabel(Main.user.getUserAvatarName(), 180, 30, 200, 40, titleFont);
+        email = new MyLabel(Main.user.getUserEmail(), 180, 70, 200, 40, titleFont);
 
 
         line = new MyLabel("---------------------------------------------", 30, 130, 360, 10, titleFont);

@@ -75,7 +75,7 @@ public class ChossesCreditCardDialog extends BaseDialog {
                         informationFragment.loadData();
                         myFrame.dispose();
                     } else {
-                        showMessageDialog("该乘车人已购买过，购买失败");
+                        showMessageDialog("购买失败");
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
