@@ -4,6 +4,7 @@ import com.activity.UserActivity;
 import com.base.BaseFragment;
 import com.bean.TrainClass;
 import com.db.SqlUser;
+import com.dialog.ClassesDialog;
 import com.eltima.components.ui.DatePicker;
 import com.dialog.IdCardChooseDialog;
 import com.ui.MyButton;
@@ -16,6 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +176,14 @@ public class Place2PlaceFragment extends BaseFragment {
             public void actionPerformed(ActionEvent e) {
                 IdCardChooseDialog idCardChooseDialog = new IdCardChooseDialog(
                         mDataList.get(classesList.getSelectedIndex()), buyRecordFragment, informationFragment);
+            }
+        });
+        classesList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    ClassesDialog classesDialog = new ClassesDialog(mDataList.get(classesList.getSelectedIndex()));
+                }
             }
         });
     }

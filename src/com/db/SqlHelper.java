@@ -2,8 +2,6 @@ package com.db;
 
 import com.Main;
 import com.bean.*;
-import com.db.SqlUser;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.utils.ConstantsUtils;
 
 import java.sql.*;
@@ -42,7 +40,7 @@ public class SqlHelper {
             System.out.println("插入用户成功");
             return true;
         } else {
-            System.out.println("插入用户失败");
+            System.out.println("表中已有该用户信息，插入用户失败");
             return false;
         }
     }
@@ -204,6 +202,51 @@ public class SqlHelper {
         return re;
     }
 
+
+    /**
+     * 按起终点查询
+     *
+     * @param startplace
+     * @param goalplace
+     * @return
+     * @throws SQLException
+     */
+    public List<TrainClass> queryClasses(String startplace, String goalplace, Date depatureDay) throws SQLException {
+        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance," +
+                "ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes WHERE ClassesDepaturePlace = '"
+                + startplace + "' AND ClassesGoalPlace = '" + goalplace + "' AND ClassesDepatureTime = '" + depatureDay + "'";
+        ResultSet resultSet;
+        resultSet = executeQuery(sql);
+        List<TrainClass> mList = new ArrayList<>();
+        while (resultSet.next()) {
+            mList.add(new TrainClass(
+                    resultSet.getString("ClassesNumber").trim(),
+                    resultSet.getString("ClassesTrainNumber").trim(),
+                    resultSet.getString("ClassesDepaturePlace").trim(),
+                    resultSet.getString("ClassesGoalPlace").trim(),
+                    resultSet.getFloat("ClassesDistance"),
+                    resultSet.getDate("ClassesDepatureTime"),
+                    resultSet.getInt("ClassesPassengerNumber"),
+                    resultSet.getString("DepatureTime").trim()
+            ));
+        }
+        return mList;
+    }
+
+
+    /**
+     * 更新班次信息
+     *
+     * @param trainClass
+     * @return
+     */
+    public boolean updateClassesPassengerNumber(TrainClass trainClass) {
+        String sql = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
+                + " WHERE ClassesNumber = " + trainClass.getClassNumber();
+        System.out.println(sql);
+        return executeUpdate(sql);
+    }
+
     /**
      * 买票
      *
@@ -345,49 +388,6 @@ public class SqlHelper {
         return executeUpdate(sql);
     }
 
-    /**
-     * 按起终点查询
-     *
-     * @param startplace
-     * @param goalplace
-     * @return
-     * @throws SQLException
-     */
-    public List<TrainClass> queryClasses(String startplace, String goalplace, Date depatureDay) throws SQLException {
-        String sql = "SELECT ClassesNumber,ClassesTrainNumber,ClassesDepaturePlace,ClassesGoalPlace,ClassesDistance," +
-                "ClassesDepatureTime,ClassesPassengerNumber,DepatureTime FROM Classes WHERE ClassesDepaturePlace = '"
-                + startplace + "' AND ClassesGoalPlace = '" + goalplace + "' AND ClassesDepatureTime = '" + depatureDay + "'";
-        ResultSet resultSet;
-        resultSet = executeQuery(sql);
-        List<TrainClass> mList = new ArrayList<>();
-        while (resultSet.next()) {
-            mList.add(new TrainClass(
-                    resultSet.getString("ClassesNumber").trim(),
-                    resultSet.getString("ClassesTrainNumber").trim(),
-                    resultSet.getString("ClassesDepaturePlace").trim(),
-                    resultSet.getString("ClassesGoalPlace").trim(),
-                    resultSet.getFloat("ClassesDistance"),
-                    resultSet.getDate("ClassesDepatureTime"),
-                    resultSet.getInt("ClassesPassengerNumber"),
-                    resultSet.getString("DepatureTime").trim()
-            ));
-        }
-        return mList;
-    }
-
-
-    /**
-     * 更新班次信息
-     *
-     * @param trainClass
-     * @return
-     */
-    public boolean updateClassesPassengerNumber(TrainClass trainClass) {
-        String sql = "UPDATE Classes SET ClassesPassengerNumber = " + trainClass.getPassengerNumber()
-                + " WHERE ClassesNumber = " + trainClass.getClassNumber();
-        System.out.println(sql);
-        return executeUpdate(sql);
-    }
 
     /**
      * 添加、删除、使用、查银行卡
@@ -550,7 +550,6 @@ public class SqlHelper {
             int result = statement.executeUpdate(sql);
             if (result > 0) {
                 System.out.println("SqlHelper :SQL 执行成功");
-//                statement.close();
                 return true;
             } else {
                 statement.close();
@@ -575,8 +574,6 @@ public class SqlHelper {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-            //statement.close();
-//            statement.close();
             return resultSet;
         } catch (SQLException e) {
             System.out.println("SqlHelper :SQL query 执行失败 " + e.toString());
@@ -586,6 +583,11 @@ public class SqlHelper {
     }
 
 
+    /**
+     * 为字符串添加单引号
+     * @param input
+     * @return
+     */
     private String formatString(String input) {
         System.out.println("'" + input + "'");
         return "'" + input + "'";

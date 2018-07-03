@@ -99,7 +99,7 @@ public class IdCardDialog extends BaseDialog {
                         showMessageDialog("增添成功");
                         myFrame.dispose();
                     } else {
-                        showMessageDialog("增添失败");
+                        showMessageDialog("表中已有该元组，增添失败");
                     }
                     informationFragment.loadData();
                 }

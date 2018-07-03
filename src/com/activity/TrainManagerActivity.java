@@ -122,17 +122,22 @@ public class TrainManagerActivity extends BaseActivity {
                     distanceCode = String.valueOf(goalPlace.getSelectedIndex()) + String.valueOf(startPlace.getSelectedIndex());
                 }
                 String temp = new String(inputContent);
-                System.out.println(temp);
-                float distance = ConstantsUtils.DISTANCEMAP.get(distanceCode);
-                TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
-                        temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
-                trainClass.setTime(time);
-                if (sqlHelper.addClass(trainClass)) {
-                    JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
-                    loadData();
+                if (temp.length() != 9) {
+                    showMessageDialog("请输入正确的火车号");
                 } else {
-                    JOptionPane.showMessageDialog(dialogFrame, "失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    //System.out.println(temp);
+                    float distance = ConstantsUtils.DISTANCEMAP.get(distanceCode);
+                    TrainClass trainClass = new TrainClass(inputContent.split("-")[1] + start_index + goal_index,
+                            temp, start, goal, distance, ChangeUtiles.createDate(day), 0);
+                    trainClass.setTime(time);
+                    if (sqlHelper.addClass(trainClass)) {
+                        JOptionPane.showMessageDialog(dialogFrame, "成功", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                        loadData();
+                    } else {
+                        JOptionPane.showMessageDialog(dialogFrame, "已有该元组信息，添加失败", "消息提示", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
+
             }
         });
         right.add(newDataButton);

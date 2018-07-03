@@ -53,19 +53,20 @@ public abstract class BaseDialog {
         bgLabel.setBounds(0, 0, ConstantsUtils.LOGIN_WIDTH - 100, ConstantsUtils.LOGIN_HEIGH - 200);
     }
 
+    //界面初始化
     public abstract void initView();
-
+    //事件初始化
     public abstract void addListener();
-
+    //SQL对象初始化
     public abstract SqlUser initSqlUser();
 
     public SqlHelper getSqlHelper() {
         return sqlHelper;
     }
-
+    //信息弹窗封装
     public void showMessageDialog(String message) {
         JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    //数据初始化
     public abstract void loadData();
 }

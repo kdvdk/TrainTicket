@@ -92,14 +92,16 @@ public class RegisterActivity extends BaseActivity {
                 String avatarName = avaterNameTextField.getText();
                 String usualDepature = usualDepatureTextField.getText();
 
-                if (phone.equals("")) {
-                    message.setVisible(true);
-                } else if (password.equals("")) {
-                    message.setVisible(true);
-                } else if (email.equals("")) {
-                    message.setVisible(true);
+                if (phone.equals("") || phone.length() < 6) {
+                    setMessage("输入不规范");
+                } else if (password.equals("") || password.length() < 6) {
+                    setMessage("输入不规范");
+                } else if (email.equals("") || email.length() < 6) {
+                    setMessage("输入不规范");
                 } else if (avatarName.equals("")) {
-                    message.setVisible(true);
+                    setMessage("输入不规范");
+                } else if (usualDepature.length() != 2 || usualDepature.length() != 3) {
+                    setMessage("输入不规范");
                 } else {
                     message.setVisible(false);
                     user = new User();
@@ -110,14 +112,13 @@ public class RegisterActivity extends BaseActivity {
                     user.setUsualDepature(usualDepature);
                     Main.user = user;
                     sqlHelper = new SqlHelper(getSqlUser());
-                    if (sqlHelper.InsertUser(user)){
+                    if (sqlHelper.InsertUser(user)) {
                         System.out.println("注册成功");
                         banck();
-                    }else{
+                    } else {
                         setMessage("注册失败，请检查是否该手机已被使用");
                         System.out.println("注册失败");
                     }
-
                 }
             }
         });
@@ -177,12 +178,13 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
-    private void banck(){
+    private void banck() {
         LoginActivity loginActivity = new LoginActivity();
         myFrame.dispose();
 
     }
-    private void setMessage(String s){
+
+    private void setMessage(String s) {
         message.setText(s);
         message.setVisible(true);
     }

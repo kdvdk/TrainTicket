@@ -72,7 +72,7 @@ public class CreditCardDialog extends BaseDialog {
                     myFrame.dispose();
                     informationFragment.loadData();
                 } else {
-                    showMessageDialog("添加失败");
+                    showMessageDialog("表中已有改元组，添加失败");
                 }
             }
         });

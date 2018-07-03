@@ -16,9 +16,6 @@ public abstract class BaseFragment extends JPanel {
     private SqlUser sqlUser = null;
     private SqlHelper sqlHelper = null;
 
-    protected SqlUser getSqlUser() {
-        return sqlUser;
-    }
 
     public BaseFragment() {
         dialogFrame = new JFrame();
@@ -38,18 +35,20 @@ public abstract class BaseFragment extends JPanel {
         textFont = new Font("黑体", Font.PLAIN, 16);
     }
 
+    //初始化界面
     public abstract void initView();
-
+    //初始化SQL对象
     public abstract SqlUser initSqlUser();
-
+    //SQL对象getter
     public SqlHelper getSqlHelper() {
         return sqlHelper;
     }
-
+    //加载数据
     public abstract void loadData();
-
+    //消息窗口封装
     public void showMessageDialog(String message) {
         JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
     }
+    //事件处理加载
     public abstract void addListener();
 }

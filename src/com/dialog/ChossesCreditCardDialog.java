@@ -53,6 +53,7 @@ public class ChossesCreditCardDialog extends BaseDialog {
         okButton = new MyButton("确认", 100, 300, 100, 40, textFont, MyButton.TYPE_OK);
         myFrame.add(okButton);
         myFrame.add(scrollPane);
+
         myFrame.add(title);
          initFrame("images//people_bg.jpg");
     }
@@ -74,13 +75,14 @@ public class ChossesCreditCardDialog extends BaseDialog {
                         informationFragment.loadData();
                         myFrame.dispose();
                     } else {
-                        showMessageDialog("购买失败");
+                        showMessageDialog("该乘车人已购买过，购买失败");
                     }
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
                 if (fragment != null) {
                     fragment.loadData();
+
                 }
             }
         });

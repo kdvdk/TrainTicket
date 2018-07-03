@@ -34,6 +34,7 @@ public abstract class BaseActivity {
                 addListener();
             }
         });
+        //全局字体初始化
         titleFont = new Font("黑体", Font.PLAIN, 18);
         textFont = new Font("黑体", Font.PLAIN, 16);
 
@@ -43,17 +44,20 @@ public abstract class BaseActivity {
         JOptionPane.showMessageDialog(dialogFrame, message, "消息提示", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    //初始化SQL对象
     public SqlHelper getSqlHelper() {
         return sqlHelper;
     }
-
-    public abstract void initView();
-
     public abstract SqlUser initSqlUser();
 
+    //初始化界面
+    public abstract void initView();
+
+    //SQL对象的getter
     protected SqlUser getSqlUser() {
         return this.sqlUser;
     }
 
+    //事件设置
     public abstract void addListener();
 }
