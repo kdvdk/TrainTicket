@@ -12,13 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         initStyle();
-        //RegisterActivity registerActivity = new RegisterActivity();
-
-        //UserActivity mainActivity = new UserActivity();
-        //TrainManagerActivity managerActivity = new TrainManagerActivity();
         LoginActivity loginActivity = new LoginActivity();
-
-
     }
 
 

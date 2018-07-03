@@ -28,7 +28,7 @@ public class RegisterActivity extends BaseActivity {
     private JLabel emailLabel;
     private JLabel avatarNameLabel;
     private JLabel usualDepatureLabel;
-    private JLabel message;
+
 
     private JTextField phoneTextField;
     private JTextField passwordTextField;
@@ -75,66 +75,15 @@ public class RegisterActivity extends BaseActivity {
         avaterNameTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
         usualDepatureTextField = new MyTextField(xStart, yStar += margin, width, heigh, textFont);
 
-        message = new MyLabel("输入有错!", 160, 390, 100, 40, textFont);
-        message.setVisible(false);
-        message.setForeground(Color.red);
 
         /**
          * ok按钮
          */
         OKButton = new MyButton("完成", 90, 440, 80, 40, textFont, 1);
-        OKButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String phone = phoneTextField.getText();
-                String password = passwordTextField.getText();
-                String email = emailTextField.getText();
-                String avatarName = avaterNameTextField.getText();
-                String usualDepature = usualDepatureTextField.getText();
-
-                if (phone.equals("") || phone.length() < 6) {
-                    setMessage("输入不规范");
-                } else if (password.equals("") || password.length() < 6) {
-                    setMessage("输入不规范");
-                } else if (email.equals("") || email.length() < 6) {
-                    setMessage("输入不规范");
-                } else if (avatarName.equals("")) {
-                    setMessage("输入不规范");
-                } else if (usualDepature.length() != 2 || usualDepature.length() != 3) {
-                    setMessage("输入不规范");
-                } else {
-                    message.setVisible(false);
-                    user = new User();
-                    user.setUserPhone(phone);
-                    user.setUserEmail(email);
-                    user.setUserAvatarName(avatarName);
-                    user.setUserPassWord(password);
-                    user.setUsualDepature(usualDepature);
-                    Main.user = user;
-                    sqlHelper = new SqlHelper(getSqlUser());
-                    if (sqlHelper.InsertUser(user)) {
-                        System.out.println("注册成功");
-                        banck();
-                    } else {
-                        setMessage("注册失败，请检查是否该手机已被使用");
-                        System.out.println("注册失败");
-                    }
-                }
-            }
-        });
-
-
         /**
          * 返回按钮
          */
         BanckButton = new MyButton("返回", 230, 440, 80, 40, textFont, 2);
-        BanckButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                banck();
-            }
-        });
-
 
         //背景
         bgImage = new ImageIcon(RegisterActivity.class.getResource("images//registerbg.png"));
@@ -159,7 +108,6 @@ public class RegisterActivity extends BaseActivity {
         container.add(usualDepatureTextField);
         container.add(OKButton);
         container.add(BanckButton);
-        container.add(message);
         container.setOpaque(false);
 
 
@@ -175,7 +123,49 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void addListener() {
+        OKButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String phone = phoneTextField.getText();
+                String password = passwordTextField.getText();
+                String email = emailTextField.getText();
+                String avatarName = avaterNameTextField.getText();
+                String usualDepature = usualDepatureTextField.getText();
 
+                if (phone.equals("") || phone.length() < 10) {
+                    showMessageDialog("输入不规范");
+                } else if (password.equals("") || password.length() < 6) {
+                    showMessageDialog("输入不规范");
+                } else if (email.equals("") || email.length() < 6) {
+                    showMessageDialog("输入不规范");
+                } else if (avatarName.equals("")) {
+                    showMessageDialog("输入不规范");
+                } else if (usualDepature.length() != 2 && usualDepature.length() != 3) {
+                    showMessageDialog("输入不规范");
+                } else {
+                    user = new User();
+                    user.setUserPhone(phone);
+                    user.setUserEmail(email);
+                    user.setUserAvatarName(avatarName);
+                    user.setUserPassWord(password);
+                    user.setUsualDepature(usualDepature);
+                    Main.user = user;
+                    sqlHelper = new SqlHelper(getSqlUser());
+                    if (sqlHelper.InsertUser(user)) {
+                        System.out.println("注册成功");
+                        banck();
+                    } else {
+                        showMessageDialog("注册失败，该用户已被注册");
+                    }
+                }
+            }
+        });
+        BanckButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                banck();
+            }
+        });
     }
 
     private void banck() {
@@ -184,8 +174,4 @@ public class RegisterActivity extends BaseActivity {
 
     }
 
-    private void setMessage(String s) {
-        message.setText(s);
-        message.setVisible(true);
-    }
 }
